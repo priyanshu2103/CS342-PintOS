@@ -88,7 +88,8 @@ struct thread
     char name[16];                      /* Name (for debugging purposes). */
     uint8_t *stack;                     /* Saved stack pointer. */
     int priority;                       /* Priority. */
-    int old_priority;                    /* will be useful when we restore the threads */
+    int old_priority;                   /* will be useful when we restore the threads */
+    int64_t wakeup_time;                    /* will store the wakeup time for the sleeping thread */
     struct list_elem allelem;           /* List element for all threads list. */
 
     /* Shared between thread.c and synch.c. */
@@ -101,6 +102,8 @@ struct thread
 
     /* Owned by thread.c. */
     unsigned magic;                     /* Detects stack overflow. */
+
+    struct list_elem s_elem;            /* sleepers list elements are stored here */
   };
 
 /* If false (default), use round-robin scheduler.
@@ -139,8 +142,8 @@ void thread_set_nice (int);
 int thread_get_recent_cpu (void);
 int thread_get_load_avg (void);
 
-void thread_priority_temporarily_up();
-void thread_priority_restore();
-
+void thread_priority_temporarily_up(void);
+void thread_priority_restore(void);
+void thread_block_till(int64_t);
 
 #endif /* threads/thread.h */

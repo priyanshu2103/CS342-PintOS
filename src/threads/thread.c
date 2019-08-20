@@ -24,6 +24,12 @@
    that are ready to run but not actually running. */
 static struct list ready_list;
 
+/* List of processes in THREAD_BLOCK state, that is, processes
+    that are waiting */
+static struct list sleepers;
+
+static struct lock slock;
+
 /* List of all processes.  Processes are added to this list
    when they are first scheduled and removed when they exit. */
 static struct list all_list;
@@ -90,8 +96,10 @@ thread_init (void)
   ASSERT (intr_get_level () == INTR_OFF);
 
   lock_init (&tid_lock);
+  lock_init (&slock);
   list_init (&ready_list);
   list_init (&all_list);
+  list_init (&sleepers);
 
   /* Set up a thread structure for the running thread. */
   initial_thread = running_thread ();
@@ -397,6 +405,29 @@ void thread_priority_restore()
    thread_set_priority(temp->old_priority);
 }
 
+bool before(const struct list_elem *a, const struct list_elem *b,void *aux UNUSED)
+{
+   struct thread * temp1,* temp2;
+   temp1 = list_entry(a, struct thread, s_elem);
+   temp2 = list_entry(b, struct thread, s_elem);
+   return temp1->wakeup_time < temp2->wakeup_time;
+}
+
+void thread_block_till(int64_t wakeup_time)
+{
+   struct thread * t = thread_current();
+   enum intr_level old_level = intr_disable();
+   lock_acquire(&slock);                                         
+   // lock the sleepers list while we are inserting current thread in sleepers
+   list_insert_ordered(&sleepers,&t->s_elem,before,NULL);
+   lock_release(&slock);
+   thread_block();
+   // setting the interrupt to old level
+   intr_set_level(old_level);
+}
+
+
+
 /* Idle thread.  Executes when no other thread is ready to run.
 
    The idle thread is initially put on the ready list by
@@ -479,8 +510,10 @@ init_thread (struct thread *t, const char *name, int priority)
   memset (t, 0, sizeof *t);
   t->status = THREAD_BLOCKED;
   strlcpy (t->name, name, sizeof t->name);
+  t->wakeup_time = -1;
   t->stack = (uint8_t *) t + PGSIZE;
   t->priority = priority;
+  t->old_priority = priority;
   t->magic = THREAD_MAGIC;
   list_push_back (&all_list, &t->allelem);
 }
