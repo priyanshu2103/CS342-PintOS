@@ -5,4 +5,15 @@
 /Makefile.build/1.28/Sun Aug 24 04:31:42 2008//
 /Makefile.kernel/1.9/Sun Jun 19 03:20:47 2005//
 /Makefile.userprog/1.16/Sun Aug 24 04:31:42 2008//
-D
+D/bochs////
+D/devices////
+D/examples////
+D/filesys////
+D/lib////
+D/misc////
+D/tests////
+D/threads////
+D/userprog////
+D/utils////
+D/vm////
+D/vmware////
