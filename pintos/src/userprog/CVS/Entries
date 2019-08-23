@@ -1,17 +1,16 @@
-D/build////
+/.cvsignore/1.1.1.1/Tue Aug 20 18:47:02 2019//
+/Make.vars/1.1.1.1/Tue Aug 20 18:47:02 2019//
+/Makefile/1.1.1.1/Tue Aug 20 18:47:02 2019//
+/exception.c/1.1.1.1/Tue Aug 20 18:47:02 2019//
+/exception.h/1.1.1.1/Tue Aug 20 18:47:02 2019//
+/gdt.c/1.1.1.1/Tue Aug 20 18:47:02 2019//
+/gdt.h/1.1.1.1/Tue Aug 20 18:47:02 2019//
+/pagedir.c/1.1.1.1/Tue Aug 20 18:47:02 2019//
+/pagedir.h/1.1.1.1/Tue Aug 20 18:47:02 2019//
+/process.c/1.1.1.1/Tue Aug 20 18:47:02 2019//
+/process.h/1.1.1.1/Tue Aug 20 18:47:02 2019//
+/syscall.c/1.1.1.1/Tue Aug 20 18:47:02 2019//
+/syscall.h/1.1.1.1/Tue Aug 20 18:47:02 2019//
+/tss.c/1.1.1.1/Tue Aug 20 18:47:02 2019//
+/tss.h/1.1.1.1/Tue Aug 20 18:47:02 2019//
 D/tests////
-/.cvsignore/1.1.1.1/Tue Aug 20 14:52:32 2019//
-/Make.vars/1.1.1.1/Tue Aug 20 14:52:32 2019//
-/Makefile/1.1.1.1/Tue Aug 20 14:52:32 2019//
-/exception.c/1.1.1.1/Tue Aug 20 14:52:32 2019//
-/exception.h/1.1.1.1/Tue Aug 20 14:52:32 2019//
-/gdt.c/1.1.1.1/Tue Aug 20 14:52:32 2019//
-/gdt.h/1.1.1.1/Tue Aug 20 14:52:32 2019//
-/pagedir.c/1.1.1.1/Tue Aug 20 14:52:32 2019//
-/pagedir.h/1.1.1.1/Tue Aug 20 14:52:32 2019//
-/process.c/1.1.1.1/Tue Aug 20 14:52:32 2019//
-/process.h/1.1.1.1/Tue Aug 20 14:52:32 2019//
-/syscall.c/1.1.1.1/Tue Aug 20 14:52:32 2019//
-/syscall.h/1.1.1.1/Tue Aug 20 14:52:32 2019//
-/tss.c/1.1.1.1/Tue Aug 20 14:52:32 2019//
-/tss.h/1.1.1.1/Tue Aug 20 14:52:32 2019//

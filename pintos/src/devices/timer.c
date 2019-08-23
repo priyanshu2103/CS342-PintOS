@@ -105,13 +105,10 @@ timer_sleep (int64_t ticks)
   /*
   while (timer_elapsed (start) < ticks) 
     thread_yield ();  */
-  if(ticks > 0)
-  {
 	thread_priority_temporarily_up();
   	thread_block_till(wakeup_time);
   	thread_set_next_wakeup();
   	thread_priority_restore();
-  }
 }
 
 /* Sleeps for approximately MS milliseconds.  Interrupts must be
