@@ -41,6 +41,7 @@
 
    - up or "V": increment the value (and wake up one waiting
      thread, if any). */
+
 void
 sema_init (struct semaphore *sema, unsigned value) 
 {
@@ -90,7 +91,7 @@ sema_try_down (struct semaphore *sema)
   ASSERT (sema != NULL);
 
   old_level = intr_disable ();
-  if (sema->value > 0) 
+  if (sema->value > 0)
     {
       sema->value--;
       success = true; 
@@ -119,7 +120,7 @@ sema_up (struct semaphore *sema)
                                 struct thread, elem));
   sema->value++;
   intr_set_level (old_level);
-  thread_yield();
+  thread_yield();                // schedules the next highest priority thread
 }
 
 static void sema_test_helper (void *sema_);
@@ -158,7 +159,6 @@ sema_test_helper (void *sema_)
       sema_up (&sema[1]);
     }
 }
-
 /* Initializes LOCK.  A lock can be held by at most a single
    thread at any given time.  Our locks are not "recursive", that
    is, it is an error for the thread currently holding a lock to
@@ -247,7 +247,7 @@ lock_held_by_current_thread (const struct lock *lock)
 
   return lock->holder == thread_current ();
 }
-
+
 /* One semaphore in a list. */
 struct semaphore_elem 
   {
@@ -286,6 +286,21 @@ cond_init (struct condition *cond)
    interrupt handler.  This function may be called with
    interrupts disabled, but interrupts will be turned back on if
    we need to sleep. */
+
+/* priority compare won't work because the elem is of semaphore type and not list_elem type */
+bool comp_condition(struct list_elem *a,struct list_elem *b,void *aux UNUSED)
+{
+   struct semaphore_elem *temp1 = list_entry (a, struct semaphore_elem, elem);
+   struct list_elem *temp2 = list_front (&(temp1->semaphore.waiters));
+   struct thread *temp3 = list_entry (temp2, struct thread, elem);
+
+   struct semaphore_elem *temp4 = list_entry (b, struct semaphore_elem, elem);
+   struct list_elem *temp5 = list_front (&(temp4->semaphore.waiters));   
+   struct thread *temp6 = list_entry (temp5, struct thread, elem);
+
+   return temp3->priority > temp6->priority;
+}
+
 void
 cond_wait (struct condition *cond, struct lock *lock) 
 {
@@ -297,6 +312,7 @@ cond_wait (struct condition *cond, struct lock *lock)
   ASSERT (lock_held_by_current_thread (lock));
   
   sema_init (&waiter.semaphore, 0);
+  //list_insert_ordered (&(cond->waiters), &waiter.elem ,comp_condition,NULL);
   list_push_back (&cond->waiters, &waiter.elem);
   lock_release (lock);
   sema_down (&waiter.semaphore);
@@ -317,10 +333,29 @@ cond_signal (struct condition *cond, struct lock *lock UNUSED)
   ASSERT (lock != NULL);
   ASSERT (!intr_context ());
   ASSERT (lock_held_by_current_thread (lock));
-
+/*
   if (!list_empty (&cond->waiters)) 
     sema_up (&list_entry (list_pop_front (&cond->waiters),
                           struct semaphore_elem, elem)->semaphore);
+*/
+  if (!list_empty (&cond->waiters))
+  {
+    /*
+      Get the semaphore element that has the highest priority thread waiting 
+      for it. 
+     */
+    struct list_elem *temp = list_min (&cond->waiters, comp_condition, NULL);
+    list_remove (temp);
+    sema_up (&(list_entry (temp, struct semaphore_elem, elem)->semaphore));
+
+    /* The following is avoided wince it is computationally expensive.*/
+    /*
+      list_sort (&cond->waiters, cond_cmp, NULL);
+      sema_up (&list_entry (list_pop_front (&cond->waiters),
+      struct semaphore_elem, elem)->semaphore);
+    */
+  }
+
 }
 
 /* Wakes up all threads, if any, waiting on COND (protected by
