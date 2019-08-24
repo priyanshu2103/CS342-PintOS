@@ -4,7 +4,6 @@
 /.thread.c.swp/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /Make.vars/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /Makefile/1.1.1.1/Tue Aug 20 18:47:03 2019//
-/cscope.out/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /flags.h/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /init.c/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /init.h/1.1.1.1/Tue Aug 20 18:47:03 2019//
@@ -24,10 +23,11 @@
 /start.S/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /switch.S/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /switch.h/1.1.1.1/Tue Aug 20 18:47:03 2019//
-/synch.c/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /synch.h/1.1.1.1/Tue Aug 20 18:47:03 2019//
-/thread.c/1.1.1.1/Tue Aug 20 18:47:03 2019//
-/thread.h/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /vaddr.h/1.1.1.1/Tue Aug 20 18:47:03 2019//
 D/tests////
 /.thread.c.swo/1.2/Wed Aug 21 02:57:04 2019//
+/cscope.out/1.2/Fri Aug 23 12:56:27 2019//
+/synch.c/1.2/Sat Aug 24 05:05:51 2019//
+/thread.c/1.2/Sat Aug 24 05:11:55 2019//
+/thread.h/1.2/Sat Aug 24 05:04:55 2019//

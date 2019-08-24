@@ -147,7 +147,4 @@ void thread_priority_restore(void);
 void thread_block_till(int64_t);
 void thread_set_next_wakeup(void);
 
-bool before (const struct list_elem*, const struct list_elem*, void*);
-bool priority_compare (const struct list_elem*, const struct list_elem*, void*);
-
 #endif /* threads/thread.h */
