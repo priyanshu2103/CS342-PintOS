@@ -1,4 +1,4 @@
-Writing command line to /tmp/PXUK4rzCy5.dsk...
+Writing command line to /tmp/dPKbhdNiQj.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -107,8 +107,8 @@ Executing 'mlfqs-load-60':
 (mlfqs-load-60) After 178 seconds, load average=0.00.
 (mlfqs-load-60) end
 Execution of 'mlfqs-load-60' complete.
-Timer: 18840 ticks
-Thread: 11883 idle ticks, 6961 kernel ticks, 0 user ticks
+Timer: 18842 ticks
+Thread: 11930 idle ticks, 6916 kernel ticks, 0 user ticks
 Console: 5298 characters output
 Keyboard: 0 keys pressed
 Powering off...

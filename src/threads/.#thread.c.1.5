@@ -471,7 +471,7 @@ thread_get_effective_priority (struct thread *temp)
 	   temp3 = list_next (temp3);
         }
       }
-	temp2 = list_next (temp2);
+      temp2 = list_next (temp2);
     }
     return max;
   }
@@ -620,7 +620,7 @@ init_thread (struct thread *t, const char *name, int priority)
   memset (t, 0, sizeof *t);
   t->status = THREAD_BLOCKED;
   strlcpy (t->name, name, sizeof t->name);
-  t->wakeup_time = -1;
+  t->wakeup_time = INT64_MAX;
   t->stack = (uint8_t *) t + PGSIZE;
   t->priority = priority;
   t->old_priority = priority;
@@ -652,11 +652,12 @@ next_thread_to_run (void)
 {
   if (list_empty (&ready_list))
     return idle_thread;
-  else{
+  else
+  {
 	struct list_elem * temp = list_min (&ready_list, priority_compare, NULL);
     	list_remove (temp);
     	return list_entry (temp, struct thread, elem);
-}
+  }
 }
 
 /* Completes a thread switch by activating the new thread's page

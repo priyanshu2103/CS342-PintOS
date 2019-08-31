@@ -1,4 +1,4 @@
-Writing command line to /tmp/urR3nm4VSm.dsk...
+Writing command line to /tmp/iDq5iRNa2f.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -23,8 +23,8 @@ Executing 'mlfqs-block':
 
 (mlfqs-block) end
 Execution of 'mlfqs-block' complete.
-Timer: 3078 ticks
-Thread: 488 idle ticks, 2593 kernel ticks, 0 user ticks
+Timer: 3079 ticks
+Thread: 488 idle ticks, 2595 kernel ticks, 0 user ticks
 Console: 775 characters output
 Keyboard: 0 keys pressed
 Powering off...

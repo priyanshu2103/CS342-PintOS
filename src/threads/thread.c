@@ -40,6 +40,9 @@ static struct thread *idle_thread;
 /* Initial thread, the thread running init.c:main(). */
 static struct thread *initial_thread;
 
+/*Manager thead*/
+static struct thread *manager_thread;
+
 /* Lock used by allocate_tid(). */
 static struct lock tid_lock;
 
@@ -72,6 +75,7 @@ bool thread_mlfqs;
 static void kernel_thread (thread_func *, void *aux);
 
 static void idle (void *aux UNUSED);
+static void manager_func ();
 static struct thread *running_thread (void);
 static struct thread *next_thread_to_run (void);
 static void init_thread (struct thread *, const char *name, int priority);
@@ -127,6 +131,8 @@ thread_start (void)
 
   /* Wait for the idle thread to initialize idle_thread. */
   sema_down (&idle_started);
+
+  thread_create ("manager", PRI_MAX, manager_func, NULL);
 }
 
 bool before(const struct list_elem *a, const struct list_elem *b,void *aux UNUSED)
@@ -193,29 +199,10 @@ thread_tick (void)
   else
     kernel_ticks++;
 // unblock the first thread in sleepers list if it's wakeup_time is equal to next_wakeup_time
-  long long ticks_till_now = timer_ticks();
-  if (ticks_till_now >= next_wakeup_time)
-  {
-    struct list_elem *first = list_front (&sleepers);
-    struct thread *temp = list_entry (first, struct thread, s_elem);
+  long long ticks_till_now = timer_ticks ();
+  if (ticks_till_now >= next_wakeup_time && manager_thread->status == THREAD_BLOCKED)
+      thread_unblock (manager_thread);
 
-
-    if (temp->wakeup_time <= next_wakeup_time)
-    {
-      list_pop_front (&sleepers);
-      thread_unblock(temp);
-      if (list_empty (&sleepers))
-        next_wakeup_time = INT64_MAX;                   
-      else
-      {
-        first = list_front (&sleepers);
-        temp = list_entry (first, struct thread, s_elem);
-        next_wakeup_time = temp->wakeup_time;
-      }
-    }
-    else
-      next_wakeup_time = temp->wakeup_time;
-  }
 
   /* Enforce preemption. */
   if (++thread_ticks >= TIME_SLICE)
@@ -473,7 +460,6 @@ thread_get_effective_priority (struct thread *temp)
       }
 	temp2 = list_next (temp2);
     }
-    
     return max;
   }
   else
@@ -578,6 +564,47 @@ idle (void *idle_started_ UNUSED)
     }
 }
 
+void
+timer_wakeup ()
+{
+  enum intr_level old_level = intr_disable ();
+  while (!list_empty (&sleepers))
+  {
+    struct thread *temp = list_entry (list_front (&sleepers),
+                                  struct thread, s_elem);
+    if (temp->wakeup_time <= next_wakeup_time)
+    {
+      list_pop_front(&sleepers);
+      thread_unblock(temp);
+    }
+    else
+      break;
+  }
+
+  if (list_empty (&sleepers))
+    next_wakeup_time = INT64_MAX;
+  else
+    next_wakeup_time = list_entry(list_front(&sleepers),
+                                struct thread, s_elem)->wakeup_time;
+
+  intr_set_level(old_level);
+}
+
+void manager_func ()
+{
+  manager_thread = thread_current ();
+
+  while (true)
+  {
+    intr_disable ();
+    thread_block ();
+    intr_enable ();
+
+    timer_wakeup ();    
+  }
+}
+
+
 /* Function used as the basis for a kernel thread. */
 static void
 kernel_thread (thread_func *function, void *aux) 
@@ -621,7 +648,7 @@ init_thread (struct thread *t, const char *name, int priority)
   memset (t, 0, sizeof *t);
   t->status = THREAD_BLOCKED;
   strlcpy (t->name, name, sizeof t->name);
-  t->wakeup_time = INT64_MAX;
+  t->wakeup_time = -1;
   t->stack = (uint8_t *) t + PGSIZE;
   t->priority = priority;
   t->old_priority = priority;
@@ -653,12 +680,11 @@ next_thread_to_run (void)
 {
   if (list_empty (&ready_list))
     return idle_thread;
-  else
-  {
+  else{
 	struct list_elem * temp = list_min (&ready_list, priority_compare, NULL);
     	list_remove (temp);
     	return list_entry (temp, struct thread, elem);
-  }
+}
 }
 
 /* Completes a thread switch by activating the new thread's page
