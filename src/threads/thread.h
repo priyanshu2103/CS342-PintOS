@@ -94,7 +94,9 @@ struct thread
 
     /* Shared between thread.c and synch.c. */
     struct list_elem elem;              /* List element. */
-
+    
+    int nice;                           
+    int recent_cpu; 
 #ifdef USERPROG
     /* Owned by userprog/process.c. */
     uint32_t *pagedir;                  /* Page directory. */
@@ -105,6 +107,8 @@ struct thread
 
     struct list_elem s_elem;            /* sleepers list elements are stored here */
     struct list locks_acquired;         /* List of locks acquired by a thread */
+    bool no_yield;
+
   };
 
 /* If false (default), use round-robin scheduler.
@@ -148,8 +152,10 @@ void thread_priority_temporarily_up(void);
 void thread_priority_restore(void);
 void thread_block_till(int64_t);
 void thread_set_next_wakeup(void);
-
+bool priority_compare_mlfqs (const struct list_elem*, const struct list_elem*, void*);
 bool before (const struct list_elem*, const struct list_elem*, void*);
 bool priority_compare (const struct list_elem*, const struct list_elem*, void*);
-
+void thread_update_priority (struct thread *);
+void thread_update_recent_cpu (struct thread *);
+void thread_update_load_avg (void);
 #endif /* threads/thread.h */

@@ -1,4 +1,178 @@
-cscope 15 $HOME/pintos/src/threads               0000329033
+cscope 15 $HOME/pintos/src/threads               0000334327
+	@fixed_point_real_arithmetic.h
+
+1 #i‚de‡
+FIXED_POINT
+
+
+2 
+	#FIXED_POINT
+
+
+	)
+
+5 
+	#P
+ 17
+
+6 
+	#Q
+ 14
+
+7 
+	#S
+ 1
+
+8 
+	#F
+ 1 << (
+Q
+)
+
+9 
+
+	)
+
+11 
+	#TO_FP
+(
+n
+Ë(“Ë* (
+F
+))
+
+	)
+
+12 
+	#TO_INT_ZERO
+(
+x
+Ë((xË/ (
+F
+))
+
+	)
+
+13 
+	#TO_INT_NEAREST
+(
+x
+Ë(((xË>0 ? ((xË+ (
+F
+) / 2) / (F) : \
+
+14 ((
+x
+Ë- (
+F
+Ë/ 2Ë/ (F)))
+
+	)
+
+15 
+	#ADD
+(
+x
+, 
+y
+Ë((xË+ (y))
+
+	)
+
+16 
+	#SUB
+(
+x
+, 
+y
+Ë((xË- (y))
+
+	)
+
+17 
+	#ADD_INT
+(
+x
+, 
+n
+Ë((xË+ (nË* (
+F
+))
+
+	)
+
+18 
+	#SUB_INT
+(
+x
+, 
+n
+Ë((xË- (nË* (
+F
+))
+
+	)
+
+19 
+	#INT_SUB
+(
+n
+, 
+x
+Ë(“Ë* (
+F
+Ë- (x))
+
+	)
+
+20 
+	#MULTIPLY
+(
+x
+, 
+y
+Ë(((
+öt64_t
+)(x)Ë* (yË/ (
+F
+))
+
+	)
+
+21 
+	#MULTIPLY_INT
+(
+x
+, 
+n
+Ë((xË* (n))
+
+	)
+
+22 
+	#DIVIDE
+(
+x
+, 
+y
+Ë(((
+öt64_t
+)(x)Ë* (
+F
+Ë/ (y))
+
+	)
+
+23 
+	#DIVIDE_INT
+(
+x
+, 
+n
+Ë((xË/ (n))
+
+	)
+
 	@flags.h
 
 1 #i‚de‡
@@ -5531,7 +5705,73 @@ swôch_thunk
 	~"thªads/thªad.h
 "
 
-46 
+45 
+boﬁ
+ 
+	$¥i‹ôy_£ma
+ (c⁄° 
+li°_ñem
+ *
+a
+, c⁄° li°_ñem *
+b
+,*
+aux
+ 
+UNUSED
+)
+
+47 
+thªad
+ *
+ãmp1
+ = 
+	`li°_íåy
+ (
+a
+, thªad, 
+ñem
+);
+
+48 
+thªad
+ *
+ãmp2
+ = 
+	`li°_íåy
+ (
+b
+, thªad, 
+ñem
+);
+
+50 if(
+thªad_mlfqs
+!=
+åue
+)
+
+52  
+	`thªad_gë_ef„˘ive_¥i‹ôy
+ (
+ãmp1
+Ë>Åhªad_gë_ef„˘ive_¥i‹ôy (
+ãmp2
+);
+
+54  
+ãmp1
+->
+¥i‹ôy
+ > 
+ãmp2
+->priority ;
+
+55 
+	}
+}
+
+58 
 	$£ma_öô
  (
 £m≠h‹e
@@ -5541,7 +5781,7 @@ swôch_thunk
 vÆue
 )
 
-48 
+60 
 	`ASSERT
  (
 £ma
@@ -5549,13 +5789,13 @@ vÆue
 NULL
 );
 
-50 
+62 
 £ma
 ->
 vÆue
  = value;
 
-51 
+63 
 	`li°_öô
  (&
 £ma
@@ -5563,11 +5803,11 @@ vÆue
 waôîs
 );
 
-52 
+64 
 	}
 }
 
-62 
+74 
 	$£ma_down
  (
 £m≠h‹e
@@ -5575,13 +5815,13 @@ waôîs
 £ma
 )
 
-64 
+76 
 öå_Àvñ
  
 ﬁd_Àvñ
 ;
 
-66 
+78 
 	`ASSERT
  (
 £ma
@@ -5589,25 +5829,25 @@ waôîs
 NULL
 );
 
-67 
+79 
 	`ASSERT
  (!
 	`öå_c⁄ãxt
  ());
 
-69 
+81 
 ﬁd_Àvñ
  = 
 	`öå_dißbÀ
  ();
 
-70 
+82 
 £ma
 ->
 vÆue
  == 0)
 
-72 
+84 
 	`li°_push_back
  (&(
 £ma
@@ -5619,31 +5859,31 @@ waôîs
 ñem
 );
 
-74 
+86 
 	`thªad_block
  ();
 
-76 
+88 
 £ma
 ->
 vÆue
 --;
 
-77 
+89 
 	`öå_£t_Àvñ
  (
 ﬁd_Àvñ
 );
 
-78 
+90 
 	}
 }
 
-85 
+97 
 boﬁ
 
 
-86 
+98 
 	$£ma_åy_down
  (
 £m≠h‹e
@@ -5651,19 +5891,19 @@ boﬁ
 £ma
 )
 
-88 
+100 
 öå_Àvñ
  
 ﬁd_Àvñ
 ;
 
-89 
+101 
 boﬁ
  
 suc˚ss
 ;
 
-91 
+103 
 	`ASSERT
  (
 £ma
@@ -5671,51 +5911,51 @@ suc˚ss
 NULL
 );
 
-93 
+105 
 ﬁd_Àvñ
  = 
 	`öå_dißbÀ
  ();
 
-94 i‡(
+106 i‡(
 £ma
 ->
 vÆue
  > 0)
 
-96 
+108 
 £ma
 ->
 vÆue
 --;
 
-97 
+109 
 suc˚ss
  = 
 åue
 ;
 
-100 
+112 
 suc˚ss
  = 
 Ál£
 ;
 
-101 
+113 
 	`öå_£t_Àvñ
  (
 ﬁd_Àvñ
 );
 
-103  
+115  
 suc˚ss
 ;
 
-104 
+116 
 	}
 }
 
-111 
+123 
 	$£ma_up
  (
 £m≠h‹e
@@ -5723,13 +5963,13 @@ suc˚ss
 £ma
 )
 
-113 
+125 
 öå_Àvñ
  
 ﬁd_Àvñ
 ;
 
-115 
+127 
 	`ASSERT
  (
 £ma
@@ -5737,13 +5977,13 @@ suc˚ss
 NULL
 );
 
-117 
+129 
 ﬁd_Àvñ
  = 
 	`öå_dißbÀ
  ();
 
-118 i‡(!
+130 i‡(!
 	`li°_em±y
  (&
 £ma
@@ -5751,7 +5991,7 @@ NULL
 waôîs
 ))
 
-120 
+134 
 li°_ñem
  *
 e
@@ -5762,18 +6002,18 @@ e
 ->
 waôîs
 , 
-¥i‹ôy_com∑ª
+¥i‹ôy_£ma
 , 
 NULL
 );
 
-121 
+135 
 	`li°_ªmove
  (
 e
 );
 
-122 
+136 
 	`thªad_unblock
  (
 	`li°_íåy
@@ -5785,63 +6025,63 @@ thªad
 ñem
 ));
 
-124 
+138 
 £ma
 ->
 vÆue
 ++;
 
-125 
+139 
 	`öå_£t_Àvñ
  (
 ﬁd_Àvñ
 );
 
-126 
+140 
 	`thªad_yõld
 ();
 
-128 
+142 
 	}
 }
 
-130 
+144 
 £ma_ã°_hñ≥r
  (*
 £ma_
 );
 
-136 
+150 
 	$£ma_£lf_ã°
  ()
 
-138 
+152 
 £m≠h‹e
  
 £ma
 [2];
 
-139 
+153 
 i
 ;
 
-141 
+155 
 	`¥ötf
  ("Testing semaphores...");
 
-142 
+156 
 	`£ma_öô
  (&
 £ma
 [0], 0);
 
-143 
+157 
 	`£ma_öô
  (&
 £ma
 [1], 0);
 
-144 
+158 
 	`thªad_¸óã
  ("£ma-ã°", 
 PRI_DEFAULT
@@ -5851,37 +6091,37 @@ PRI_DEFAULT
 £ma
 );
 
-145 
+159 
 i
  = 0; i < 10; i++)
 
-147 
+161 
 	`£ma_up
  (&
 £ma
 [0]);
 
-148 
+162 
 	`£ma_down
  (&
 £ma
 [1]);
 
-150 
+164 
 	`¥ötf
  ("done.\n");
 
-151 
+165 
 	}
 }
 
-155 
+169 
 	$£ma_ã°_hñ≥r
  (*
 £ma_
 )
 
-157 
+171 
 £m≠h‹e
  *
 £ma
@@ -5889,37 +6129,37 @@ i
 £ma_
 ;
 
-158 
+172 
 i
 ;
 
-160 
+174 
 i
  = 0; i < 10; i++)
 
-162 
+176 
 	`£ma_down
  (&
 £ma
 [0]);
 
-163 
+177 
 	`£ma_up
  (&
 £ma
 [1]);
 
-165 
+179 
 	}
 }
 
-182 
+196 
 	$lock_öô
  (
 lock
  *lock)
 
-184 
+198 
 	`ASSERT
  (
 lock
@@ -5927,7 +6167,7 @@ lock
 NULL
 );
 
-186 
+200 
 lock
 ->
 hﬁdî
@@ -5935,7 +6175,7 @@ hﬁdî
 NULL
 ;
 
-187 
+201 
 	`£ma_öô
  (&
 lock
@@ -5943,17 +6183,17 @@ lock
 £m≠h‹e
 , 1);
 
-188 
+202 
 	}
 }
 
-199 
+213 
 	$lock_acquúe
  (
 lock
  *lock)
 
-201 
+215 
 	`ASSERT
  (
 lock
@@ -5961,13 +6201,13 @@ lock
 NULL
 );
 
-202 
+216 
 	`ASSERT
  (!
 	`öå_c⁄ãxt
  ());
 
-203 
+217 
 	`ASSERT
  (!
 	`lock_hñd_by_cuºít_thªad
@@ -5975,7 +6215,7 @@ NULL
 lock
 ));
 
-205 
+219 
 	`£ma_down
  (&
 lock
@@ -5983,7 +6223,7 @@ lock
 £m≠h‹e
 );
 
-207 
+221 
 thªad
  *
 t
@@ -5991,7 +6231,7 @@ t
 	`thªad_cuºít
  ();
 
-208 
+222 
 	`li°_push_back
  (&
 t
@@ -6003,7 +6243,7 @@ lock
 ñem
 );
 
-209 
+223 
 lock
 ->
 hﬁdî
@@ -6011,27 +6251,27 @@ hﬁdî
 t
 ;
 
-210 
+224 
 	}
 }
 
-218 
+234 
 boﬁ
 
 
-219 
+235 
 	$lock_åy_acquúe
  (
 lock
  *lock)
 
-221 
+237 
 boﬁ
  
 suc˚ss
 ;
 
-223 
+239 
 	`ASSERT
  (
 lock
@@ -6039,7 +6279,7 @@ lock
 NULL
 );
 
-224 
+240 
 	`ASSERT
  (!
 	`lock_hñd_by_cuºít_thªad
@@ -6047,7 +6287,7 @@ NULL
 lock
 ));
 
-226 
+242 
 suc˚ss
  = 
 	`£ma_åy_down
@@ -6057,11 +6297,11 @@ lock
 £m≠h‹e
 );
 
-227 i‡(
+243 i‡(
 suc˚ss
 )
 
-228 
+244 
 lock
 ->
 hﬁdî
@@ -6069,79 +6309,17 @@ hﬁdî
 	`thªad_cuºít
  ();
 
-229  
+245  
 suc˚ss
 ;
 
-230 
+246 
 	}
 }
-
-238 
-	$lock_ªÀa£
- (
-lock
- *lock)
-
-240 
-	`ASSERT
- (
-lock
- !
-NULL
-);
-
-241 
-	`ASSERT
- (
-	`lock_hñd_by_cuºít_thªad
- (
-lock
-));
-
-243 
-lock
-->
-hﬁdî
- = 
-NULL
-;
-
-244 
-thªad
- *
-t
- = 
-	`thªad_cuºít
- ();
-
-245 
-	`li°_ªmove
- (&
-lock
-->
-ñem
-);
-
-247 
-	`£ma_up
- (&
-lock
-->
-£m≠h‹e
-);
-
-248 
-	}
-}
-
-253 
-boﬁ
-
 
 254 
-	$lock_hñd_by_cuºít_thªad
- (c⁄° 
+	$lock_ªÀa£
+ (
 lock
  *lock)
 
@@ -6153,7 +6331,61 @@ lock
 NULL
 );
 
-258  
+257 
+	`ASSERT
+ (
+	`lock_hñd_by_cuºít_thªad
+ (
+lock
+));
+
+259 
+lock
+->
+hﬁdî
+ = 
+NULL
+;
+
+261 
+	`li°_ªmove
+ (&
+lock
+->
+ñem
+);
+
+263 
+	`£ma_up
+ (&
+lock
+->
+£m≠h‹e
+);
+
+264 
+	}
+}
+
+269 
+boﬁ
+
+
+270 
+	$lock_hñd_by_cuºít_thªad
+ (c⁄° 
+lock
+ *lock)
+
+272 
+	`ASSERT
+ (
+lock
+ !
+NULL
+);
+
+274  
 lock
 ->
 hﬁdî
@@ -6161,55 +6393,27 @@ hﬁdî
 	`thªad_cuºít
  ();
 
-259 
+275 
 	}
 }
 
-262 
+278 
 	s£m≠h‹e_ñem
 
 
-264 
+280 
 li°_ñem
  
 	mñem
 ;
 
-265 
+281 
 £m≠h‹e
  
 	m£m≠h‹e
 ;
 
-272 
-	$c⁄d_öô
- (
-c⁄dôi⁄
- *
-c⁄d
-)
-
-274 
-	`ASSERT
- (
-c⁄d
- !
-NULL
-);
-
-276 
-	`li°_öô
- (&
-c⁄d
-->
-waôîs
-);
-
-277 
-	}
-}
-
-301 
+285 
 boﬁ
  
 	$comp_c⁄dôi⁄
@@ -6225,7 +6429,7 @@ aux
 UNUSED
 )
 
-303 
+287 
 £m≠h‹e_ñem
  *
 ãmp1
@@ -6237,7 +6441,7 @@ a
 ñem
 );
 
-304 
+288 
 li°_ñem
  *
 ãmp2
@@ -6251,7 +6455,7 @@ li°_ñem
 waôîs
 ));
 
-305 
+289 
 thªad
  *
 ãmp3
@@ -6263,7 +6467,7 @@ thªad
 ñem
 );
 
-307 
+291 
 £m≠h‹e_ñem
  *
 ãmp4
@@ -6275,7 +6479,7 @@ b
 ñem
 );
 
-308 
+292 
 li°_ñem
  *
 ãmp5
@@ -6289,7 +6493,7 @@ li°_ñem
 waôîs
 ));
 
-309 
+293 
 thªad
  *
 ãmp6
@@ -6301,7 +6505,13 @@ thªad
 ñem
 );
 
-311  
+295 if(
+thªad_mlfqs
+!=
+åue
+)
+
+297  
 	`thªad_gë_ef„˘ive_¥i‹ôy
  (
 ãmp3
@@ -6309,11 +6519,47 @@ thªad
 ãmp6
 );
 
-312 
+299  
+ãmp3
+->
+¥i‹ôy
+ > 
+ãmp6
+->priority ;
+
+302 
 	}
 }
 
-315 
+308 
+	$c⁄d_öô
+ (
+c⁄dôi⁄
+ *
+c⁄d
+)
+
+310 
+	`ASSERT
+ (
+c⁄d
+ !
+NULL
+);
+
+312 
+	`li°_öô
+ (&
+c⁄d
+->
+waôîs
+);
+
+313 
+	}
+}
+
+336 
 	$c⁄d_waô
  (
 c⁄dôi⁄
@@ -6323,13 +6569,13 @@ c⁄d
 lock
  *lock)
 
-317 
+338 
 £m≠h‹e_ñem
  
 waôî
 ;
 
-319 
+340 
 	`ASSERT
  (
 c⁄d
@@ -6337,7 +6583,7 @@ c⁄d
 NULL
 );
 
-320 
+341 
 	`ASSERT
  (
 lock
@@ -6345,13 +6591,13 @@ lock
 NULL
 );
 
-321 
+342 
 	`ASSERT
  (!
 	`öå_c⁄ãxt
  ());
 
-322 
+343 
 	`ASSERT
  (
 	`lock_hñd_by_cuºít_thªad
@@ -6359,7 +6605,7 @@ NULL
 lock
 ));
 
-324 
+345 
 	`£ma_öô
  (&
 waôî
@@ -6367,7 +6613,7 @@ waôî
 £m≠h‹e
 , 0);
 
-326 
+347 
 	`li°_push_back
  (&
 c⁄d
@@ -6379,13 +6625,13 @@ waôî
 ñem
 );
 
-327 
+348 
 	`lock_ªÀa£
  (
 lock
 );
 
-328 
+349 
 	`£ma_down
  (&
 waôî
@@ -6393,17 +6639,17 @@ waôî
 £m≠h‹e
 );
 
-329 
+350 
 	`lock_acquúe
  (
 lock
 );
 
-330 
+351 
 	}
 }
 
-340 
+361 
 	$c⁄d_sig«l
  (
 c⁄dôi⁄
@@ -6415,7 +6661,7 @@ lock
 UNUSED
 )
 
-342 
+363 
 	`ASSERT
  (
 c⁄d
@@ -6423,7 +6669,7 @@ c⁄d
 NULL
 );
 
-343 
+364 
 	`ASSERT
  (
 lock
@@ -6431,13 +6677,13 @@ lock
 NULL
 );
 
-344 
+365 
 	`ASSERT
  (!
 	`öå_c⁄ãxt
  ());
 
-345 
+366 
 	`ASSERT
  (
 	`lock_hñd_by_cuºít_thªad
@@ -6445,7 +6691,7 @@ NULL
 lock
 ));
 
-351 i‡(!
+372 i‡(!
 	`li°_em±y
  (&
 c⁄d
@@ -6453,7 +6699,7 @@ c⁄d
 waôîs
 ))
 
-357 
+380 
 li°_ñem
  *
 ãmp
@@ -6469,13 +6715,13 @@ comp_c⁄dôi⁄
 NULL
 );
 
-358 
+381 
 	`li°_ªmove
  (
 ãmp
 );
 
-359 
+382 
 	`£ma_up
  (&(
 	`li°_íåy
@@ -6489,11 +6735,11 @@ NULL
 £m≠h‹e
 ));
 
-369 
+392 
 	}
 }
 
-378 
+401 
 	$c⁄d_brﬂdˇ°
  (
 c⁄dôi⁄
@@ -6503,7 +6749,7 @@ c⁄d
 lock
  *lock)
 
-380 
+403 
 	`ASSERT
  (
 c⁄d
@@ -6511,7 +6757,7 @@ c⁄d
 NULL
 );
 
-381 
+404 
 	`ASSERT
  (
 lock
@@ -6519,7 +6765,7 @@ lock
 NULL
 );
 
-383 !
+406 !
 	`li°_em±y
  (&
 c⁄d
@@ -6527,7 +6773,7 @@ c⁄d
 waôîs
 ))
 
-384 
+407 
 	`c⁄d_sig«l
  (
 c⁄d
@@ -6535,7 +6781,7 @@ c⁄d
 lock
 );
 
-385 
+408 
 	}
 }
 
@@ -6605,41 +6851,57 @@ boﬁ
 £ma_£lf_ã°
  ();
 
-21 
+19 
+boﬁ
+ 
+¥i‹ôy_£ma
+ (c⁄° 
+li°_ñem
+ *, const list_elem *,*);
+
+20 
+boﬁ
+ 
+comp_c⁄dôi⁄
+ (
+li°_ñem
+ *, list_elem *, *) ;
+
+22 
 	slock
 
 
-23 
+24 
 thªad
  *
 	mhﬁdî
 ;
 
-24 
+25 
 £m≠h‹e
  
 	m£m≠h‹e
 ;
 
-25 
+26 
 li°_ñem
  
 	mñem
 ;
 
-28 
+29 
 lock_öô
  (
 lock
  *);
 
-29 
+30 
 lock_acquúe
  (
 lock
  *);
 
-30 
+31 
 boﬁ
  
 lock_åy_acquúe
@@ -6647,13 +6909,13 @@ lock_åy_acquúe
 lock
  *);
 
-31 
+32 
 lock_ªÀa£
  (
 lock
  *);
 
-32 
+33 
 boﬁ
  
 lock_hñd_by_cuºít_thªad
@@ -6661,23 +6923,23 @@ lock_hñd_by_cuºít_thªad
 lock
  *);
 
-35 
+36 
 	sc⁄dôi⁄
 
 
-37 
+38 
 li°
  
 	mwaôîs
 ;
 
-40 
+41 
 c⁄d_öô
  (
 c⁄dôi⁄
  *);
 
-41 
+42 
 c⁄d_waô
  (
 c⁄dôi⁄
@@ -6685,7 +6947,7 @@ c⁄dôi⁄
 lock
  *);
 
-42 
+43 
 c⁄d_sig«l
  (
 c⁄dôi⁄
@@ -6693,7 +6955,7 @@ c⁄dôi⁄
 lock
  *);
 
-43 
+44 
 c⁄d_brﬂdˇ°
  (
 c⁄dôi⁄
@@ -6701,7 +6963,7 @@ c⁄dôi⁄
 lock
  *);
 
-50 
+51 
 	#b¨rõr
 (Ë
 asm
@@ -6712,162 +6974,200 @@ asm
 	@thread.c
 
 1 
-	~"thªads/thªad.h
+	~"fixed_poöt_ªÆ_¨ôhmëic.h
 "
 
 2 
+	~"thªads/thªad.h
+"
+
+3 
 	~<debug.h
 >
 
-3 
+4 
 	~<°ddef.h
 >
 
-4 
+5 
 	~<øndom.h
 >
 
-5 
+6 
 	~<°dio.h
 >
 
-6 
+7 
 	~<°rög.h
 >
 
-7 
+8 
 	~"thªads/Êags.h
 "
 
-8 
+9 
 	~"thªads/öãºu±.h
 "
 
-9 
+10 
 	~"thªads/öå-°ubs.h
 "
 
-10 
-	~"thªads/∑Œoc.h
-"
-
 11 
-	~"thªads/swôch.h
+	~"devi˚s/timî.h
 "
 
 12 
-	~"thªads/synch.h
+	~"thªads/∑Œoc.h
 "
 
 13 
+	~"thªads/swôch.h
+"
+
+14 
+	~"thªads/synch.h
+"
+
+15 
 	~"thªads/vaddr.h
 "
 
-14 #ifde‡
+16 #ifde‡
 USERPROG
 
 
-15 
+17 
 	~"u£Ωrog/¥o˚ss.h
 "
 
-21 
+23 
 	#THREAD_MAGIC
  0xcd6abf4b
 
 	)
 
-25 
+27 
 li°
  
 	gªady_li°
 ;
 
-29 
+31 
 li°
  
 	g¶ì≥rs
 ;
 
-31 
+33 
 öt64_t
  
 	g√xt_wakeup_time
-=
-INT64_MAX
 ;
 
-35 
+37 
 li°
  
 	gÆl_li°
 ;
 
-38 
+40 
 thªad
  *
 	gidÀ_thªad
 ;
 
-41 
+43 
 thªad
  *
 	göôül_thªad
 ;
 
-44 
+46 
+thªad
+ *
+	gm™agî_thªad
+;
+
+49 
+thªad
+ *
+	gbsd_scheduÀr_thªad
+;
+
+50 
 lock
  
 	gtid_lock
 ;
 
-51 
+51 
+	glﬂd_avg
+;
+
+52 
+boﬁ
+ 
+	gscheduÀ_¶i˚
+;
+
+53 
+boﬁ
+ 
+	gscheduÀ_£c
+;
+
+54 
+bsd_scheduÀr
+ ();
+
+58 
 	skî√l_thªad_‰ame
 
 
-53 *
+60 *
 	meù
 ;
 
-54 
+61 
 thªad_func
  *
 	mfun˘i⁄
 ;
 
-55 *
+62 *
 	maux
 ;
 
-59 
+66 
 	gidÀ_ticks
 ;
 
-60 
+67 
 	gkî√l_ticks
 ;
 
-61 
+68 
 	gu£r_ticks
 ;
 
-64 
+71 
 	#TIME_SLICE
  4
 
 	)
 
-65 
+72 
 	gthªad_ticks
 ;
 
-70 
+77 
 boﬁ
  
 	gthªad_mlfqs
 ;
 
-72 
+79 
 kî√l_thªad
  (
 thªad_func
@@ -6875,7 +7175,7 @@ thªad_func
 aux
 );
 
-74 
+81 
 idÀ
  (*
 aux
@@ -6883,19 +7183,23 @@ aux
 UNUSED
 );
 
-75 
+82 
+m™agî_func
+ ();
+
+83 
 thªad
  *
 ru¬ög_thªad
  ();
 
-76 
+84 
 thªad
  *
 √xt_thªad_to_run
  ();
 
-77 
+85 
 öô_thªad
  (
 thªad
@@ -6905,7 +7209,7 @@ thªad
 ¥i‹ôy
 );
 
-78 
+86 
 boﬁ
  
 	$is_thªad
@@ -6915,7 +7219,7 @@ thªad
 UNUSED
 ;
 
-79 *
+87 *
 	`Æloc_‰ame
  (
 thªad
@@ -6925,11 +7229,11 @@ size_t
 size
 );
 
-80 
+88 
 	`scheduÀ
  ();
 
-81 
+89 
 	`scheduÀ_èû
  (
 thªad
@@ -6937,17 +7241,167 @@ thªad
 ¥ev
 );
 
-82 
+90 
 tid_t
  
 	`Æloˇã_tid
  ();
 
-98 
+93 
+	$bsd_scheduÀr
+ ()
+
+95 
+bsd_scheduÀr_thªad
+ = 
+	`thªad_cuºít
+ ();
+
+96 
+öå_Àvñ
+ 
+ﬁd_Àvñ
+;
+
+97 
+li°_ñem
+ * 
+ãmp
+;
+
+98 
+åue
+)
+
+100 
+ﬁd_Àvñ
+ = 
+	`öå_dißbÀ
+ ();
+
+101 
+	`thªad_block
+ ();
+
+102 
+	`öå_£t_Àvñ
+ (
+ﬁd_Àvñ
+);
+
+105 i‡(
+scheduÀ_£c
+)
+
+107 
+	`thªad_upd©e_lﬂd_avg
+ ();
+
+108 
+ãmp
+ = 
+	`li°_begö
+ (&
+Æl_li°
+);Åem∞!
+	`li°_íd
+ (&Æl_li°);Åem∞
+	`li°_√xt
+ (temp))
+
+110 
+thªad
+ * 
+ôem
+ = 
+	`li°_íåy
+ (
+ãmp
+, thªad, 
+ÆÀÀm
+);
+
+111 i‡(
+ôem
+ !
+m™agî_thªad
+ && iãm !
+bsd_scheduÀr_thªad
+ && iãm !
+idÀ_thªad
+)
+
+113 
+	`thªad_upd©e_ª˚¡_˝u
+ (
+ôem
+);
+
+117 
+scheduÀ_£c
+ = 
+Ál£
+;
+
+120 i‡(
+scheduÀ_¶i˚
+)
+
+123 
+ãmp
+ = 
+	`li°_begö
+ (&
+Æl_li°
+);Åem∞!
+	`li°_íd
+ (&Æl_li°);Åem∞
+	`li°_√xt
+ (temp))
+
+125 
+thªad
+ * 
+ôem
+ = 
+	`li°_íåy
+ (
+ãmp
+, thªad, 
+ÆÀÀm
+);
+
+126 i‡(
+ôem
+ !
+m™agî_thªad
+ && iãm !
+bsd_scheduÀr_thªad
+ && iãm !
+idÀ_thªad
+)
+
+128 
+	`thªad_upd©e_¥i‹ôy
+ (
+ôem
+);
+
+132 
+scheduÀ_¶i˚
+ = 
+Ál£
+;
+
+136 
+	}
+}
+
+154 
 	$thªad_öô
  ()
 
-100 
+156 
 	`ASSERT
  (
 	`öå_gë_Àvñ
@@ -6955,43 +7409,59 @@ tid_t
 INTR_OFF
 );
 
-102 
+158 
 	`lock_öô
  (&
 tid_lock
 );
 
-103 
+159 
 	`li°_öô
  (&
 ªady_li°
 );
 
-104 
+160 
 	`li°_öô
  (&
 Æl_li°
 );
 
-105 
+161 
 	`li°_öô
  (&
 ¶ì≥rs
 );
 
-106 
+162 
 √xt_wakeup_time
  = 
 INT64_MAX
 ;
 
-109 
+163 
+lﬂd_avg
+ = 0;
+
+164 
+scheduÀ_£c
+ = 
+Ál£
+;
+
+165 
+scheduÀ_¶i˚
+ = 
+Ál£
+;
+
+168 
 öôül_thªad
  = 
 	`ru¬ög_thªad
  ();
 
-110 
+169 
 	`öô_thªad
  (
 öôül_thªad
@@ -6999,7 +7469,7 @@ INT64_MAX
 PRI_DEFAULT
 );
 
-111 
+170 
 öôül_thªad
 ->
 °©us
@@ -7007,7 +7477,7 @@ PRI_DEFAULT
 THREAD_RUNNING
 ;
 
-112 
+171 
 öôül_thªad
 ->
 tid
@@ -7015,27 +7485,329 @@ tid
 	`Æloˇã_tid
  ();
 
-113 
+172 
 	}
 }
 
-118 
+174 
+	$timî_wakeup
+ ()
+
+176 !
+	`li°_em±y
+ (&
+¶ì≥rs
+))
+
+178 
+thªad
+ *
+ãmp
+ = 
+	`li°_íåy
+ (
+	`li°_‰⁄t
+ (&
+¶ì≥rs
+),thªad, 
+s_ñem
+);
+
+179 i‡(
+ãmp
+->
+wakeup_time
+ <
+√xt_wakeup_time
+)
+
+181 
+	`li°_p›_‰⁄t
+(&
+¶ì≥rs
+);
+
+182 
+	`thªad_unblock
+(
+ãmp
+);
+
+186 
+√xt_wakeup_time
+ = 
+ãmp
+->
+wakeup_time
+;
+
+191 i‡(
+	`li°_em±y
+ (&
+¶ì≥rs
+))
+
+192 
+√xt_wakeup_time
+ = 
+INT64_MAX
+;
+
+196 
+	}
+}
+
+198 
+	$m™agî_func
+ ()
+
+200 
+m™agî_thªad
+ = 
+	`thªad_cuºít
+ ();
+
+202 
+åue
+)
+
+204 
+öå_Àvñ
+ 
+ﬁd_Àvñ
+=
+	`öå_dißbÀ
+();
+
+205 
+	`thªad_block
+ ();
+
+206 
+	`öå_£t_Àvñ
+(
+ﬁd_Àvñ
+);
+
+207 
+	`timî_wakeup
+ ();
+
+209 
+	}
+}
+
+211 
+	$thªad_upd©e_¥i‹ôy
+ (
+thªad
+ *
+ãmp
+)
+
+214 
+aux
+ = 
+	`ADD_INT
+ (
+	`DIVIDE_INT
+ (
+ãmp
+->
+ª˚¡_˝u
+, 4), 2*ãmp->
+ni˚
+);
+
+215 
+ãmp
+->
+¥i‹ôy
+ = 
+	`TO_INT_ZERO
+ (
+	`INT_SUB
+ (
+PRI_MAX
+, 
+aux
+));
+
+217 
+	}
+}
+
+219 
+	$thªad_upd©e_ª˚¡_˝u
+ (
+thªad
+ * 
+ãmp
+)
+
+221 
+dbl
+ = 
+	`MULTIPLY_INT
+ (
+lﬂd_avg
+, 2);
+
+222 
+a
+ = 
+	`DIVIDE
+ (
+dbl
+, 
+	`ADD_INT
+ (dbl, 1));
+
+223 
+b
+ = 
+	`MULTIPLY
+ (
+a
+, 
+ãmp
+->
+ª˚¡_˝u
+);
+
+224 
+ãmp
+->
+ª˚¡_˝u
+ = 
+	`ADD_INT
+ (
+b
+,Åemp->
+ni˚
+);
+
+225 
+	}
+}
+
+227 
+	$thªad_upd©e_lﬂd_avg
+ ()
+
+229 
+cou¡
+ = 0;
+
+230 
+li°_ñem
+ * 
+ãmp
+;
+
+231 
+ãmp
+ = 
+	`li°_begö
+ (&
+ªady_li°
+);Åem∞!
+	`li°_íd
+ (&ªady_li°);Åem∞
+	`li°_√xt
+ (temp))
+
+233 
+thªad
+ * 
+x
+ = 
+	`li°_íåy
+ (
+ãmp
+, thªad, 
+ñem
+);
+
+234 i‡(
+x
+ !
+m™agî_thªad
+ && x !
+bsd_scheduÀr_thªad
+ && x !
+idÀ_thªad
+)
+
+236 
+cou¡
+++;
+
+239 
+thªad
+ * 
+x
+ = 
+	`thªad_cuºít
+ ();
+
+240 i‡(
+x
+ !
+m™agî_thªad
+ && x !
+bsd_scheduÀr_thªad
+ && x !
+idÀ_thªad
+)
+
+242 
+cou¡
+++;
+
+244 
+öt64_t
+ 
+n
+ = 
+	`ADD_INT
+ (
+	`MULTIPLY_INT
+ (
+lﬂd_avg
+, 59), 
+cou¡
+);
+
+245 
+lﬂd_avg
+ = 
+	`DIVIDE_INT
+ (
+n
+, 60);
+
+246 
+	}
+}
+
+251 
 	$thªad_°¨t
  ()
 
-121 
+254 
 £m≠h‹e
  
 idÀ_°¨ãd
 ;
 
-122 
+255 
 	`£ma_öô
  (&
 idÀ_°¨ãd
 , 0);
 
-123 
+256 
 	`thªad_¸óã
  ("idÀ", 
 PRI_MIN
@@ -7045,21 +7817,41 @@ idÀ
 idÀ_°¨ãd
 );
 
-126 
+259 
 	`öå_íabÀ
  ();
 
-129 
+262 
 	`£ma_down
  (&
 idÀ_°¨ãd
 );
 
-130 
+264 
+	`thªad_¸óã
+ ("m™agî", 
+PRI_MAX
+, 
+m™agî_func
+, 
+NULL
+);
+
+265 
+	`thªad_¸óã
+ ("bsd_scheduÀr", 
+PRI_MAX
+, 
+bsd_scheduÀr
+, 
+NULL
+);
+
+266 
 	}
 }
 
-132 
+268 
 boﬁ
  
 	$bef‹e
@@ -7075,7 +7867,7 @@ aux
 UNUSED
 )
 
-134 
+270 
 thªad
  * 
 ãmp1
@@ -7083,7 +7875,7 @@ thªad
 ãmp2
 ;
 
-135 
+271 
 ãmp1
  = 
 	`li°_íåy
@@ -7095,7 +7887,7 @@ thªad
 s_ñem
 );
 
-136 
+272 
 ãmp2
  = 
 	`li°_íåy
@@ -7107,7 +7899,7 @@ thªad
 s_ñem
 );
 
-137  
+273  
 ãmp1
 ->
 wakeup_time
@@ -7115,11 +7907,11 @@ wakeup_time
 ãmp2
 ->wakeup_time;
 
-138 
+274 
 	}
 }
 
-140 
+276 
 boﬁ
  
 	$¥i‹ôy_com∑ª
@@ -7135,7 +7927,7 @@ aux
 UNUSED
 )
 
-142 
+278 
 thªad
  * 
 ãmp1
@@ -7143,7 +7935,7 @@ thªad
 ãmp2
 ;
 
-143 
+279 
 ãmp1
  = 
 	`li°_íåy
@@ -7155,7 +7947,7 @@ thªad
 ñem
 );
 
-144 
+280 
 ãmp2
  = 
 	`li°_íåy
@@ -7167,7 +7959,7 @@ thªad
 ñem
 );
 
-145  
+281  
 	`thªad_gë_ef„˘ive_¥i‹ôy
  (
 ãmp1
@@ -7175,39 +7967,91 @@ thªad
 ãmp2
 );
 
-146 
+282 
 	}
 }
 
-149 
+284 
+boﬁ
+ 
+	$¥i‹ôy_com∑ª_mlfqs
+ (c⁄° 
+li°_ñem
+ *
+x
+, c⁄° li°_ñem *
+y
+, *
+aux
+ 
+UNUSED
+)
+
+286 
+thªad
+ *
+ãmp1
+ = 
+	`li°_íåy
+ (
+x
+, thªad, 
+ñem
+);
+
+287 
+thªad
+ *
+ãmp2
+ = 
+	`li°_íåy
+ (
+y
+, thªad, 
+ñem
+);
+
+288  
+ãmp1
+->
+¥i‹ôy
+ > 
+ãmp2
+->priority ;
+
+289 
+	}
+}
+
+291 
 	$thªad_£t_√xt_wakeup
 ()
 
-151 
+293 
 öå_Àvñ
  
 ﬁd_Àvñ
 ;
 
-152 
+294 
 ﬁd_Àvñ
  = 
 	`öå_dißbÀ
 ();
 
-154 i‡(
+296 i‡(
 	`li°_em±y
  (&
 ¶ì≥rs
 ))
 
-155 
+297 
 √xt_wakeup_time
  = 
 INT64_MAX
 ;
 
-158 
+300 
 li°_ñem
  *
 fú°
@@ -7217,7 +8061,7 @@ fú°
 ¶ì≥rs
 );
 
-159 
+301 
 thªad
  *
 thrd
@@ -7229,7 +8073,7 @@ fú°
 s_ñem
 );
 
-160 i‡(
+302 i‡(
 thrd
 ->
 wakeup_time
@@ -7239,31 +8083,31 @@ wakeup_time
 	`timî_ticks
 () >=Çext_wakeup_time)
 
-162 
+304 
 	`li°_p›_‰⁄t
  (&
 ¶ì≥rs
 );
 
-163 
+305 
 	`thªad_unblock
  (
 thrd
 );
 
-164 i‡(
+307 i‡(
 	`li°_em±y
  (&
 ¶ì≥rs
 ))
 
-165 
+308 
 √xt_wakeup_time
  = 
 INT64_MAX
 ;
 
-168 
+311 
 fú°
  = 
 	`li°_‰⁄t
@@ -7271,7 +8115,7 @@ fú°
 ¶ì≥rs
 );
 
-169 
+312 
 thrd
  = 
 	`li°_íåy
@@ -7283,7 +8127,7 @@ thªad
 s_ñem
 );
 
-170 
+313 
 √xt_wakeup_time
  = 
 thrd
@@ -7291,7 +8135,7 @@ thrd
 wakeup_time
 ;
 
-174 
+317 
 √xt_wakeup_time
  = 
 thrd
@@ -7299,21 +8143,21 @@ thrd
 wakeup_time
 ;
 
-176 
+319 
 	`öå_£t_Àvñ
  (
 ﬁd_Àvñ
 );
 
-177 
+320 
 	}
 }
 
-182 
+325 
 	$thªad_tick
  ()
 
-184 
+327 
 thªad
  *
 t
@@ -7321,21 +8165,29 @@ t
 	`thªad_cuºít
  ();
 
-187 i‡(
+328 
+t
+->
+ª˚¡_˝u
+ = 
+	`ADD_INT
+ (t->recent_cpu,1);
+
+331 i‡(
 t
  =
 idÀ_thªad
 )
 
-188 
+332 
 idÀ_ticks
 ++;
 
-189 #ifde‡
+333 #ifde‡
 USERPROG
 
 
-190 i‡(
+334 i‡(
 t
 ->
 ∑gedú
@@ -7343,139 +8195,103 @@ t
 NULL
 )
 
-191 
+335 
 u£r_ticks
 ++;
 
-194 
+338 
 kî√l_ticks
 ++;
 
-196 
+341 
 ticks_tûl_now
  = 
 	`timî_ticks
-();
+ ();
 
-197 i‡(
+342 i‡(
 ticks_tûl_now
  >
 √xt_wakeup_time
-)
-
-199 
-li°_ñem
- *
-fú°
- = 
-	`li°_‰⁄t
- (&
-¶ì≥rs
-);
-
-200 
-thªad
- *
-ãmp
- = 
-	`li°_íåy
- (
-fú°
-, thªad, 
-s_ñem
-);
-
-203 i‡(
-ãmp
+ && 
+m™agî_thªad
 ->
-wakeup_time
- <
-√xt_wakeup_time
+°©us
+ =
+THREAD_BLOCKED
 )
 
-205 
-	`li°_p›_‰⁄t
- (&
-¶ì≥rs
-);
-
-206 
+344 
 	`thªad_unblock
-(
-ãmp
-);
-
-207 i‡(
-	`li°_em±y
- (&
-¶ì≥rs
-))
-
-208 
-√xt_wakeup_time
- = 
-INT64_MAX
-;
-
-211 
-fú°
- = 
-	`li°_‰⁄t
- (&
-¶ì≥rs
-);
-
-212 
-ãmp
- = 
-	`li°_íåy
  (
-fú°
-, 
-thªad
-, 
-s_ñem
+m™agî_thªad
 );
 
-213 
-√xt_wakeup_time
+346 i‡(
+ticks_tûl_now
+ % 
+TIMER_FREQ
+ == 0)
+
+348 
+scheduÀ_£c
  = 
-ãmp
-->
-wakeup_time
+åue
 ;
 
-217 
-√xt_wakeup_time
- = 
-ãmp
+351 i‡((
+scheduÀ_£c
+ || 
+scheduÀ_¶i˚
+Ë&& 
+bsd_scheduÀr_thªad
 ->
-wakeup_time
-;
+°©us
+ =
+THREAD_BLOCKED
+ && 
+thªad_mlfqs
+)
 
-221 i‡(++
+353 
+	`thªad_unblock
+ (
+bsd_scheduÀr_thªad
+);
+
+354 
+	`öå_yõld_⁄_ªtu∫
+ ();
+
+359 i‡(++
 thªad_ticks
  >
 TIME_SLICE
 )
 
-222 
+361 
+scheduÀ_¶i˚
+=
+åue
+;
+
+362 
 	`öå_yõld_⁄_ªtu∫
  ();
 
-223 
+364 
 	}
 }
 
-227 
+368 
 	$thªad_¥öt_°©s
  ()
 
-229 
+370 
 	`¥ötf
  ("Thread: %lld idleÅicks, %lld kernelÅicks, %lld userÅicks\n",
 
-230 
+371 
 idÀ_ticks
 , 
 kî√l_ticks
@@ -7483,15 +8299,15 @@ kî√l_ticks
 u£r_ticks
 );
 
-231 
+372 
 	}
 }
 
-248 
+389 
 tid_t
 
 
-249 
+390 
 	$thªad_¸óã
  (c⁄° *
 «me
@@ -7499,7 +8315,7 @@ tid_t
 ¥i‹ôy
 ,
 
-250 
+391 
 thªad_func
  *
 fun˘i⁄
@@ -7507,43 +8323,43 @@ fun˘i⁄
 aux
 )
 
-252 
+393 
 thªad
  *
 t
 ;
 
-253 
+394 
 kî√l_thªad_‰ame
  *
 kf
 ;
 
-254 
+395 
 swôch_íåy_‰ame
  *
 ef
 ;
 
-255 
+396 
 swôch_thªads_‰ame
  *
 sf
 ;
 
-256 
+397 
 tid_t
  
 tid
 ;
 
-257 
+398 
 öå_Àvñ
  
 ﬁd_Àvñ
 ;
 
-259 
+400 
 	`ASSERT
  (
 fun˘i⁄
@@ -7551,7 +8367,7 @@ fun˘i⁄
 NULL
 );
 
-262 
+403 
 t
  = 
 	`∑Œoc_gë_∑ge
@@ -7559,17 +8375,17 @@ t
 PAL_ZERO
 );
 
-263 i‡(
+404 i‡(
 t
  =
 NULL
 )
 
-264  
+405  
 TID_ERROR
 ;
 
-267 
+408 
 	`öô_thªad
  (
 t
@@ -7579,7 +8395,7 @@ t
 ¥i‹ôy
 );
 
-268 
+409 
 tid
  = 
 t
@@ -7587,13 +8403,13 @@ t
 	`Æloˇã_tid
  ();
 
-273 
+414 
 ﬁd_Àvñ
  = 
 	`öå_dißbÀ
  ();
 
-276 
+417 
 kf
  = 
 	`Æloc_‰ame
@@ -7601,7 +8417,7 @@ kf
 t
 ,  *kf);
 
-277 
+418 
 kf
 ->
 eù
@@ -7609,19 +8425,19 @@ eù
 NULL
 ;
 
-278 
+419 
 kf
 ->
 fun˘i⁄
  = function;
 
-279 
+420 
 kf
 ->
 aux
  =áux;
 
-282 
+423 
 ef
  = 
 	`Æloc_‰ame
@@ -7629,7 +8445,7 @@ ef
 t
 ,  *ef);
 
-283 
+424 
 ef
 ->
 eù
@@ -7637,7 +8453,7 @@ eù
 kî√l_thªad
 ;
 
-286 
+427 
 sf
  = 
 	`Æloc_‰ame
@@ -7645,7 +8461,7 @@ sf
 t
 ,  *sf);
 
-287 
+428 
 sf
 ->
 eù
@@ -7653,47 +8469,47 @@ eù
 swôch_íåy
 ;
 
-288 
+429 
 sf
 ->
 ebp
  = 0;
 
-290 
+431 
 	`öå_£t_Àvñ
  (
 ﬁd_Àvñ
 );
 
-293 
+434 
 	`thªad_unblock
  (
 t
 );
 
-295 
+436 
 	`thªad_yõld
 ();
 
-297  
+438  
 tid
 ;
 
-298 
+439 
 	}
 }
 
-307 
+448 
 	$thªad_block
  ()
 
-309 
+450 
 	`ASSERT
  (!
 	`öå_c⁄ãxt
  ());
 
-310 
+451 
 	`ASSERT
  (
 	`öå_gë_Àvñ
@@ -7701,7 +8517,7 @@ tid
 INTR_OFF
 );
 
-312 
+453 
 	`thªad_cuºít
  ()->
 °©us
@@ -7709,15 +8525,15 @@ INTR_OFF
 THREAD_BLOCKED
 ;
 
-313 
+454 
 	`scheduÀ
  ();
 
-314 
+455 
 	}
 }
 
-325 
+466 
 	$thªad_unblock
  (
 thªad
@@ -7725,13 +8541,13 @@ thªad
 t
 )
 
-327 
+468 
 öå_Àvñ
  
 ﬁd_Àvñ
 ;
 
-329 
+470 
 	`ASSERT
  (
 	`is_thªad
@@ -7739,13 +8555,13 @@ t
 t
 ));
 
-331 
+472 
 ﬁd_Àvñ
  = 
 	`öå_dißbÀ
  ();
 
-332 
+473 
 	`ASSERT
  (
 t
@@ -7755,7 +8571,7 @@ t
 THREAD_BLOCKED
 );
 
-334 
+475 
 	`li°_push_back
  (&
 ªady_li°
@@ -7765,7 +8581,7 @@ t
 ñem
 );
 
-335 
+476 
 t
 ->
 °©us
@@ -7773,39 +8589,39 @@ t
 THREAD_READY
 ;
 
-336 
+477 
 	`öå_£t_Àvñ
  (
 ﬁd_Àvñ
 );
 
-337 
+478 
 	}
 }
 
-341 
+482 
 	$thªad_«me
  ()
 
-343  
+484  
 	`thªad_cuºít
  ()->
 «me
 ;
 
-344 
+485 
 	}
 }
 
-349 
+490 
 thªad
  *
 
-350 
+491 
 	$thªad_cuºít
  ()
 
-352 
+493 
 thªad
  *
 t
@@ -7813,7 +8629,7 @@ t
 	`ru¬ög_thªad
  ();
 
-359 
+500 
 	`ASSERT
  (
 	`is_thªad
@@ -7821,7 +8637,7 @@ t
 t
 ));
 
-360 
+501 
 	`ASSERT
  (
 t
@@ -7831,55 +8647,55 @@ t
 THREAD_RUNNING
 );
 
-362  
+503  
 t
 ;
 
-363 
+504 
 	}
 }
 
-366 
+507 
 tid_t
 
 
-367 
+508 
 	$thªad_tid
  ()
 
-369  
+510  
 	`thªad_cuºít
  ()->
 tid
 ;
 
-370 
+511 
 	}
 }
 
-375 
+516 
 	$thªad_exô
  ()
 
-377 
+518 
 	`ASSERT
  (!
 	`öå_c⁄ãxt
  ());
 
-379 #ifde‡
+520 #ifde‡
 USERPROG
 
 
-380 
+521 
 	`¥o˚ss_exô
  ();
 
-386 
+527 
 	`öå_dißbÀ
  ();
 
-387 
+528 
 	`li°_ªmove
  (&
 	`thªad_cuºít
@@ -7887,7 +8703,7 @@ USERPROG
 ÆÀÀm
 );
 
-388 
+529 
 	`thªad_cuºít
  ()->
 °©us
@@ -7895,23 +8711,23 @@ USERPROG
 THREAD_DYING
 ;
 
-389 
+530 
 	`scheduÀ
  ();
 
-390 
+531 
 	`NOT_REACHED
  ();
 
-391 
+532 
 	}
 }
 
-396 
+537 
 	$thªad_yõld
  ()
 
-398 
+539 
 thªad
  *
 cur
@@ -7919,31 +8735,31 @@ cur
 	`thªad_cuºít
  ();
 
-399 
+540 
 öå_Àvñ
  
 ﬁd_Àvñ
 ;
 
-401 
+542 
 	`ASSERT
  (!
 	`öå_c⁄ãxt
  ());
 
-403 
+544 
 ﬁd_Àvñ
  = 
 	`öå_dißbÀ
  ();
 
-404 i‡(
+545 i‡(
 cur
  !
 idÀ_thªad
 )
 
-405 
+546 
 	`li°_push_back
  (&
 ªady_li°
@@ -7953,7 +8769,7 @@ cur
 ñem
 );
 
-407 
+548 
 cur
 ->
 °©us
@@ -7961,21 +8777,21 @@ cur
 THREAD_READY
 ;
 
-408 
+549 
 	`scheduÀ
  ();
 
-409 
+550 
 	`öå_£t_Àvñ
  (
 ﬁd_Àvñ
 );
 
-410 
+551 
 	}
 }
 
-415 
+556 
 	$thªad_f‹óch
  (
 thªad_a˘i⁄_func
@@ -7985,13 +8801,13 @@ func
 aux
 )
 
-417 
+558 
 li°_ñem
  *
 e
 ;
 
-419 
+560 
 	`ASSERT
  (
 	`öå_gë_Àvñ
@@ -7999,7 +8815,7 @@ e
 INTR_OFF
 );
 
-421 
+562 
 e
  = 
 	`li°_begö
@@ -8009,13 +8825,13 @@ e
 	`li°_íd
  (&all_list);
 
-422 
+563 
 e
  = 
 	`li°_√xt
  (e))
 
-424 
+565 
 thªad
  *
 t
@@ -8027,7 +8843,7 @@ e
 ÆÀÀm
 );
 
-425 
+566 
 	`func
  (
 t
@@ -8035,17 +8851,17 @@ t
 aux
 );
 
-427 
+568 
 	}
 }
 
-431 
+572 
 	$thªad_£t_¥i‹ôy
  (
 √w_¥i‹ôy
 )
 
-433 
+574 
 cuºít_¥i‹ôy
  = 
 	`thªad_cuºít
@@ -8053,7 +8869,7 @@ cuºít_¥i‹ôy
 ¥i‹ôy
 ;
 
-434 
+575 
 	`thªad_cuºít
  ()->
 ¥i‹ôy
@@ -8061,35 +8877,45 @@ cuºít_¥i‹ôy
 √w_¥i‹ôy
 ;
 
-435 if(
+576 if(
 √w_¥i‹ôy
  < 
 cuºít_¥i‹ôy
 )
 
-436 
+577 
 	`thªad_yõld
 ();
 
-437 
+578 
 	}
 }
 
-441 
+582 
 	$thªad_gë_¥i‹ôy
  ()
 
-443  
-	`thªad_gë_ef„˘ive_¥i‹ôy
- (
-	`thªad_cuºít
- ());
+584 i‡(
+thªad_mlfqs
+)
 
-444 
+586  
+	`thªad_cuºít
+()->
+¥i‹ôy
+;
+
+588  
+	`thªad_gë_ef„˘ive_¥i‹ôy
+(
+	`thªad_cuºít
+());
+
+590 
 	}
 }
 
-448 
+593 
 	$thªad_gë_ef„˘ive_¥i‹ôy
  (
 thªad
@@ -8097,7 +8923,7 @@ thªad
 ãmp
 )
 
-450 if(!
+595 if(!
 	`li°_em±y
  (&
 ãmp
@@ -8105,7 +8931,7 @@ thªad
 locks_acquúed
 ))
 
-453 
+598 
 max
  = 
 ãmp
@@ -8113,7 +8939,7 @@ max
 ¥i‹ôy
 ;
 
-454 
+599 
 li°_ñem
  *
 ãmp2
@@ -8125,7 +8951,7 @@ li°_ñem
 locks_acquúed
 );
 
-456 
+601 
 ãmp2
  !
 	`li°_íd
@@ -8135,7 +8961,7 @@ locks_acquúed
 locks_acquúed
 ))
 
-458 
+603 
 lock
  *
 ãmp_lock
@@ -8147,7 +8973,7 @@ lock
 ñem
 );
 
-459 
+604 
 li°
  *
 w
@@ -8159,13 +8985,13 @@ w
 waôîs
 ;
 
-461 if(!
+606 if(!
 	`li°_em±y
  (
 w
 ))
 
-463 
+608 
 li°_ñem
  *
 ãmp3
@@ -8175,7 +9001,7 @@ li°_ñem
 w
 );
 
-464 
+609 
 ãmp3
  !
 	`li°_íd
@@ -8183,7 +9009,7 @@ w
 w
 ))
 
-466 
+611 
 thªad
  *
 ãmp4
@@ -8195,7 +9021,7 @@ thªad
 ñem
 );
 
-467 
+612 
 x
  = 
 	`thªad_gë_ef„˘ive_¥i‹ôy
@@ -8203,45 +9029,45 @@ x
 ãmp4
 );
 
-468 if(
+613 if(
 x
  > 
 max
 )
 
-469 
+614 
 max
  = 
 x
 ;
 
-471 
+616 
 ãmp3
  = 
 	`li°_√xt
  (temp3);
 
-474 
+619 
 ãmp2
  = 
 	`li°_√xt
  (temp2);
 
-476  
+621  
 max
 ;
 
-479  
+624  
 ãmp
 ->
 ¥i‹ôy
 ;
 
-480 
+625 
 	}
 }
 
-483 
+628 
 	$thªad_£t_ni˚
  (
 ni˚
@@ -8249,39 +9075,87 @@ ni˚
 UNUSED
 )
 
-486 
+630 
+thªad
+ * 
+ãmp
+ = 
+	`thªad_cuºít
+ ();
+
+631 
+ãmp
+->
+ni˚
+ =Çice;
+
+632 
+	`thªad_upd©e_¥i‹ôy
+ (
+ãmp
+);
+
+633 
+	`thªad_yõld
+ ();
+
+635 
 	}
 }
 
-490 
+639 
 	$thªad_gë_ni˚
  ()
 
-494 
+641  
+	`thªad_cuºít
+ ()->
+ni˚
+;
+
+642 
 	}
 }
 
-498 
+646 
 	$thªad_gë_lﬂd_avg
  ()
 
-502 
+648  
+	`TO_INT_NEAREST
+ (
+	`MULTIPLY_INT
+ (
+lﬂd_avg
+, 100));
+
+649 
 	}
 }
 
-506 
+653 
 	$thªad_gë_ª˚¡_˝u
  ()
 
-510 
+655  
+	`TO_INT_NEAREST
+ (
+	`MULTIPLY_INT
+ (
+	`thªad_cuºít
+ ()->
+ª˚¡_˝u
+, 100));
+
+657 
 	}
 }
 
-512 
+660 
 	$thªad_¥i‹ôy_ãmp‹¨ûy_up
 ()
 
-514 
+662 
 thªad
  * 
 ãmp
@@ -8289,7 +9163,7 @@ thªad
 	`thªad_cuºít
 ();
 
-515 
+663 
 ãmp
 ->
 ﬁd_¥i‹ôy
@@ -8297,21 +9171,21 @@ thªad
 ¥i‹ôy
 ;
 
-516 
+664 
 	`thªad_£t_¥i‹ôy
 (
 PRI_MAX
 );
 
-517 
+665 
 	}
 }
 
-519 
+667 
 	$thªad_¥i‹ôy_ª°‹e
 ()
 
-521 
+669 
 thªad
  * 
 ãmp
@@ -8319,7 +9193,7 @@ thªad
 	`thªad_cuºít
 ();
 
-522 
+670 
 	`thªad_£t_¥i‹ôy
 (
 ãmp
@@ -8327,11 +9201,11 @@ thªad
 ﬁd_¥i‹ôy
 );
 
-523 
+671 
 	}
 }
 
-525 
+674 
 	$thªad_block_tûl
 (
 öt64_t
@@ -8339,7 +9213,7 @@ thªad
 wakeup_time
 )
 
-527 
+676 
 thªad
  * 
 t
@@ -8347,37 +9221,37 @@ t
 	`thªad_cuºít
 ();
 
-528 
+677 
 öå_Àvñ
  
 ﬁd_Àvñ
 ;
 
-529 
+678 
 ﬁd_Àvñ
  = 
 	`öå_dißbÀ
 ();
 
-530 
+679 
 t
 ->
 wakeup_time
  = wakeup_time;
 
-531 if(
+680 if(
 wakeup_time
  < 
 √xt_wakeup_time
 )
 
-532 
+681 
 √xt_wakeup_time
  = 
 wakeup_time
 ;
 
-534 
+683 
 	`li°_ö£π_‹dîed
 (&
 ¶ì≥rs
@@ -8391,21 +9265,21 @@ bef‹e
 NULL
 );
 
-535 
+684 
 	`thªad_block
 ();
 
-537 
+686 
 	`öå_£t_Àvñ
 (
 ﬁd_Àvñ
 );
 
-538 
+687 
 	}
 }
 
-552 
+701 
 	$idÀ
  (*
 idÀ_°¨ãd_
@@ -8413,7 +9287,7 @@ idÀ_°¨ãd_
 UNUSED
 )
 
-554 
+703 
 £m≠h‹e
  *
 idÀ_°¨ãd
@@ -8421,35 +9295,35 @@ idÀ_°¨ãd
 idÀ_°¨ãd_
 ;
 
-555 
+704 
 idÀ_thªad
  = 
 	`thªad_cuºít
  ();
 
-556 
+705 
 	`£ma_up
  (
 idÀ_°¨ãd
 );
 
-561 
+710 
 	`öå_dißbÀ
  ();
 
-562 
+711 
 	`thªad_block
  ();
 
-576 
+725 
 asm
  volatile ("sti; hlt" : : : "memory");
 
-578 
+727 
 	}
 }
 
-582 
+733 
 	$kî√l_thªad
  (
 thªad_func
@@ -8459,7 +9333,7 @@ fun˘i⁄
 aux
 )
 
-584 
+735 
 	`ASSERT
  (
 fun˘i⁄
@@ -8467,59 +9341,59 @@ fun˘i⁄
 NULL
 );
 
-586 
+737 
 	`öå_íabÀ
  ();
 
-587 
+738 
 	`fun˘i⁄
  (
 aux
 );
 
-588 
+739 
 	`thªad_exô
  ();
 
-589 
+740 
 	}
 }
 
-591 
+742 
 thªad
  *
 
-592 
+743 
 	$ru¬ög_thªad
  ()
 
-594 
+745 
 uöt32_t
  *
 e•
 ;
 
-600 
+751 
 	`asm
  ("mov %%e•, %0" : "=g" (
 e•
 ));
 
-601  
+752  
 	`pg_round_down
  (
 e•
 );
 
-602 
+753 
 	}
 }
 
-605 
+756 
 boﬁ
 
 
-606 
+757 
 	$is_thªad
  (
 thªad
@@ -8527,7 +9401,7 @@ thªad
 t
 )
 
-608  
+759  
 t
  !
 NULL
@@ -8537,11 +9411,11 @@ magic
 THREAD_MAGIC
 ;
 
-609 
+760 
 	}
 }
 
-614 
+765 
 	$öô_thªad
  (
 thªad
@@ -8553,7 +9427,7 @@ t
 ¥i‹ôy
 )
 
-616 
+767 
 	`ASSERT
  (
 t
@@ -8561,7 +9435,7 @@ t
 NULL
 );
 
-617 
+768 
 	`ASSERT
  (
 PRI_MIN
@@ -8571,7 +9445,7 @@ PRI_MIN
 PRI_MAX
 );
 
-618 
+769 
 	`ASSERT
  (
 «me
@@ -8579,13 +9453,13 @@ PRI_MAX
 NULL
 );
 
-620 
+771 
 	`mem£t
  (
 t
 , 0,  *t);
 
-621 
+772 
 t
 ->
 °©us
@@ -8593,7 +9467,7 @@ t
 THREAD_BLOCKED
 ;
 
-622 
+773 
 	`°æ˝y
  (
 t
@@ -8601,13 +9475,13 @@ t
 «me
 ,Çame, Å->name);
 
-623 
+774 
 t
 ->
 wakeup_time
  = -1;
 
-624 
+775 
 t
 ->
 °ack
@@ -8617,13 +9491,13 @@ uöt8_t
 PGSIZE
 ;
 
-625 
+776 
 t
 ->
 ¥i‹ôy
  =Öriority;
 
-626 
+777 
 t
 ->
 ﬁd_¥i‹ôy
@@ -8631,15 +9505,33 @@ t
 ¥i‹ôy
 ;
 
-627 
+779 i‡(
+t
+ =
+öôül_thªad
+)
+
+780 
 t
 ->
-magic
- = 
-THREAD_MAGIC
-;
+ni˚
+= 0;
 
-628 
+782 
+t
+->
+ni˚
+ = 
+	`thªad_cuºít
+ ()->nice;
+
+784 
+t
+->
+ª˚¡_˝u
+ = 0;
+
+785 
 	`li°_öô
  (&
 t
@@ -8647,7 +9539,15 @@ t
 locks_acquúed
 );
 
-629 
+786 
+t
+->
+magic
+ = 
+THREAD_MAGIC
+;
+
+788 
 	`li°_push_back
  (&
 Æl_li°
@@ -8657,11 +9557,11 @@ t
 ÆÀÀm
 );
 
-630 
+790 
 	}
 }
 
-635 
+795 
 	$Æloc_‰ame
  (
 thªad
@@ -8673,7 +9573,7 @@ size_t
 size
 )
 
-638 
+798 
 	`ASSERT
  (
 	`is_thªad
@@ -8681,7 +9581,7 @@ size
 t
 ));
 
-639 
+799 
 	`ASSERT
  (
 size
@@ -8689,7 +9589,7 @@ size
 uöt32_t
 ) == 0);
 
-641 
+801 
 t
 ->
 °ack
@@ -8697,38 +9597,60 @@ t
 size
 ;
 
-642  
+802  
 t
 ->
 °ack
 ;
 
-643 
+803 
 	}
 }
 
-650 
+810 
 thªad
  *
 
-651 
+811 
 	$√xt_thªad_to_run
  ()
 
-653 i‡(
+832 i‡(
 	`li°_em±y
  (&
 ªady_li°
 ))
 
-654  
+833  
 idÀ_thªad
 ;
 
-656 
+837 
 li°_ñem
- * 
-ãmp
+ *
+e
+;
+
+838 if(
+thªad_mlfqs
+==
+åue
+)
+
+840 
+e
+
+	`li°_mö
+ (&
+ªady_li°
+, 
+¥i‹ôy_com∑ª_mlfqs
+, 
+NULL
+);
+
+844 
+e
  = 
 	`li°_mö
  (&
@@ -8739,27 +9661,27 @@ li°_ñem
 NULL
 );
 
-657 
+847 
 	`li°_ªmove
  (
-ãmp
+e
 );
 
-658  
+848  
 	`li°_íåy
  (
-ãmp
+e
 , 
 thªad
 , 
 ñem
 );
 
-660 
+850 
 	}
 }
 
-679 
+869 
 	$scheduÀ_èû
  (
 thªad
@@ -8767,7 +9689,7 @@ thªad
 ¥ev
 )
 
-681 
+871 
 thªad
  *
 cur
@@ -8775,7 +9697,7 @@ cur
 	`ru¬ög_thªad
  ();
 
-683 
+873 
 	`ASSERT
  (
 	`öå_gë_Àvñ
@@ -8783,7 +9705,7 @@ cur
 INTR_OFF
 );
 
-686 
+876 
 cur
 ->
 °©us
@@ -8791,19 +9713,19 @@ cur
 THREAD_RUNNING
 ;
 
-689 
+879 
 thªad_ticks
  = 0;
 
-691 #ifde‡
+881 #ifde‡
 USERPROG
 
 
-693 
+883 
 	`¥o˚ss_a˘iv©e
  ();
 
-701 i‡(
+891 i‡(
 ¥ev
  !
 NULL
@@ -8815,7 +9737,7 @@ THREAD_DYING
 öôül_thªad
 )
 
-703 
+893 
 	`ASSERT
  (
 ¥ev
@@ -8823,21 +9745,21 @@ THREAD_DYING
 cur
 );
 
-704 
+894 
 	`∑Œoc_‰ì_∑ge
  (
 ¥ev
 );
 
-706 
+896 
 	}
 }
 
-716 
+906 
 	$scheduÀ
  ()
 
-718 
+908 
 thªad
  *
 cur
@@ -8845,7 +9767,7 @@ cur
 	`ru¬ög_thªad
  ();
 
-719 
+909 
 thªad
  *
 √xt
@@ -8853,7 +9775,7 @@ thªad
 	`√xt_thªad_to_run
  ();
 
-720 
+910 
 thªad
  *
 ¥ev
@@ -8861,7 +9783,7 @@ thªad
 NULL
 ;
 
-722 
+912 
 	`ASSERT
  (
 	`öå_gë_Àvñ
@@ -8869,7 +9791,7 @@ NULL
 INTR_OFF
 );
 
-723 
+913 
 	`ASSERT
  (
 cur
@@ -8879,7 +9801,7 @@ cur
 THREAD_RUNNING
 );
 
-724 
+914 
 	`ASSERT
  (
 	`is_thªad
@@ -8887,13 +9809,13 @@ THREAD_RUNNING
 √xt
 ));
 
-730 i‡(
+920 i‡(
 cur
  !
 √xt
 )
 
-731 
+921 
 ¥ev
  = 
 	`swôch_thªads
@@ -8903,63 +9825,63 @@ cur
 √xt
 );
 
-732 
+922 
 	`scheduÀ_èû
  (
 ¥ev
 );
 
-733 
+923 
 	}
 }
 
-736 
+926 
 tid_t
 
 
-737 
+927 
 	$Æloˇã_tid
  ()
 
-739 
+929 
 tid_t
  
 √xt_tid
  = 1;
 
-740 
+930 
 tid_t
  
 tid
 ;
 
-742 
+932 
 	`lock_acquúe
  (&
 tid_lock
 );
 
-743 
+933 
 tid
  = 
 √xt_tid
 ++;
 
-744 
+934 
 	`lock_ªÀa£
  (&
 tid_lock
 );
 
-746  
+936  
 tid
 ;
 
-747 
+937 
 	}
 }
 
-751 
+941 
 uöt32_t
  
 	gthªad_°ack_ofs
@@ -9097,61 +10019,75 @@ li°_ñem
 	mñem
 ;
 
-98 #ifde‡
+98 
+	mni˚
+;
+
+99 
+	mª˚¡_˝u
+;
+
+100 #ifde‡
 USERPROG
 
 
-100 
+102 
 uöt32_t
  *
 	m∑gedú
 ;
 
-104 
+106 
 	mmagic
 ;
 
-106 
+108 
 li°_ñem
  
 	ms_ñem
 ;
 
-107 
+109 
 li°
  
 	mlocks_acquúed
 ;
 
-113 
+110 
+boﬁ
+ 
+	mno_yõld
+;
+
+117 
 boﬁ
  
 thªad_mlfqs
 ;
 
-115 
+119 
 thªad_öô
  ();
 
-116 
+120 
 thªad_°¨t
  ();
 
-118 
+122 
 thªad_tick
  ();
 
-119 
+123 
 thªad_¥öt_°©s
  ();
 
-121 
+125 
 	tthªad_func
  (*
 	taux
 );
 
-122 
+126 
 tid_t
  
 thªad_¸óã
@@ -9163,43 +10099,43 @@ thªad_¸óã
 thªad_func
  *, *);
 
-124 
+128 
 thªad_block
  ();
 
-125 
+129 
 thªad_unblock
  (
 thªad
  *);
 
-127 
+131 
 thªad
  *
 thªad_cuºít
  ();
 
-128 
+132 
 tid_t
  
 thªad_tid
  ();
 
-129 c⁄° *
+133 c⁄° *
 thªad_«me
  ();
 
-131 
+135 
 	$thªad_exô
  (Ë
 NO_RETURN
 ;
 
-132 
+136 
 	`thªad_yõld
  ();
 
-135 
+139 
 	tthªad_a˘i⁄_func
  (
 	tthªad
@@ -9209,61 +10145,69 @@ NO_RETURN
 	taux
 );
 
-136 
+140 
 	`thªad_f‹óch
  (
 thªad_a˘i⁄_func
  *, *);
 
-138 
+142 
 	`thªad_gë_ef„˘ive_¥i‹ôy
  (
 thªad
  *);
 
-139 
+143 
 	`thªad_gë_¥i‹ôy
  ();
 
-140 
+144 
 	`thªad_£t_¥i‹ôy
  ();
 
-142 
+146 
 	`thªad_gë_ni˚
  ();
 
-143 
+147 
 	`thªad_£t_ni˚
  ();
 
-144 
+148 
 	`thªad_gë_ª˚¡_˝u
  ();
 
-145 
+149 
 	`thªad_gë_lﬂd_avg
  ();
 
-147 
+151 
 	`thªad_¥i‹ôy_ãmp‹¨ûy_up
 ();
 
-148 
+152 
 	`thªad_¥i‹ôy_ª°‹e
 ();
 
-149 
+153 
 	`thªad_block_tûl
 (
 öt64_t
 );
 
-150 
+154 
 	`thªad_£t_√xt_wakeup
 ();
 
-152 
+155 
+boﬁ
+ 
+	`¥i‹ôy_com∑ª_mlfqs
+ (c⁄° 
+li°_ñem
+*, const list_elem*, *);
+
+156 
 boﬁ
  
 	`bef‹e
@@ -9271,13 +10215,29 @@ boﬁ
 li°_ñem
 *, const list_elem*, *);
 
-153 
+157 
 boﬁ
  
 	`¥i‹ôy_com∑ª
  (c⁄° 
 li°_ñem
 *, const list_elem*, *);
+
+158 
+	`thªad_upd©e_¥i‹ôy
+ (
+thªad
+ *);
+
+159 
+	`thªad_upd©e_ª˚¡_˝u
+ (
+thªad
+ *);
+
+160 
+	`thªad_upd©e_lﬂd_avg
+ ();
 
 	@vaddr.h
 
@@ -60046,8 +61006,9 @@ _libc_Â°©e
 .
 1
 /usr/include
-87
-1970
+88
+2000
+fixed_point_real_arithmetic.h
 flags.h
 init.c
 init.h

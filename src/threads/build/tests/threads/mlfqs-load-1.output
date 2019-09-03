@@ -1,4 +1,4 @@
-Writing command line to /tmp/1dtdUyicQD.dsk...
+Writing command line to /tmp/puZpLIZ8Tp.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,22 +8,20 @@ squish-pty bochs -q
 Kernel command line: -q -mlfqs run mlfqs-load-1
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
-374 pages available in user pool.
+373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 Boot complete.
 Executing 'mlfqs-load-1':
 (mlfqs-load-1) begin
 (mlfqs-load-1) spinning for up to 45 seconds, please wait...
-(mlfqs-load-1) FAIL: load average stayed below 0.5 for more than 45 seconds
-Kernel PANIC at ../../tests/threads/tests.c:93 in fail(): test failed
-Call stack: 0xc002fed8Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0105adf
- cr2=0000005d error=00000000
- eax=0000005d ebx=0000005d ecx=c002fe04 edx=000003d4
- esi=c010d0e0 edi=c010ea6d esp=c010e357 ebp=c002fe98
- cs=0008 ds=0010 es=0010 ss=fed8
-Kernel PANIC recursion at ../../threads/interrupt.c:374 in intr_handler().
-Timer: 4644 ticks
-Thread: 0 idle ticks, 4644 kernel ticks, 0 user ticks
-Console: 859 characters output
+(mlfqs-load-1) load average rose to 0.5 after 41 seconds
+(mlfqs-load-1) sleeping for another 10 seconds, please wait...
+(mlfqs-load-1) load average fell back below 0.5 (to 0.43)
+(mlfqs-load-1) PASS
+(mlfqs-load-1) end
+Execution of 'mlfqs-load-1' complete.
+Timer: 5234 ticks
+Thread: 999 idle ticks, 4239 kernel ticks, 0 user ticks
+Console: 645 characters output
 Keyboard: 0 keys pressed
 Powering off...

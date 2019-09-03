@@ -106,8 +106,11 @@ timer_sleep (int64_t ticks)
   while (timer_elapsed (start) < ticks) 
     thread_yield ();  */
 	//thread_priority_temporarily_up();
+  if(ticks>0)
+  {
   	thread_block_till(wakeup_time);
-  	//thread_set_next_wakeup();
+  }
+	//thread_set_next_wakeup();
   	//thread_priority_restore();
 }
 
@@ -180,7 +183,6 @@ timer_print_stats (void)
 {
   printf ("Timer: %"PRId64" ticks\n", timer_ticks ());
 }
-
 /* Timer interrupt handler. */
 static void
 timer_interrupt (struct intr_frame *args UNUSED)

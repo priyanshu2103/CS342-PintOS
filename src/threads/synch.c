@@ -42,6 +42,18 @@
    - up or "V": increment the value (and wake up one waiting
      thread, if any). */
 
+bool priority_sema (const struct list_elem *a, const struct list_elem *b,void *aux UNUSED)
+{
+  struct thread *temp1 = list_entry (a, struct thread, elem);
+  struct thread *temp2 = list_entry (b, struct thread, elem);
+
+    if(thread_mlfqs!=true)
+  {
+    return thread_get_effective_priority (temp1) > thread_get_effective_priority (temp2);
+  }
+  return temp1->priority > temp2->priority ;
+}
+
 void
 sema_init (struct semaphore *sema, unsigned value) 
 {
@@ -117,8 +129,10 @@ sema_up (struct semaphore *sema)
   old_level = intr_disable ();
   if (!list_empty (&sema->waiters)) 
   {
-    struct list_elem *e = list_min (&sema->waiters, priority_compare, NULL);
-    list_remove (e);
+    //struct list_elem *e = list_min (&sema->waiters, priority_compare, NULL);
+    //struct list_elem *e = list_min (&sema->waiters, priority_sema, NULL);
+    struct list_elem *e = list_min (&sema->waiters, priority_sema, NULL);       // added by Priyanshu on 02.09.19
+    list_remove (e);  
     thread_unblock (list_entry (e, struct thread, elem));
   }
   sema->value++;
@@ -209,6 +223,8 @@ lock_acquire (struct lock *lock)
   lock->holder = t;
 }
 
+
+
 /* Tries to acquires LOCK and returns true if successful or false
    on failure.  The lock must not already be held by the current
    thread.
@@ -241,7 +257,7 @@ lock_release (struct lock *lock)
   ASSERT (lock_held_by_current_thread (lock));
 
   lock->holder = NULL;
-  struct thread *t = thread_current ();
+  //struct thread *t = thread_current ();
   list_remove (&lock->elem);
 
   sema_up (&lock->semaphore);
@@ -264,6 +280,26 @@ struct semaphore_elem
     struct list_elem elem;              /* List element. */
     struct semaphore semaphore;         /* This semaphore. */
   };
+
+/* priority compare won't work because the elem is of semaphore type and not list_elem type */
+bool comp_condition(struct list_elem *a,struct list_elem *b,void *aux UNUSED)
+{
+   struct semaphore_elem *temp1 = list_entry (a, struct semaphore_elem, elem);
+   struct list_elem *temp2 = list_front (&(temp1->semaphore.waiters));
+   struct thread *temp3 = list_entry (temp2, struct thread, elem);
+
+   struct semaphore_elem *temp4 = list_entry (b, struct semaphore_elem, elem);
+   struct list_elem *temp5 = list_front (&(temp4->semaphore.waiters));   
+   struct thread *temp6 = list_entry (temp5, struct thread, elem);
+
+   if(thread_mlfqs!=true)
+  {
+  return thread_get_effective_priority (temp3) > thread_get_effective_priority (temp6);
+  }
+  return temp3->priority > temp6->priority ;
+
+   
+}
 
 /* Initializes condition variable COND.  A condition variable
    allows one piece of code to signal a condition and cooperating
@@ -296,21 +332,6 @@ cond_init (struct condition *cond)
    interrupt handler.  This function may be called with
    interrupts disabled, but interrupts will be turned back on if
    we need to sleep. */
-
-/* priority compare won't work because the elem is of semaphore type and not list_elem type */
-bool comp_condition(struct list_elem *a,struct list_elem *b,void *aux UNUSED)
-{
-   struct semaphore_elem *temp1 = list_entry (a, struct semaphore_elem, elem);
-   struct list_elem *temp2 = list_front (&(temp1->semaphore.waiters));
-   struct thread *temp3 = list_entry (temp2, struct thread, elem);
-
-   struct semaphore_elem *temp4 = list_entry (b, struct semaphore_elem, elem);
-   struct list_elem *temp5 = list_front (&(temp4->semaphore.waiters));   
-   struct thread *temp6 = list_entry (temp5, struct thread, elem);
-
-   return thread_get_effective_priority (temp3) > thread_get_effective_priority (temp6);
-}
-
 void
 cond_wait (struct condition *cond, struct lock *lock) 
 {
@@ -354,7 +375,9 @@ cond_signal (struct condition *cond, struct lock *lock UNUSED)
       Get the semaphore element that has the highest priority thread waiting 
       for it. 
      */
-    struct list_elem *temp = list_min (&cond->waiters, comp_condition, NULL);
+    //struct list_elem *temp = list_min (&cond->waiters, comp_condition, NULL);
+    
+    struct list_elem *temp = list_min (&cond->waiters, comp_condition, NULL); // added by Priyanshu 02.09.19
     list_remove (temp);
     sema_up (&(list_entry (temp, struct semaphore_elem, elem)->semaphore));
 
