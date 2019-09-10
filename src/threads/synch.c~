@@ -123,21 +123,28 @@ void
 sema_up (struct semaphore *sema) 
 {
   enum intr_level old_level;
+  struct thread *temp = NULL; 
+
 
   ASSERT (sema != NULL);
 
   old_level = intr_disable ();
   if (!list_empty (&sema->waiters)) 
   {
-    //struct list_elem *e = list_min (&sema->waiters, priority_compare, NULL);
-    //struct list_elem *e = list_min (&sema->waiters, priority_sema, NULL);
+
     struct list_elem *e = list_min (&sema->waiters, priority_sema, NULL);       // added by Priyanshu on 02.09.19
     list_remove (e);  
-    thread_unblock (list_entry (e, struct thread, elem));
+      //changed in UP01
+    temp = list_entry (e, struct thread, elem);
+    thread_unblock (temp);
   }
   sema->value++;
   intr_set_level (old_level);
-  thread_yield();                // schedules the next highest priority thread, 
+
+  struct thread * current = thread_current();
+  if ( current->no_yield == true || temp == NULL) current->no_yield = false;
+  else thread_yield();                
+// schedules the next highest priority thread, 
 				 //the thread unblocked might have higher priority than current thread
 }
 

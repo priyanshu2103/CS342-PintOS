@@ -327,7 +327,7 @@ void
 thread_tick (void) 
 {
   struct thread *t = thread_current ();
-  t->recent_cpu = ADD_INT (t->recent_cpu,1);  // added by Priyanshu on 02.09.19
+  t->recent_cpu = ADD_INT (t->recent_cpu,1); 
 
   /* Update statistics. */
   if (t == idle_thread)
