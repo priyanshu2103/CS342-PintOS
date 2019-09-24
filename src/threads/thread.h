@@ -108,7 +108,6 @@ struct thread
     struct list_elem s_elem;            /* sleepers list elements are stored here */
     struct list locks_acquired;         /* List of locks acquired by a thread */
     bool no_yield;
-
   };
 
 /* If false (default), use round-robin scheduler.

@@ -18,7 +18,7 @@
 #include "threads/thread.h"
 #include "threads/vaddr.h"
 
-const int word_length = 4; /* Number of bytes per word */
+const int word_length = 4; 				/* Number of bytes per word */
 
 static thread_func start_process NO_RETURN;
 static bool load (const char *cmdline, void (**eip) (void), void **esp);
@@ -105,6 +105,11 @@ start_process (void *file_name_)
 int
 process_wait (tid_t child_tid UNUSED) 
 {
+  int i;
+  for( i=0 ; i < 1<<10; i++)
+  {
+	thread_yield();
+  }
   return -1;
 }
 
@@ -148,7 +153,6 @@ process_activate (void)
      interrupts. */
   tss_update ();
 }
-
 /* We load ELF binaries.  The following definitions are taken
    from the ELF specification, [ELF1], more-or-less verbatim.  */
 
@@ -223,7 +227,7 @@ static bool load_segment (struct file *file, off_t ofs, uint8_t *upage,
    and its initial stack pointer into *ESP.
    Returns true if successful, false otherwise. */
 bool
-load (const char *cmd_line_input, void (**eip) (void), void **esp) 
+load (const char *command_line, void (**eip) (void), void **esp) 
 {
   struct thread *t = thread_current ();
   struct Elf32_Ehdr ehdr;
@@ -234,7 +238,7 @@ load (const char *cmd_line_input, void (**eip) (void), void **esp)
   
   char *argument, *file_name;
   /* Separate file_name and argument */
-  file_name = strtok_r (cmd_line_input, " ", &argument);
+  file_name = strtok_r (command_line, " ", &argument);
 
   /* Allocate and activate page directory. */
   t->pagedir = pagedir_create ();
@@ -323,10 +327,10 @@ load (const char *cmd_line_input, void (**eip) (void), void **esp)
     }
 
   /* Set up stack. */
-  if (!setup_stack (esp, file_name, argument))
+  if (!setup_stack (esp, file_name, argument))				// calling setup_stack with file name and different arguments
     goto done;
 
-  test_stack (*esp);
+  /*test_stack (*esp);	*/						// testing stack 
 
   /* Start address. */
   *eip = (void (*) (void)) ehdr.e_entry;
@@ -338,7 +342,6 @@ load (const char *cmd_line_input, void (**eip) (void), void **esp)
   file_close (file);
   return success;
 }
-
 /* load() helpers. */
 
 static bool install_page (void *upage, void *kpage, bool writable);
@@ -452,85 +455,81 @@ load_segment (struct file *file, off_t ofs, uint8_t *upage,
 static bool
 setup_stack (void **esp, char *file_name, char *args) 
 {
-  uint8_t *kpage;
-  bool success = false;
+	uint8_t *kpage;
+	bool success = false;
 
-  kpage = palloc_get_page (PAL_USER | PAL_ZERO);
-  if (kpage != NULL) 
-    {
-      success = install_page (((uint8_t *) PHYS_BASE) - PGSIZE, kpage, true);
-      if (success){
-        *esp = PHYS_BASE;
-
-          
-        char *temp;
-	char *temp2;
-        int argc = 1;
-        char * str[(LOADER_ARGS_LEN/2) + 1];
-        str[0] = file_name;
-
-        for (temp = strtok_r (args, " ", &temp2); temp != NULL; temp = strtok_r (NULL, " ", &temp2))
-        {
-          str[argc] = temp;	//Push args in the stack
-          argc++;
-        }
-        str[argc] = NULL;
-
+	kpage = palloc_get_page (PAL_USER | PAL_ZERO);
+	if (kpage != NULL) 
+	{
+		success = install_page (((uint8_t *) PHYS_BASE) - PGSIZE, kpage, true);
+		if (success)
+		{
+			*esp = PHYS_BASE;
         
-        
-	int bytes = 0;
-        char *str2[LOADER_ARGS_LEN / 2 + 1];
+			char *temp;
+			char *t;
+			int argc = 1;
+			char * str[(LOADER_ARGS_LEN/2) + 1];
+			str[0] = file_name;
 
-        size_t len;
+			for (temp = strtok_r (args, " ", &t); temp != NULL; temp = strtok_r (NULL, " ", &t))
+			{
+				str[argc] = temp;					//Push args in array
+				argc++;
+			}
+			str[argc] = NULL;
 
-	int i;
-        for (i = argc-1; i>=0; i--)					// Loop to allign stack pointer according to length multiple
-        {
-          len = (strlen(str[i]) + 1) * (sizeof (char));
-          *esp = *esp - len;
-	  
-          memcpy (*esp, str[i], len);
-          bytes += len;
-          str2[i] = (char *) *esp;
-        }
-        str2[argc] = NULL;
 
-      
-        uint8_t arr[3] = {0,0,0};       // 3 as maximum 3 bytes can be left over as remainder on dividing by 4
-        len = bytes % word_length;
-        *esp = *esp - len;
+			int bytes = 0;
+			char *addr[LOADER_ARGS_LEN / 2 + 1];
 
-        memcpy (*esp, arr, len);        // filling as many bytes(0,1,2 or 3) to align word
+			size_t len;
 
-        
-        for (i = argc; i>=0; i--){				//Push adress in stack
-        
-          len = (sizeof (char *));
-          *esp = *esp - len;
-          memcpy (*esp, str2 + i, len);
-        }
+			int i;
+			for (i = argc-1; i>=0; i--)					// Loop to allign stack pointer according to length multiple
+			{
+				len = (strlen(str[i]) + 1) * (sizeof (char));
+			        *esp = *esp - len; 
+			        memcpy (*esp, str[i], len);
+			        bytes += len;
+			        addr[i] = (char *) *esp;
+			}
+			addr[argc] = NULL;
 
-        
-        char *begin = *esp; 				//start address
-        len = sizeof (begin);           // putting argv[0] address (argv) 
-        *esp -= len;			// this will be the address where argv[0] is stored which is the previous *esp 
-        memcpy(*esp, &begin, len);
+			uint8_t allign[3] = {0,0,0};       // 3 as maximum 3 bytes can be left over as remainder on dividing by 4
+			len = bytes % word_length;
+			*esp = *esp - len;
 
-       
-        len = sizeof (int);			
-        *esp -=len;		//argc
-        memcpy (*esp, &argc, len);      // putting argc address
+			memcpy (*esp, allign, len);        // filling as many bytes(0,1,2 or 3) to align word
 
-        
-        argc = 0;
-        len = sizeof (void (*) ());				//end adress
-        *esp -= len;
-        memcpy (*esp, &argc, len);	// fake return address
-      }
-      else
-        palloc_free_page (kpage);
-    }
-  return success;
+
+			len = (sizeof (char *));
+			for (i = argc; i>=0; i--)	   //Push adress in stack
+			{				
+				*esp = *esp - len;
+				memcpy (*esp, addr + i, len);
+			}
+
+			char *begin = *esp; 			
+			len = sizeof (begin);          	   // putting argv[0] address (argv) 
+			*esp = *esp - len;			   // this will be the address where argv[0] is stored which is the previous *esp 
+			memcpy(*esp, &begin, len);
+
+			len = sizeof (int);			
+			*esp = *esp - len;		           //argc
+			memcpy (*esp, &argc, len);         // putting argc address
+
+			argc = 0;
+			len = sizeof (void (*) ());				//end adress
+			*esp -= len;
+			memcpy (*esp, &argc, len);	// fake return address
+		}
+		else 
+		{
+			palloc_free_page (kpage);
+		}
+	}
+	return success;
 }
 
 /* Adds a mapping from user virtual address UPAGE to kernel
