@@ -1,6 +1,6 @@
 Copying tests/userprog/exec-arg to scratch partition...
 Copying tests/userprog/child-args to scratch partition...
-Writing command line to /tmp/Xwp2ImOxW4.dsk...
+Writing command line to /tmp/Uhuw0LpsKY.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -26,8 +26,8 @@ Executing 'exec-arg':
 (exec-arg) end
 exec-arg: exit(0)
 Execution of 'exec-arg' complete.
-Timer: 420 ticks
-Thread: 30 idle ticks, 359 kernel ticks, 34 user ticks
+Timer: 422 ticks
+Thread: 30 idle ticks, 361 kernel ticks, 34 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 86 reads, 388 writes
 hd1:0: 190 reads, 2 writes

@@ -1,6 +1,6 @@
 Copying tests/filesys/base/syn-write to scratch partition...
 Copying tests/filesys/base/child-syn-wrt to scratch partition...
-Writing command line to /tmp/4RzyF6xjcg.dsk...
+Writing command line to /tmp/7KM30ZRYC3.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -24,15 +24,27 @@ Erasing ustar archive...
 Executing 'syn-write':
 (syn-write) begin
 (syn-write) create "stuff"
-(syn-write) create "stuff": FAILED
+(syn-write) exec child 1 of 10: "child-syn-wrt 0"
+(syn-write) exec child 2 of 10: "child-syn-wrt 1"
+(syn-write) exec child 3 of 10: "child-syn-wrt 2"
+(syn-write) exec child 4 of 10: "child-syn-wrt 3"
+(syn-write) exec child 5 of 10: "child-syn-wrt 4"
+(syn-write) exec child 6 of 10: "child-syn-wrt 5"
+(syn-write) exec child 7 of 10: "child-syn-wrt 6"
+(syn-write) exec child 8 of 10: "child-syn-wrt 7"
+(syn-write) exec child 9 of 10: "child-syn-wrt 8"
+(syn-write) exec child 10 of 10: "child-syn-wrt 9"
+(syn-write) wait for child 1 of 10 returned 0 (expected 0)
+(syn-write) wait for child 2 of 10 returned 0 (expected 1)
+(syn-write) wait for child 2 of 10 returned 0 (expected 1): FAILED
 syn-write: exit(1)
 Execution of 'syn-write' complete.
-Timer: 450 ticks
-Thread: 30 idle ticks, 375 kernel ticks, 48 user ticks
+Timer: 606 ticks
+Thread: 30 idle ticks, 374 kernel ticks, 205 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 88 reads, 430 writes
+hd0:1: 111 reads, 444 writes
 hd1:0: 211 reads, 2 writes
-Console: 982 characters output
+Console: 1635 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

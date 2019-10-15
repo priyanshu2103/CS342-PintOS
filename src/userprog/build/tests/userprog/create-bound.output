@@ -1,5 +1,5 @@
 Copying tests/userprog/create-bound to scratch partition...
-Writing command line to /tmp/2TveHwz8KL.dsk...
+Writing command line to /tmp/LqcDLR1znU.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -21,14 +21,14 @@ Putting 'create-bound' into the file system...
 Erasing ustar archive...
 Executing 'create-bound':
 (create-bound) begin
-(create-bound) create("quux.dat"): 0
+(create-bound) create("quux.dat"): 1
 (create-bound) end
 create-bound: exit(0)
 Execution of 'create-bound' complete.
-Timer: 359 ticks
-Thread: 30 idle ticks, 285 kernel ticks, 47 user ticks
+Timer: 377 ticks
+Thread: 30 idle ticks, 286 kernel ticks, 64 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 60 reads, 202 writes
+hd0:1: 82 reads, 206 writes
 hd1:0: 98 reads, 2 writes
 Console: 945 characters output
 Keyboard: 0 keys pressed

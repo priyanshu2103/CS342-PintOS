@@ -1,5 +1,5 @@
 Copying tests/userprog/open-bad-ptr to scratch partition...
-Writing command line to /tmp/Ht3xiIeWRC.dsk...
+Writing command line to /tmp/W0GIwXPh2l.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -21,16 +21,14 @@ Putting 'open-bad-ptr' into the file system...
 Erasing ustar archive...
 Executing 'open-bad-ptr':
 (open-bad-ptr) begin
-(open-bad-ptr) open(0x20101234): 0
-(open-bad-ptr) should have called exit(-1): FAILED
-open-bad-ptr: exit(1)
+open-bad-ptr: exit(-1)
 Execution of 'open-bad-ptr' complete.
-Timer: 356 ticks
-Thread: 30 idle ticks, 281 kernel ticks, 48 user ticks
+Timer: 341 ticks
+Thread: 30 idle ticks, 282 kernel ticks, 32 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 59 reads, 198 writes
 hd1:0: 96 reads, 2 writes
-Console: 975 characters output
+Console: 890 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

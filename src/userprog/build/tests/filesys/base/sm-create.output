@@ -1,5 +1,5 @@
 Copying tests/filesys/base/sm-create to scratch partition...
-Writing command line to /tmp/qCc6EwQocr.dsk...
+Writing command line to /tmp/Ta2dDF1n7E.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -22,15 +22,18 @@ Erasing ustar archive...
 Executing 'sm-create':
 (sm-create) begin
 (sm-create) create "blargle"
-(sm-create) create "blargle": FAILED
-sm-create: exit(1)
+(sm-create) open "blargle" for verification
+(sm-create) verified contents of "blargle"
+(sm-create) close "blargle"
+(sm-create) end
+sm-create: exit(0)
 Execution of 'sm-create' complete.
-Timer: 356 ticks
-Thread: 30 idle ticks, 283 kernel ticks, 46 user ticks
+Timer: 407 ticks
+Thread: 30 idle ticks, 284 kernel ticks, 96 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 60 reads, 206 writes
+hd0:1: 98 reads, 222 writes
 hd1:0: 100 reads, 2 writes
-Console: 938 characters output
+Console: 1032 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

@@ -786,6 +786,12 @@ init_thread (struct thread *t, const char *name, int priority)
   t->magic = THREAD_MAGIC;
   
   list_push_back (&all_list, &t->allelem);
+
+  int i;
+  for (i = 0; i<MAX_FILES ; i++)
+  {
+    t->files[i] = NULL;
+  }
   
 }
 

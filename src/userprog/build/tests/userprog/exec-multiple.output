@@ -1,6 +1,6 @@
 Copying tests/userprog/exec-multiple to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-Writing command line to /tmp/vKSrcwPkcC.dsk...
+Writing command line to /tmp/X6vvDac8PW.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -26,8 +26,8 @@ Executing 'exec-multiple':
 (exec-multiple) end
 exec-multiple: exit(0)
 Execution of 'exec-multiple' complete.
-Timer: 424 ticks
-Thread: 30 idle ticks, 361 kernel ticks, 36 user ticks
+Timer: 426 ticks
+Thread: 30 idle ticks, 362 kernel ticks, 37 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 86 reads, 388 writes
 hd1:0: 190 reads, 2 writes

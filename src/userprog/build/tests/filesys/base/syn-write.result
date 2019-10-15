@@ -1,2 +1,2 @@
 FAIL
-run: create "stuff": FAILED
+run: wait for child 2 of 10 returned 0 (expected 1): FAILED

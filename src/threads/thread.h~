@@ -24,6 +24,8 @@ typedef int tid_t;
 #define PRI_DEFAULT 31                  /* Default priority. */
 #define PRI_MAX 63                      /* Highest priority. */
 
+#define MAX_FILES 128
+
 /* A kernel thread or user process.
 
    Each thread structure is stored in its own 4 kB page.  The
@@ -108,6 +110,8 @@ struct thread
     struct list_elem s_elem;            /* sleepers list elements are stored here */
     struct list locks_acquired;         /* List of locks acquired by a thread */
     bool no_yield;
+
+    struct file *files[MAX_FILES];
   };
 
 /* If false (default), use round-robin scheduler.

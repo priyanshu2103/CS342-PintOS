@@ -1,5 +1,5 @@
 Copying tests/userprog/open-null to scratch partition...
-Writing command line to /tmp/LtjTyOJ3JL.dsk...
+Writing command line to /tmp/QtyXFjKrL8.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -21,15 +21,14 @@ Putting 'open-null' into the file system...
 Erasing ustar archive...
 Executing 'open-null':
 (open-null) begin
-(open-null) end
-open-null: exit(0)
+open-null: exit(-1)
 Execution of 'open-null' complete.
-Timer: 340 ticks
-Thread: 30 idle ticks, 279 kernel ticks, 34 user ticks
+Timer: 338 ticks
+Thread: 30 idle ticks, 280 kernel ticks, 31 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 59 reads, 198 writes
 hd1:0: 96 reads, 2 writes
-Console: 887 characters output
+Console: 872 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...
