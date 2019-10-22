@@ -1,5 +1,2 @@
 FAIL
-Kernel panic in run: PANIC at ../../threads/thread.c:478 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0xc011ef04
-Translation of call stack:
-0xc011ef04: (unknown)
+run: try to write "child-rox": FAILED

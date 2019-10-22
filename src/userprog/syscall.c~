@@ -120,7 +120,7 @@ static int wait (void *esp)
   if (child == NULL) 
     exit (NULL);
 
-  //sema_down (&child->sema_terminated);
+  sema_down (&child->sema_terminated);
   int status = child->return_status;
   list_remove (&child->parent_elem);
   thread_unblock (child);

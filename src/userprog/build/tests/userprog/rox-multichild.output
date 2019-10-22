@@ -1,6 +1,6 @@
 Copying tests/userprog/rox-multichild to scratch partition...
 Copying tests/userprog/child-rox to scratch partition...
-Writing command line to /tmp/bEX6lhEeM3.dsk...
+Writing command line to /tmp/5t3oakFYyS.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -27,24 +27,19 @@ Executing 'rox-multichild':
 (rox-multichild) read "child-rox"
 (rox-multichild) write "child-rox"
 (rox-multichild) exec "child-rox 5"
-Kernel PANIC at ../../threads/thread.c:478 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0xc011ef04Page fault at 0x1de:(child-rox) begin
- not present error reading page in ker(child-rox) try tnel context.
-Interrupt 0x0e (o write "child-rox"
-#PF Page-Fault Exception) at eip=0xc0(child-rox) try to write "child-10617f
- cr2=000001de error=0rox": FAILED
-child-rox: e0000000
- eax=000001de ebx=0xit(1)
-00001de ecx=c011ee30 edx=000003d4
- esi=c010e042 edi=c010f152 esp=c010fceb ebp=c011eec4
- cs=0008 ds=0010 es=0010 ss=ef04
-Kernel PANIC recursion at ../../userprog/exception.c:102 in kill().
-Timer: 484 ticks
-Thread: 30 idle ticks, 307 kernel ticks, 147 user ticks
+(child-rox) begin
+(child-rox) try to write "child-rox"
+(child-rox) try to write "child-rox": FAILED
+child-rox: exit(1)
+(rox-multichild) wait for child: FAILED
+rox-multichild: exit(1)
+Execution of 'rox-multichild' complete.
+Timer: 497 ticks
+Thread: 30 idle ticks, 341 kernel ticks, 129 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 130 reads, 420 writes
 hd1:0: 205 reads, 2 writes
-Console: 1643 characters output
+Console: 1246 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...

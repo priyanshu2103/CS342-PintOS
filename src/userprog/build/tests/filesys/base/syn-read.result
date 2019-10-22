@@ -1,5 +1,1 @@
-FAIL
-Kernel panic in run: PANIC at ../../threads/thread.c:505 in thread_current(): assertion `is_thread (t)' failed.
-Call stack: 0xc011de70
-Translation of call stack:
-0xc011de70: (unknown)
+PASS
