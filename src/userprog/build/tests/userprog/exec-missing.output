@@ -1,5 +1,5 @@
 Copying tests/userprog/exec-missing to scratch partition...
-Writing command line to /tmp/1eVRrllQNv.dsk...
+Writing command line to /tmp/OF2P4LZ9BU.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -21,16 +21,17 @@ Putting 'exec-missing' into the file system...
 Erasing ustar archive...
 Executing 'exec-missing':
 (exec-missing) begin
-(exec-missing) exec("no-such-file"): 0
+load: no-such-file: open failed
+(exec-missing) exec("no-such-file"): -1
 (exec-missing) end
 exec-missing: exit(0)
 Execution of 'exec-missing' complete.
-Timer: 352 ticks
-Thread: 30 idle ticks, 281 kernel ticks, 44 user ticks
+Timer: 323 ticks
+Thread: 30 idle ticks, 233 kernel ticks, 63 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 59 reads, 198 writes
+hd0:1: 76 reads, 198 writes
 hd1:0: 96 reads, 2 writes
-Console: 947 characters output
+Console: 980 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

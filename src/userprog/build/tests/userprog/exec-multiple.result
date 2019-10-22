@@ -1,27 +1,5 @@
 FAIL
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (exec-multiple) begin
-  (child-simple) run
-  child-simple: exit(81)
-  (child-simple) run
-  child-simple: exit(81)
-  (child-simple) run
-  child-simple: exit(81)
-  (child-simple) run
-  child-simple: exit(81)
-  (exec-multiple) end
-  exec-multiple: exit(0)
-Differences in `diff -u' format:
-  (exec-multiple) begin
-- (child-simple) run
-- child-simple: exit(81)
-- (child-simple) run
-- child-simple: exit(81)
-- (child-simple) run
-- child-simple: exit(81)
-- (child-simple) run
-- child-simple: exit(81)
-  (exec-multiple) end
-  exec-multiple: exit(0)
+Kernel panic in run: PANIC at ../../threads/thread.c:478 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
+Call stack: 0xc011ef04
+Translation of call stack:
+0xc011ef04: (unknown)

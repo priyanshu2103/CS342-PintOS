@@ -8,6 +8,7 @@
 #include <string.h>
 
 #include "threads/synch.h"
+#include "userprog/process.h"
 
 /* Lock for file system calls. */
 
@@ -56,24 +57,75 @@ int exit (void *esp)
     }
   }
 
-  char *name = th->name, *save;
+  char *name = th->name;
   char *temp;
   name = strtok_r (name, " ", &temp);
-
   printf ("%s: exit(%d)\n", name, status);
+
+  th->return_status = status;
+
+  /* Preserve the kernel struct thread just deallocate user page.
+     struct thread will be deleted once parent calls wait or parent terminates.*/
+  process_exit ();
+
+  enum intr_level old_level = intr_disable ();
+  th->no_yield = true;
+  sema_up (&th->sema_terminated);
+  thread_block ();
+  intr_set_level (old_level);
+
   thread_exit ();
+  NOT_REACHED ();
   return status;
 }
 
 
 static int exec (void *esp)
 {
-  return 0;
+  check_sanity (esp, sizeof (char *));
+  const char *file_name = *((char **) esp);
+  esp += sizeof (char *);
+
+  check_string (file_name);
+
+  lock_acquire (&f_lock);
+  tid_t tid = process_execute (file_name);
+  lock_release (&f_lock);
+
+  struct thread *child = get_child_thread_from_id (tid);
+  if (child == NULL)
+    return -1;
+
+  sema_down (&child->sema_ready);
+  if (!child->load_complete)
+    tid = -1;
+
+  sema_up (&child->sema_ack);
+  return tid;
 }
 
 static int wait (void *esp)
 {
-  return 0;
+
+  check_sanity (esp, sizeof (int));
+  int pid = *((int *) esp);
+  esp += sizeof (int);
+
+  
+  struct thread *child = get_child_thread_from_id (pid);
+
+    /* Either wait has already been called or 
+     given pid is not a child of current thread. */
+  
+  if (child == NULL) 
+    exit (NULL);
+
+  //sema_down (&child->sema_terminated);
+  int status = child->return_status;
+  list_remove (&child->parent_elem);
+  thread_unblock (child);
+  return status;
+ return 0;
 }
 
 static int create (void *esp)

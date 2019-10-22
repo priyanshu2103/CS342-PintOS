@@ -1,6 +1,6 @@
 Copying tests/userprog/wait-twice to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-Writing command line to /tmp/RcL63xOIID.dsk...
+Writing command line to /tmp/YfWxMuH1pk.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -23,17 +23,22 @@ Putting 'child-simple' into the file system...
 Erasing ustar archive...
 Executing 'wait-twice':
 (wait-twice) begin
-(wait-twice) wait(exec()) = 0
-(wait-twice) wait(exec()) = 0
-(wait-twice) end
-wait-twice: exit(0)
-Execution of 'wait-twice' complete.
-Timer: 437 ticks
-Thread: 30 idle ticks, 361 kernel ticks, 49 user ticks
+Kernel PANIC at ../../threads/thread.c:478 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
+Call stack: 0xc011ef04Page fault at 0x1de(child-simple) run
+child: not present error reading page in ke-simple: exit(81)
+rnel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc010617f
+ cr2=000001de error=00000000
+ eax=000001de ebx=000001de ecx=c011ee30 edx=000003d4
+ esi=c010e042 edi=c010f152 esp=c010fceb ebp=c011eec4
+ cs=0008 ds=0010 es=0010 ss=ef04
+Kernel PANIC recursion at ../../userprog/exception.c:102 in kill().
+Timer: 431 ticks
+Thread: 30 idle ticks, 302 kernel ticks, 99 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 86 reads, 388 writes
+hd0:1: 122 reads, 388 writes
 hd1:0: 190 reads, 2 writes
-Console: 1002 characters output
+Console: 1413 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 1 page faults
 Powering off...

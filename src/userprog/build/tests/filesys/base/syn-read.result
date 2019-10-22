@@ -1,2 +1,5 @@
 FAIL
-run: wait for child 2 of 10 returned 0 (expected 1): FAILED
+Kernel panic in run: PANIC at ../../threads/thread.c:505 in thread_current(): assertion `is_thread (t)' failed.
+Call stack: 0xc011de70
+Translation of call stack:
+0xc011de70: (unknown)

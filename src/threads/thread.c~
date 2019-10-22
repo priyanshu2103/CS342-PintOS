@@ -434,8 +434,12 @@ thread_create (const char *name, int priority,
   /* Add to run queue. */
   thread_unblock (t);
 
-  thread_yield();            // puts the created thread into the ready list and schedules the thread
+  //thread_yield();            // puts the created thread into the ready list and schedules the thread
 
+  if (intr_context ())
+    intr_yield_on_return ();
+  else
+    thread_yield ();
   return tid;
 }
 
@@ -575,7 +579,12 @@ thread_set_priority (int new_priority)
   int current_priority = thread_current()->priority;
   thread_current ()->priority = new_priority;
   if(new_priority < current_priority)
-	thread_yield();
+  {
+	if (intr_context ())
+      	    intr_yield_on_return ();
+        else
+      	    thread_yield ();
+  }
 }
 
 /* Returns the current thread's priority. */
@@ -793,6 +802,22 @@ init_thread (struct thread *t, const char *name, int priority)
     t->files[i] = NULL;
   }
   
+
+  if (t != initial_thread)
+  {
+    t->parent = thread_current();
+    list_push_back (&(t->parent->children), &t->parent_elem);
+  }
+  else
+    t->parent = NULL;
+
+  list_init (&t->children);
+
+  sema_init (&t->sema_ready, 0);
+  sema_init (&t->sema_terminated, 0);
+  sema_init (&t->sema_ack, 0);
+  t->return_status = -1;
+  t->load_complete = false;
 }
 
 /* Allocates a SIZE-byte frame at the top of thread T's stack and
@@ -921,6 +946,26 @@ allocate_tid (void)
   lock_release (&tid_lock);
 
   return tid;
+}
+
+struct thread *
+get_child_thread_from_id (int id)
+{
+  struct thread *t = thread_current ();
+  struct list_elem *e;
+  struct thread *child = NULL;
+
+  for (e = list_begin (&t->children);
+       e!= list_end (&t->children); e = list_next (e))
+  {
+    struct thread *this = list_entry (e, struct thread, parent_elem);
+    if (this->tid == id)
+    {
+      child = this;
+      break;
+    }
+  }
+  return child;
 }
 
 /* Offset of `stack' member within `struct thread'.

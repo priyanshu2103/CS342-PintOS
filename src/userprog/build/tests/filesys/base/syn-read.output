@@ -1,6 +1,6 @@
 Copying tests/filesys/base/syn-read to scratch partition...
 Copying tests/filesys/base/child-syn-read to scratch partition...
-Writing command line to /tmp/YzYC34n1jN.dsk...
+Writing command line to /tmp/sJhYsULHKB.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -37,17 +37,29 @@ Executing 'syn-read':
 (syn-read) exec child 8 of 10: "child-syn-read 7"
 (syn-read) exec child 9 of 10: "child-syn-read 8"
 (syn-read) exec child 10 of 10: "child-syn-read 9"
-(syn-read) wait for child 1 of 10 returned 0 (expected 0)
-(syn-read) wait for child 2 of 10 returned 0 (expected 1)
-(syn-read) wait for child 2 of 10 returned 0 (expected 1): FAILED
-syn-read: exit(1)
+(syn-read) waiKernel PANIC at ../../threads/thread.c:505 in thread_current(): assertion `is_thread (t)' failed.
+Call stack: 0xc011de70Kernel PANIC recursion at ../../threads/interrupt.c:85 in intr_enable().
+Kernel command line: -q -f extract run syn-read
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+373 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch disk into file system...
+Erasing ustar archive...
+Executing 'syn-read':
+load: syn-read: open failed
 Execution of 'syn-read' complete.
-Timer: 619 ticks
-Thread: 30 idle ticks, 370 kernel ticks, 222 user ticks
+Timer: 177 ticks
+Thread: 30 idle ticks, 134 kernel ticks, 16 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 116 reads, 438 writes
-hd1:0: 211 reads, 2 writes
-Console: 1696 characters output
+hd0:1: 22 reads, 6 writes
+hd1:0: 1 reads, 2 writes
+Console: 812 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

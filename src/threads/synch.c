@@ -142,8 +142,15 @@ sema_up (struct semaphore *sema)
   intr_set_level (old_level);
 
   struct thread * current = thread_current();
-  if ( current->no_yield == true || temp == NULL) current->no_yield = false;
-  else thread_yield();                
+  if ( current->no_yield == true || temp == NULL)
+  	current->no_yield = false;
+  else
+  {
+    if (intr_context ())
+      intr_yield_on_return ();
+    else
+      thread_yield ();
+  }               
 // schedules the next highest priority thread, 
 				 //the thread unblocked might have higher priority than current thread
 }
