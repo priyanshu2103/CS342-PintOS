@@ -127,6 +127,8 @@ process_wait (tid_t child_tid UNUSED)
   int status = child->return_status;
   list_remove (&child->parent_elem);
   thread_unblock (child);
+
+  return status;
 }
 
 /* Free the current process's resources. */
@@ -139,6 +141,13 @@ process_exit (void)
   /* Destroy the current process's page directory and switch back
      to the kernel-only page directory. */
   pd = cur->pagedir;
+
+  if (cur->executable_file)
+  {
+    file_close (cur->executable_file);
+    cur->executable_file = NULL;
+  }
+
   if (pd != NULL) 
     {
       /* Correct ordering here is crucial.  We must set
@@ -269,6 +278,9 @@ load (const char *command_line, void (**eip) (void), void **esp)
       printf ("load: %s: open failed\n", file_name);
       goto done; 
     }
+
+  file_deny_write (file);
+  t->executable_file = file;
 
   /* Read and verify executable header. */
   if (file_read (file, &ehdr, sizeof ehdr) != sizeof ehdr
