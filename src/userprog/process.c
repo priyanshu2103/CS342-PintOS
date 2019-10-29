@@ -18,6 +18,8 @@
 #include "threads/thread.h"
 #include "threads/vaddr.h"
 
+#include "vm/frame.h"
+
 const int word_length = 4; 				/* Number of bytes per word */
 
 static thread_func start_process NO_RETURN;
@@ -451,22 +453,25 @@ load_segment (struct file *file, off_t ofs, uint8_t *upage,
       size_t page_zero_bytes = PGSIZE - page_read_bytes;
 
       /* Get a page of memory. */
-      uint8_t *kpage = palloc_get_page (PAL_USER);
-      if (kpage == NULL)
+      //uint8_t *kpage = palloc_get_page (PAL_USER);
+      uint8_t *kpage = frame_alloc (PAL_USER);
+	if (kpage == NULL)
         return false;
 
       /* Load this page. */
       if (file_read (file, kpage, page_read_bytes) != (int) page_read_bytes)
         {
-          palloc_free_page (kpage);
-          return false; 
+          //palloc_free_page (kpage);
+          free_frame (kpage);
+	  return false; 
         }
       memset (kpage + page_read_bytes, 0, page_zero_bytes);
 
       /* Add the page to the process's address space. */
       if (!install_page (upage, kpage, writable)) 
         {
-          palloc_free_page (kpage);
+          //palloc_free_page (kpage);
+	  free_frame (kpage);
           return false; 
         }
 
@@ -486,7 +491,8 @@ setup_stack (void **esp, char *file_name, char *args)
 	uint8_t *kpage;
 	bool success = false;
 
-	kpage = palloc_get_page (PAL_USER | PAL_ZERO);
+	//kpage = palloc_get_page (PAL_USER | PAL_ZERO);
+	kpage = frame_alloc (PAL_USER | PAL_ZERO);
 	if (kpage != NULL) 
 	{
 		success = install_page (((uint8_t *) PHYS_BASE) - PGSIZE, kpage, true);
@@ -554,7 +560,8 @@ setup_stack (void **esp, char *file_name, char *args)
 		}
 		else 
 		{
-			palloc_free_page (kpage);
+			//palloc_free_page (kpage);
+			free_frame (kpage);
 		}
 	}
 	return success;
