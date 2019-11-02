@@ -1,4 +1,3 @@
-
 #ifndef VM_FRAME
 #define VM_FRAME
 

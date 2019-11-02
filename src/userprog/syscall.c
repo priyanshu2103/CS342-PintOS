@@ -6,25 +6,25 @@
 #include "threads/interrupt.h"
 #include "threads/thread.h"
 #include "threads/vaddr.h"
-//#include "threads/init.h"
+#include "threads/init.h"
 #include "userprog/pagedir.h"
-//#include <string.h>
+
+#include "userprog/process.h"
 
 #include "vm/page.h"
 #include "filesys/filesys.h"
 
-#include "threads/synch.h"
-#include "userprog/process.h"
-
 /* Lock for file system calls. */
 
 static void syscall_handler (struct intr_frame *);
-static void check_validity (const void *);
+static void check_validity (const void*, const void *);
 
-static void check_sanity (const void *, size_t);
-static void check_string (const char *);
+static void check_sanity (const void*, const void *, size_t);
+static void check_string (const void *, const char *);
 
 static int check_valid_fd (int);
+
+static void is_writable (const void *);
 
 //static struct lock f_lock;
 
@@ -40,7 +40,7 @@ int exit (void *esp)
   int status=0;
   if (esp != NULL)
   {
-    check_sanity (esp, sizeof(int));
+    check_sanity (esp, esp, sizeof(int));
     status = *((int *)esp);
     esp += sizeof (int);
   }
@@ -63,10 +63,13 @@ int exit (void *esp)
     }
   }
 
+  destroy_spt (&th->supp_page_table);
   char *name = th->name;
   char *temp;
   name = strtok_r (name, " ", &temp);
+  lock_acquire (&f_lock);
   printf ("%s: exit(%d)\n", name, status);
+  lock_release (&f_lock);
 
   th->return_status = status;
 
@@ -88,11 +91,11 @@ int exit (void *esp)
 
 static int exec (void *esp)
 {
-  check_sanity (esp, sizeof (char *));
+  check_sanity (esp, esp, sizeof (char *));
   const char *file_name = *((char **) esp);
   esp += sizeof (char *);
 
-  check_string (file_name);
+  check_string (esp, file_name);
 
   lock_acquire (&f_lock);
   tid_t tid = process_execute (file_name);
@@ -113,7 +116,7 @@ static int exec (void *esp)
 static int wait (void *esp)
 {
 
-  check_sanity (esp, sizeof (int));
+  check_sanity (esp, esp, sizeof (int));
   int pid = *((int *) esp);
   esp += sizeof (int);
 
@@ -135,13 +138,13 @@ static int wait (void *esp)
 
 static int create (void *esp)
 {
-  check_sanity (esp, sizeof(char *));
+  check_sanity (esp, esp, sizeof(char *));
   const char *file_name = *((char **) esp);
   esp += sizeof (char *);
 
-  check_string (file_name);
+  check_string (esp, file_name);
 
-  check_sanity (esp, sizeof(unsigned));
+  check_sanity (esp, esp, sizeof(unsigned));
   unsigned initial_size = *((unsigned *) esp);
   esp += sizeof (unsigned);
 
@@ -154,11 +157,11 @@ static int create (void *esp)
 
 static int remove (void *esp)
 {
-  check_sanity (esp, sizeof(char *));
+  check_sanity (esp, esp, sizeof(char *));
   const char *file_name = *((char **) esp);
   esp += sizeof (char *);
 
-  check_string (file_name);
+  check_string (esp, file_name);
 
   lock_acquire (&f_lock);
   int status = filesys_remove (file_name);
@@ -169,11 +172,11 @@ static int remove (void *esp)
 
 static int open (void *esp)
 {  
-  check_sanity (esp, sizeof(char *));
+  check_sanity (esp, esp, sizeof(char *));
   const char * file_name = *((char **) esp);
   esp += sizeof (char *);
 
-  check_string (file_name);
+  check_string (esp, file_name);
 
   lock_acquire (&f_lock);
   struct file * temp = filesys_open (file_name);
@@ -201,7 +204,7 @@ static int open (void *esp)
 
 static int filesize (void *esp)
 {
-  check_sanity (esp, sizeof(int));
+  check_sanity (esp, esp, sizeof(int));
   int fd = *((int *) esp);
   esp += sizeof (int);
 
@@ -219,19 +222,19 @@ static int filesize (void *esp)
 
 static int read (void *esp)
 {
-  check_sanity (esp, sizeof(int));
+  check_sanity (esp, esp, sizeof(int));
   int fd = *((int *)esp);
   esp += sizeof (int);
 
-  check_sanity (esp, sizeof(void *));
+  check_sanity (esp, esp, sizeof(void *));
   const void *buffer = *((void **) esp);
   esp += sizeof (void *);
 
-  check_sanity (esp, sizeof(unsigned));
+  check_sanity (esp, esp, sizeof(unsigned));
   unsigned size = *((unsigned *) esp);
   esp += sizeof (unsigned);
 
-  check_sanity (buffer, size);
+  check_sanity (esp, buffer, size);
 
   struct thread *th = thread_current ();
   if (fd == STDIN_FILENO)
@@ -248,6 +251,7 @@ static int read (void *esp)
   }
   else if (check_valid_fd (fd) && fd >=2 && th->files[fd] != NULL)
   {
+    is_writable (buffer);
     lock_acquire (&f_lock);
     int read = file_read (th->files[fd], buffer, size);
     lock_release (&f_lock);
@@ -258,19 +262,19 @@ static int read (void *esp)
 
 static int write (void *esp)
 {
-  check_sanity (esp, sizeof(int));
+  check_sanity (esp, esp, sizeof(int));
   int fd = *((int *)esp);
   esp += sizeof (int);
 
-  check_sanity (esp, sizeof(void *));
+  check_sanity (esp, esp, sizeof(void *));
   const void *buffer = *((void **) esp);
   esp += sizeof (void *);
   
-  check_sanity (esp, sizeof(unsigned));
+  check_sanity (esp, esp, sizeof(unsigned));
   unsigned size = *((unsigned *) esp);
   esp += sizeof (unsigned);
 
-  check_sanity (buffer, size);
+  check_sanity (esp, buffer, size);
 
   struct thread * th = thread_current ();
 
@@ -298,11 +302,11 @@ static int write (void *esp)
 
 static void seek (void *esp)
 {
-  check_sanity (esp, sizeof(int));
+  check_sanity (esp, esp, sizeof(int));
   int fd = *((int *)esp);
   esp += sizeof (int);
 
-  check_sanity (esp, sizeof(unsigned));
+  check_sanity (esp, esp, sizeof(unsigned));
   unsigned pos = *((unsigned *) esp);
   esp += sizeof (unsigned);
 
@@ -318,7 +322,7 @@ static void seek (void *esp)
 
 static int tell (void *esp)
 {
-  check_sanity (esp, sizeof(int));
+  check_sanity (esp, esp, sizeof(int));
   int fd = *((int *)esp);
   esp += sizeof (int);
 
@@ -336,7 +340,7 @@ static int tell (void *esp)
 
 static void close (void *esp)
 {
-  check_sanity (esp, sizeof(int));
+  check_sanity (esp, esp, sizeof(int));
   int fd = *((int *) esp);
   esp += sizeof (int);
  
@@ -422,9 +426,12 @@ static void syscall_handler (struct intr_frame *f UNUSED)
 {  
   void * esp = f->esp;
 
-  check_sanity (esp, sizeof(int));
+  check_sanity (esp, esp, sizeof(int));
   int syscall_num = *((int *) esp);
   esp += sizeof(int);
+
+  /* Just for sanity, we will anyway be checking inside all functions. */
+  check_sanity (esp, esp, sizeof(int));
 
   if (syscall_num >= 0 && syscall_num < num_calls)
   {
@@ -435,7 +442,8 @@ static void syscall_handler (struct intr_frame *f UNUSED)
   else
   {
     printf ("\nError, invalid syscall number.");
-    thread_exit ();
+    //thread_exit ();
+    exit (NULL);
   }
 }
 
@@ -446,28 +454,52 @@ static int check_valid_fd (int fd)
 }
 
 // checks whether the given string (char pointer) is valid or not
-static void check_string (const char *s)
+static void check_string (const void *esp, const char *s)
 {
-  check_sanity (s, sizeof(char));
+  check_sanity (esp, s, sizeof(char));
   while (*s != '\0')
   {
-    check_sanity (s++, sizeof(char));
+    check_sanity (esp, s++, sizeof(char));
   }
 }
 
 // checks validity of starting and ending pointer references
-static void check_sanity (const void *ptr, size_t size)
+static void check_sanity (const void *esp, const void *ptr, size_t size)
 {
-  check_validity (ptr);
-  check_validity (ptr + size - 1);
+  check_validity (esp, ptr);
+  if(size != 1)
+  check_validity (esp, ptr + size - 1);
 }
 
 // checks whether given ptr is valid or not
-static void check_validity (const void *ptr)
+static void check_validity (const void *esp, const void *ptr)
 {
   uint32_t *pd = thread_current ()->pagedir;
-  if ( ptr == NULL || !is_user_vaddr (ptr) || pagedir_get_page (pd, ptr) == NULL)
+  if (ptr == NULL || !is_user_vaddr (ptr))
   {
     exit (NULL);
   }
+  if(pagedir_get_page (pd, ptr) == NULL)
+  {
+    struct spt_entry *spte = uvaddr_to_spt_entry (ptr);
+    if (spte != NULL)
+    {
+      if (!install_load_page (spte))
+        exit (NULL);
+    }
+    else if (!(ptr >= esp - STACK_HEURISTIC &&
+              grow_stack (ptr)))
+    {
+      exit (NULL);
+    }
+  }
+}
+
+static void
+is_writable (const void *ptr)
+{
+  struct spt_entry *spte = uvaddr_to_spt_entry (ptr);
+  if (spte->type == FILE && !spte->writable)
+    exit (NULL);
+
 }

@@ -1,6 +1,6 @@
 Copying tests/vm/mmap-exit to scratch partition...
 Copying tests/vm/child-mm-wrt to scratch partition...
-Writing command line to /tmp/gnL4T6PrA4.dsk...
+Writing command line to /tmp/aWhbq98VdV.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -9,7 +9,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run mmap-exit
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -32,13 +32,13 @@ child-mm-wrt: exit(-1)
 (mmap-exit) wait for child (should return 0): FAILED
 mmap-exit: exit(1)
 Execution of 'mmap-exit' complete.
-Timer: 498 ticks
-Thread: 30 idle ticks, 346 kernel ticks, 125 user ticks
+Timer: 506 ticks
+Thread: 30 idle ticks, 347 kernel ticks, 132 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 162 reads, 408 writes
 hd1:0: 197 reads, 2 writes
 hd1:1: 0 reads, 0 writes
 Console: 1227 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 11 page faults
 Powering off...

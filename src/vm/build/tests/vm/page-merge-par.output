@@ -1,6 +1,6 @@
 Copying tests/vm/page-merge-par to scratch partition...
 Copying tests/vm/child-sort to scratch partition...
-Writing command line to /tmp/3scBJgifZ6.dsk...
+Writing command line to /tmp/pVUcenEbxi.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -9,7 +9,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run page-merge-par
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -23,14 +23,31 @@ Putting 'page-merge-par' into the file system...
 Putting 'child-sort' into the file system...
 Erasing ustar archive...
 Executing 'page-merge-par':
-Execution of 'page-merge-par' complete.
-Timer: 1567 ticks
-Thread: 30 idle ticks, 321 kernel ticks, 1219 user ticks
+(page-merge-par) begin
+(page-merge-par) init
+(page-merge-par) sort chunk 0
+(page-merge-par) sort chunk 1
+Page fault at 0x804d000: not present error writing page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0104ec0
+ cr2=0804d000 error=00000002
+ eax=c0113940 ebx=c0113940 ecx=000000a0 edx=000001f0
+ esi=c01139ac edi=0804d000 esp=c011394c ebp=c0131ea4
+ cs=0008 ds=0010 es=0010 ss=1ed4
+Kernel PANIC at ../../userprog/exception.c:104 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc0131dbcPage fault at 0x68: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc01061af
+ cr2=00000068 error=00000000
+ eax=00000068 ebx=00000068 ecx=c0131ce8 edx=000003d4
+ esi=c010ef1b edi=c0110b05 esp=c011027b ebp=c0131d7c
+ cs=0008 ds=0010 es=0010 ss=1dbc
+Kernel PANIC recursion at ../../userprog/exception.c:104 in kill().
+Timer: 4323 ticks
+Thread: 30 idle ticks, 307 kernel ticks, 3986 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 88 reads, 414 writes
+hd0:1: 192 reads, 1446 writes
 hd1:0: 203 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1011 characters output
+Console: 1871 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 266 page faults
 Powering off...

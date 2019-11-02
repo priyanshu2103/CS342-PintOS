@@ -118,9 +118,8 @@ struct thread
     struct list children;               /* List of children of 
                                            the current thread. */
 
-    struct hash supp_page_table;
-
     struct file *files[MAX_FILES];
+    struct hash supp_page_table;
     struct file *executable_file;
     struct semaphore sema_ready;
     struct semaphore sema_terminated;

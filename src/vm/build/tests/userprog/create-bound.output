@@ -1,5 +1,5 @@
 Copying tests/userprog/create-bound to scratch partition...
-Writing command line to /tmp/ksTgbevqw8.dsk...
+Writing command line to /tmp/4lmtEErMeb.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,7 +8,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run create-bound
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -26,13 +26,13 @@ Executing 'create-bound':
 (create-bound) end
 create-bound: exit(0)
 Execution of 'create-bound' complete.
-Timer: 337 ticks
-Thread: 30 idle ticks, 247 kernel ticks, 63 user ticks
+Timer: 339 ticks
+Thread: 30 idle ticks, 246 kernel ticks, 66 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 82 reads, 206 writes
 hd1:0: 98 reads, 2 writes
 hd1:1: 0 reads, 0 writes
 Console: 1053 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 6 page faults
 Powering off...

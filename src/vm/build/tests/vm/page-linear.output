@@ -1,5 +1,5 @@
 Copying tests/vm/page-linear to scratch partition...
-Writing command line to /tmp/ey1owXYDsC.dsk...
+Writing command line to /tmp/ouBiVuIUQ9.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,7 +8,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run page-linear
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -21,14 +21,17 @@ Extracting ustar archive from scratch disk into file system...
 Putting 'page-linear' into the file system...
 Erasing ustar archive...
 Executing 'page-linear':
+(page-linear) begin
+(page-linear) initialize
+page-linear: exit(-1)
 Execution of 'page-linear' complete.
-Timer: 1477 ticks
-Thread: 30 idle ticks, 234 kernel ticks, 1220 user ticks
+Timer: 3050 ticks
+Thread: 30 idle ticks, 890 kernel ticks, 2133 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 59 reads, 210 writes
+hd0:1: 60 reads, 210 writes
 hd1:0: 102 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 954 characters output
+Console: 1021 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 373 page faults
 Powering off...

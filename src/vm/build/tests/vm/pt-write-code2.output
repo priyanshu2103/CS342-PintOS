@@ -1,6 +1,6 @@
 Copying tests/vm/pt-write-code2 to scratch partition...
 Copying ../../tests/vm/sample.txt to scratch partition...
-Writing command line to /tmp/kG9ihM2XI3.dsk...
+Writing command line to /tmp/BlYO7Bm4ZU.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -9,7 +9,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run pt-write-code2
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -25,27 +25,15 @@ Erasing ustar archive...
 Executing 'pt-write-code2':
 (pt-write-code2) begin
 (pt-write-code2) open "sample.txt"
-Page fault at 0x80480a0: rights violation error writing page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0107a2b
- cr2=080480a0 error=00000003
- eax=0000003d ebx=00000001 ecx=c011b20c edx=00000000
- esi=080480a0 edi=080480a0 esp=c011294c ebp=c011eed4
- cs=0008 ds=0010 es=0010 ss=2c64
-Kernel PANIC at ../../userprog/exception.c:102 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc011edc8Page fault at 0x66: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc010619f
- cr2=00000066 error=00000000
- eax=00000066 ebx=00000066 ecx=c011ecf4 edx=000003d4
- esi=c010e9c8 edi=c01105f1 esp=c010fd2b ebp=c011ed88
- cs=0008 ds=0010 es=0010 ss=edc8
-Kernel PANIC recursion at ../../userprog/exception.c:102 in kill().
-Timer: 392 ticks
-Thread: 30 idle ticks, 241 kernel ticks, 121 user ticks
+pt-write-code2: exit(-1)
+Execution of 'pt-write-code2' complete.
+Timer: 347 ticks
+Thread: 30 idle ticks, 271 kernel ticks, 49 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 91 reads, 206 writes
+hd0:1: 90 reads, 206 writes
 hd1:0: 99 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1824 characters output
+Console: 1090 characters output
 Keyboard: 0 keys pressed
-Exception: 2 page faults
+Exception: 5 page faults
 Powering off...

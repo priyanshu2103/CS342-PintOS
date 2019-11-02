@@ -6,6 +6,7 @@
 #include "threads/palloc.h"
 #include "userprog/process.h"
 #include "filesys/file.h"
+
 /*
   Naming convention for pages and frames:
   
@@ -20,18 +21,19 @@
   others are mmap files
 */
 
-struct hash supp_page_table;
-struct lock spt_lock;
+//struct hash supp_page_table;
+//struct lock spt_lock;
 
 unsigned
-spt_hash_func (const struct hash_elem *element, void *aux)
+spt_hash_func (const struct hash_elem *element, void *aux UNUSED)
 {
   struct spt_entry *spte = hash_entry (element, struct spt_entry, elem);
   return hash_int ((int) spte->upage);
 }
 
 bool
-spt_less_func (const struct hash_elem *a, const struct hash_elem *b, void *aux)
+spt_less_func (const struct hash_elem *a, const struct hash_elem *b,
+               void *aux UNUSED)
 {
   struct spt_entry *spte_a = hash_entry (a, struct spt_entry, elem);
   struct spt_entry *spte_b = hash_entry (b, struct spt_entry, elem);
@@ -42,8 +44,7 @@ spt_less_func (const struct hash_elem *a, const struct hash_elem *b, void *aux)
 void
 supp_page_table_init (struct hash *supp_page_table)
 {
-  hash_init (&supp_page_table, spt_hash_func, spt_less_func, NULL);
-  //lock_init (&spt_lock);
+  hash_init (supp_page_table, spt_hash_func, spt_less_func, NULL);
 }
 
 struct spt_entry *
@@ -69,6 +70,7 @@ create_spte ()
     sizeof (struct spt_entry));
   spte->frame = NULL;
   spte->upage = NULL;
+  spte->is_in_swap = false;
   return spte;
 }
 
@@ -86,7 +88,7 @@ bool
 create_spte_file (struct file *file, off_t ofs, uint8_t *upage,
               uint32_t read_bytes, uint32_t zero_bytes, bool writable) 
 {
-  ASSERT ((read_bytes + zero_bytes) % PGSIZE == 0);
+    ASSERT ((read_bytes + zero_bytes) % PGSIZE == 0);
   ASSERT (pg_ofs (upage) == 0);
   ASSERT (ofs % PGSIZE == 0);
 
@@ -116,9 +118,6 @@ create_spte_file (struct file *file, off_t ofs, uint8_t *upage,
       hash_insert (&((thread_current())->supp_page_table), &spte->elem);
     }
   return true;
-
-
-
 }
 
 void
@@ -127,10 +126,11 @@ create_spte_mmap ()
 
 }
 
+
 bool
 install_load_file (struct spt_entry *spte)
 {
-    void *frame = get_frame_for_page (PAL_USER, spte);
+  void *frame = get_frame_for_page (PAL_USER, spte);
 
   if (frame == NULL)
     return false;
@@ -157,16 +157,31 @@ install_load_file (struct spt_entry *spte)
   return true;
 }
 
+
 bool
-load_mmap (struct spt_entry *spte)
+install_load_mmap (struct spt_entry *spte)
 {
 
 }
 
 bool
-load_swap (struct spt_entry *spte)
+install_load_swap (struct spt_entry *spte)
 {
+   void *frame = get_frame_for_page (PAL_USER | PAL_ZERO, spte);
 
+  if (frame == NULL)
+    return false;
+
+  if (install_page (spte->upage, frame, true))
+  {
+    if (!spte->is_in_swap)
+      return true;
+    else
+      return false; //TODO:: swap_in
+  }
+  else
+    free_frame (frame);
+  return false;
 }
 
 bool
@@ -177,10 +192,10 @@ install_load_page (struct spt_entry *spte)
     return install_load_file (spte);
     break;
   case MMAP:
-    return load_mmap (spte);
+    return install_load_mmap (spte);
     break;
   case CODE:
-    return load_swap (spte);
+    return install_load_swap (spte);
     break;
   default:
     return false;
@@ -199,8 +214,18 @@ free_spte (struct hash_elem *e, void *aux)
   free (spte);
 }
 
-void destroy_spt (){
-  //lock_acquire (&spt_lock);
-  hash_destroy (&supp_page_table, free_spte);
-  //lock_release (&spt_lock);
+void destroy_spt (struct hash *supp_page_table){
+  hash_destroy (supp_page_table, free_spte);
+}
+
+bool
+grow_stack (void *uaddr)
+{
+  void *upage = pg_round_down (uaddr);
+
+  if ((size_t) (PHYS_BASE - uaddr) > MAX_STACK_SIZE)
+    return false;
+
+  struct spt_entry *spte = create_spte_code (upage);
+  return install_load_page (spte);
 }

@@ -1,5 +1,5 @@
 Copying tests/vm/pt-big-stk-obj to scratch partition...
-Writing command line to /tmp/JKVOVUrJB5.dsk...
+Writing command line to /tmp/rwbUJR3D3I.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,7 +8,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run pt-big-stk-obj
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -22,15 +22,17 @@ Putting 'pt-big-stk-obj' into the file system...
 Erasing ustar archive...
 Executing 'pt-big-stk-obj':
 (pt-big-stk-obj) begin
-pt-big-stk-obj: exit(-1)
+(pt-big-stk-obj) cksum: 3256410166
+(pt-big-stk-obj) end
+pt-big-stk-obj: exit(0)
 Execution of 'pt-big-stk-obj' complete.
-Timer: 307 ticks
-Thread: 30 idle ticks, 249 kernel ticks, 31 user ticks
+Timer: 630 ticks
+Thread: 30 idle ticks, 275 kernel ticks, 328 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 62 reads, 216 writes
+hd0:1: 61 reads, 216 writes
 hd1:0: 105 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1011 characters output
+Console: 1067 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 20 page faults
 Powering off...

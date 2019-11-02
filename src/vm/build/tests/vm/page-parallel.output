@@ -1,6 +1,6 @@
 Copying tests/vm/page-parallel to scratch partition...
 Copying tests/vm/child-linear to scratch partition...
-Writing command line to /tmp/zLFhBrXUrG.dsk...
+Writing command line to /tmp/tzZeZAHV31.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -9,7 +9,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run page-parallel
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -26,16 +26,23 @@ Executing 'page-parallel':
 (page-parallel) begin
 (page-parallel) exec "child-linear"
 (page-parallel) exec "child-linear"
-(page-parallel) exec "child-linear": FAILED
+(page-parallel) exec "child-linear"
+(page-parallel) exec "child-linear"
+(page-parallel) wait for child 0
+child-linear: exit(-1)
+child-linear: exit(-1)
+child-linear: exit(-1)
+child-linear: exit(-1)
+(page-parallel) wait for child 0: FAILED
 page-parallel: exit(1)
 Execution of 'page-parallel' complete.
-Timer: 2158 ticks
-Thread: 30 idle ticks, 332 kernel ticks, 1803 user ticks
+Timer: 5911 ticks
+Thread: 30 idle ticks, 1022 kernel ticks, 4862 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 160 reads, 400 writes
+hd0:1: 175 reads, 400 writes
 hd1:0: 196 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1171 characters output
+Console: 1366 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 372 page faults
 Powering off...

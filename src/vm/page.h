@@ -19,7 +19,8 @@ struct spt_entry
     void *frame;  /* kpage, if not NULL implies 
                      installed and loaded (or being loaded). */
     struct hash_elem elem;
-        /* CODE */
+
+     /* CODE */
     bool is_in_swap;
 
     /* FILE */
@@ -30,7 +31,7 @@ struct spt_entry
     uint32_t page_zero_bytes;
   };
 
-  void supp_page_table_init (struct hash *);
+void supp_page_table_init (struct hash *);
 struct spt_entry *uvaddr_to_spt_entry (void *);
 
 bool grow_stack (void *);

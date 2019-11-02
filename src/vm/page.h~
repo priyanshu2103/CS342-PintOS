@@ -19,7 +19,8 @@ struct spt_entry
     void *frame;  /* kpage, if not NULL implies 
                      installed and loaded (or being loaded). */
     struct hash_elem elem;
-        /* CODE */
+
+     /* CODE */
     bool is_in_swap;
 
     /* FILE */

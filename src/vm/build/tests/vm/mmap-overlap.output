@@ -1,6 +1,6 @@
 Copying tests/vm/mmap-overlap to scratch partition...
 Copying tests/vm/zeros to scratch partition...
-Writing command line to /tmp/u6OLNd3KvW.dsk...
+Writing command line to /tmp/yxBYV6Bfij.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -9,7 +9,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run mmap-overlap
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -31,13 +31,13 @@ Executing 'mmap-overlap':
 (mmap-overlap) try to mmap "zeros" again: FAILED
 mmap-overlap: exit(1)
 Execution of 'mmap-overlap' complete.
-Timer: 381 ticks
-Thread: 30 idle ticks, 277 kernel ticks, 77 user ticks
+Timer: 386 ticks
+Thread: 30 idle ticks, 277 kernel ticks, 82 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 101 reads, 232 writes
 hd1:0: 112 reads, 2 writes
 hd1:1: 0 reads, 0 writes
 Console: 1224 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 5 page faults
 Powering off...

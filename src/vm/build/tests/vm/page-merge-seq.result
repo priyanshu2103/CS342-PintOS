@@ -1,2 +1,5 @@
 FAIL
-Run didn't produce any output
+Kernel panic in run: PANIC at ../../userprog/exception.c:104 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc0130dbc
+Translation of call stack:
+0xc0130dbc: (unknown)

@@ -436,12 +436,12 @@ thread_create (const char *name, int priority,
   /* Add to run queue. */
   thread_unblock (t);
 
-  //thread_yield();            // puts the created thread into the ready list and schedules the thread
+  thread_yield();            // puts the created thread into the ready list and schedules the thread
 
-  if (intr_context ())
+  /*if (intr_context ())
     intr_yield_on_return ();
   else
-    thread_yield ();
+    thread_yield ();*/
   return tid;
 }
 
@@ -818,10 +818,9 @@ init_thread (struct thread *t, const char *name, int priority)
   }
   else
     t->parent = NULL;
-
-  if (t != initial_thread)
+	
+   if (t != initial_thread)
     supp_page_table_init (&t->supp_page_table);
-
 
   list_init (&t->children);
 

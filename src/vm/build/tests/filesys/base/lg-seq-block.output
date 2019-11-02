@@ -1,5 +1,5 @@
 Copying tests/filesys/base/lg-seq-block to scratch partition...
-Writing command line to /tmp/WuXikMCEJZ.dsk...
+Writing command line to /tmp/JWs9LACBKF.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,7 +8,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run lg-seq-block
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -32,13 +32,13 @@ Executing 'lg-seq-block':
 (lg-seq-block) end
 lg-seq-block: exit(0)
 Execution of 'lg-seq-block' complete.
-Timer: 967 ticks
-Thread: 30 idle ticks, 276 kernel ticks, 664 user ticks
+Timer: 999 ticks
+Thread: 30 idle ticks, 277 kernel ticks, 695 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 532 reads, 653 writes
 hd1:0: 100 reads, 2 writes
 hd1:1: 0 reads, 0 writes
 Console: 1262 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 23 page faults
 Powering off...

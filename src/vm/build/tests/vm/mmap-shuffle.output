@@ -1,5 +1,5 @@
 Copying tests/vm/mmap-shuffle to scratch partition...
-Writing command line to /tmp/qVTvy57lhj.dsk...
+Writing command line to /tmp/cn7UycrxQG.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,7 +8,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run mmap-shuffle
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -28,12 +28,12 @@ Executing 'mmap-shuffle':
 mmap-shuffle: exit(-1)
 Execution of 'mmap-shuffle' complete.
 Timer: 397 ticks
-Thread: 30 idle ticks, 249 kernel ticks, 121 user ticks
+Thread: 30 idle ticks, 247 kernel ticks, 123 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 89 reads, 478 writes
+hd0:1: 87 reads, 478 writes
 hd1:0: 106 reads, 2 writes
 hd1:1: 0 reads, 0 writes
 Console: 1089 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 5 page faults
 Powering off...

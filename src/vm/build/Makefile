@@ -61,7 +61,6 @@ vm_SRC = vm/frame.c			# Frame Allocator.
 vm_SRC += vm/page.c			# Supplementary Page Table Handler.
 vm_SRC += vm/swap.c			# Swap Manager.
 
-
 # Filesystem code.
 filesys_SRC  = filesys/filesys.c	# Filesystem core.
 filesys_SRC += filesys/free-map.c	# Free sector bitmap.
