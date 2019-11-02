@@ -1,5 +1,5 @@
 Copying tests/filesys/base/sm-create to scratch partition...
-Writing command line to /tmp/P3TvCvY6Da.dsk...
+Writing command line to /tmp/Ha0yCQtgog.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -29,8 +29,8 @@ Executing 'sm-create':
 (sm-create) end
 sm-create: exit(0)
 Execution of 'sm-create' complete.
-Timer: 375 ticks
-Thread: 30 idle ticks, 247 kernel ticks, 101 user ticks
+Timer: 376 ticks
+Thread: 30 idle ticks, 235 kernel ticks, 114 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 98 reads, 222 writes
 hd1:0: 100 reads, 2 writes

@@ -139,17 +139,19 @@ process_exit (void)
 {
   struct thread *cur = thread_current ();
   uint32_t *pd;
+  struct hash *supp_page_table;
 
-  /* Destroy the current process's page directory and switch back
-     to the kernel-only page directory. */
-  pd = cur->pagedir;
 
+
+ /* Close current process's executable file and allow write. */
   if (cur->executable_file)
   {
     file_close (cur->executable_file);
     cur->executable_file = NULL;
   }
-
+    /* Destroy the current process's page directory and switch back
+     to the kernel-only page directory. */
+  pd = cur->pagedir;
   if (pd != NULL) 
     {
       /* Correct ordering here is crucial.  We must set

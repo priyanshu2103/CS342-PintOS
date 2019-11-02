@@ -1,7 +1,7 @@
 Copying tests/userprog/multi-child-fd to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
 Copying tests/userprog/child-close to scratch partition...
-Writing command line to /tmp/YXcKNcQvvI.dsk...
+Writing command line to /tmp/lmilQLV8ai.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -35,8 +35,8 @@ child-close: exit(0)
 (multi-child-fd) end
 multi-child-fd: exit(0)
 Execution of 'multi-child-fd' complete.
-Timer: 521 ticks
-Thread: 30 idle ticks, 378 kernel ticks, 116 user ticks
+Timer: 523 ticks
+Thread: 30 idle ticks, 362 kernel ticks, 134 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 169 reads, 422 writes
 hd1:0: 206 reads, 2 writes

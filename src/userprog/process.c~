@@ -139,11 +139,13 @@ process_exit (void)
 {
   struct thread *cur = thread_current ();
   uint32_t *pd;
+  struct hash *supp_page_table;
+
 
   /* Destroy the current process's page directory and switch back
      to the kernel-only page directory. */
-  pd = cur->pagedir;
-
+  //pd = cur->pagedir;
+ /* Close current process's executable file and allow write. */
   if (cur->executable_file)
   {
     file_close (cur->executable_file);
@@ -524,7 +526,7 @@ setup_stack (void **esp, char *file_name, char *args)
        }
     addr[argc] = NULL;
 
-    /* Align the stack pointer location to nearest word_length  multiple */
+    /* Align the stack pointer location to nearest word_length multiple */
     uint8_t nulls[3] = {0,0,0};
     s = bytes_written % word_length ;
     *esp -= s;

@@ -1,5 +1,5 @@
 Copying tests/userprog/create-empty to scratch partition...
-Writing command line to /tmp/3HS3ut14Bi.dsk...
+Writing command line to /tmp/qKpyZaKqSe.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -26,8 +26,8 @@ Executing 'create-empty':
 (create-empty) end
 create-empty: exit(0)
 Execution of 'create-empty' complete.
-Timer: 322 ticks
-Thread: 30 idle ticks, 243 kernel ticks, 52 user ticks
+Timer: 323 ticks
+Thread: 30 idle ticks, 233 kernel ticks, 63 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 63 reads, 202 writes
 hd1:0: 96 reads, 2 writes

@@ -1,5 +1,5 @@
 Copying tests/vm/pt-big-stk-obj to scratch partition...
-Writing command line to /tmp/rwbUJR3D3I.dsk...
+Writing command line to /tmp/CjgAsN2hNO.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -26,8 +26,8 @@ Executing 'pt-big-stk-obj':
 (pt-big-stk-obj) end
 pt-big-stk-obj: exit(0)
 Execution of 'pt-big-stk-obj' complete.
-Timer: 630 ticks
-Thread: 30 idle ticks, 275 kernel ticks, 328 user ticks
+Timer: 633 ticks
+Thread: 30 idle ticks, 240 kernel ticks, 366 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 61 reads, 216 writes
 hd1:0: 105 reads, 2 writes

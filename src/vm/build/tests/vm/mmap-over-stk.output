@@ -1,6 +1,6 @@
 Copying tests/vm/mmap-over-stk to scratch partition...
 Copying ../../tests/vm/sample.txt to scratch partition...
-Writing command line to /tmp/tmV8cwlTkm.dsk...
+Writing command line to /tmp/UtVifG5Zyz.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -26,16 +26,16 @@ Executing 'mmap-over-stk':
 (mmap-over-stk) begin
 (mmap-over-stk) open "sample.txt"
 (mmap-over-stk) try to mmap over stack segment
-(mmap-over-stk) try to mmap over stack segment: FAILED
-mmap-over-stk: exit(1)
+(mmap-over-stk) end
+mmap-over-stk: exit(0)
 Execution of 'mmap-over-stk' complete.
-Timer: 366 ticks
-Thread: 30 idle ticks, 271 kernel ticks, 68 user ticks
+Timer: 360 ticks
+Thread: 30 idle ticks, 262 kernel ticks, 71 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 90 reads, 206 writes
 hd1:0: 99 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1184 characters output
+Console: 1149 characters output
 Keyboard: 0 keys pressed
 Exception: 5 page faults
 Powering off...

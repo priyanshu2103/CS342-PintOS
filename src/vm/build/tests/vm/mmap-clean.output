@@ -1,6 +1,6 @@
 Copying tests/vm/mmap-clean to scratch partition...
 Copying ../../tests/vm/sample.txt to scratch partition...
-Writing command line to /tmp/j3mr4tPFIL.dsk...
+Writing command line to /tmp/fU4sHNCYkV.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -26,15 +26,21 @@ Executing 'mmap-clean':
 (mmap-clean) begin
 (mmap-clean) open "sample.txt"
 (mmap-clean) mmap "sample.txt"
-mmap-clean: exit(-1)
+(mmap-clean) write "sample.txt"
+(mmap-clean) munmap "sample.txt"
+(mmap-clean) seek "sample.txt"
+(mmap-clean) read "sample.txt"
+(mmap-clean) file change was retained after munmap
+(mmap-clean) end
+mmap-clean: exit(0)
 Execution of 'mmap-clean' complete.
-Timer: 353 ticks
-Thread: 30 idle ticks, 273 kernel ticks, 53 user ticks
+Timer: 406 ticks
+Thread: 30 idle ticks, 266 kernel ticks, 113 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 101 reads, 214 writes
+hd0:1: 106 reads, 215 writes
 hd1:0: 103 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1095 characters output
+Console: 1290 characters output
 Keyboard: 0 keys pressed
 Exception: 6 page faults
 Powering off...

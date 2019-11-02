@@ -1,6 +1,6 @@
 Copying tests/vm/mmap-null to scratch partition...
 Copying ../../tests/vm/sample.txt to scratch partition...
-Writing command line to /tmp/hlmVzlG4q7.dsk...
+Writing command line to /tmp/rw0yjEUa7c.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -26,16 +26,16 @@ Executing 'mmap-null':
 (mmap-null) begin
 (mmap-null) open "sample.txt"
 (mmap-null) try to mmap at address 0
-(mmap-null) try to mmap at address 0: FAILED
-mmap-null: exit(1)
+(mmap-null) end
+mmap-null: exit(0)
 Execution of 'mmap-null' complete.
-Timer: 360 ticks
-Thread: 30 idle ticks, 270 kernel ticks, 63 user ticks
+Timer: 356 ticks
+Thread: 30 idle ticks, 261 kernel ticks, 68 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 90 reads, 206 writes
 hd1:0: 99 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1136 characters output
+Console: 1107 characters output
 Keyboard: 0 keys pressed
 Exception: 5 page faults
 Powering off...

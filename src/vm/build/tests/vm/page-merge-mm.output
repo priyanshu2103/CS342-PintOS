@@ -1,6 +1,6 @@
 Copying tests/vm/page-merge-mm to scratch partition...
 Copying tests/vm/child-qsort-mm to scratch partition...
-Writing command line to /tmp/5FzFC0Y2wl.dsk...
+Writing command line to /tmp/15dBQNV1FA.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -27,31 +27,28 @@ Executing 'page-merge-mm':
 (page-merge-mm) init
 (page-merge-mm) sort chunk 0
 (page-merge-mm) sort chunk 1
-child-qsort-mm: exit(-1)
 (page-merge-mm) sort chunk 2
-child-qsort-mm: exit(-1)
 (page-merge-mm) sort chunk 3
-child-qsort-mm: exit(-1)
 (page-merge-mm) sort chunk 4
-child-qsort-mm: exit(-1)
 (page-merge-mm) sort chunk 5
-child-qsort-mm: exit(-1)
 (page-merge-mm) sort chunk 6
-child-qsort-mm: exit(-1)
 (page-merge-mm) sort chunk 7
-child-qsort-mm: exit(-1)
 (page-merge-mm) wait for child 0
-(page-merge-mm) wait for child 0: FAILED
 child-qsort-mm: exit(-1)
+child-qsort-mm: exit(-1)
+child-qsort-mm: exit(-1)
+child-qsort-mm: exit(-1)
+child-qsort-mm: exit(-1)
+(page-merge-mm) wait for child 0: FAILED
 page-merge-mm: exit(1)
 Execution of 'page-merge-mm' complete.
-Timer: 6151 ticks
-Thread: 30 idle ticks, 917 kernel ticks, 5207 user ticks
+Timer: 9710 ticks
+Thread: 30 idle ticks, 388 kernel ticks, 9308 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 692 reads, 4552 writes
+hd0:1: 1801 reads, 4904 writes
 hd1:0: 208 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1585 characters output
+Console: 1511 characters output
 Keyboard: 0 keys pressed
-Exception: 293 page faults
+Exception: 438 page faults
 Powering off...

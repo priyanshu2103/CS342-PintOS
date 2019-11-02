@@ -1,5 +1,5 @@
 Copying tests/userprog/bad-read2 to scratch partition...
-Writing command line to /tmp/GbE6NwM0tA.dsk...
+Writing command line to /tmp/SqbInau0EZ.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -24,8 +24,8 @@ Executing 'bad-read2':
 (bad-read2) begin
 bad-read2: exit(-1)
 Execution of 'bad-read2' complete.
-Timer: 303 ticks
-Thread: 30 idle ticks, 241 kernel ticks, 35 user ticks
+Timer: 305 ticks
+Thread: 30 idle ticks, 233 kernel ticks, 45 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 59 reads, 198 writes
 hd1:0: 96 reads, 2 writes

@@ -1,6 +1,6 @@
 Copying tests/vm/mmap-remove to scratch partition...
 Copying ../../tests/vm/sample.txt to scratch partition...
-Writing command line to /tmp/flHSPbYIWx.dsk...
+Writing command line to /tmp/RJ65teBz0v.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -29,15 +29,16 @@ Executing 'mmap-remove':
 (mmap-remove) remove "sample.txt"
 (mmap-remove) try to open "sample.txt"
 (mmap-remove) create "another"
-mmap-remove: exit(-1)
+(mmap-remove) end
+mmap-remove: exit(0)
 Execution of 'mmap-remove' complete.
-Timer: 427 ticks
-Thread: 30 idle ticks, 273 kernel ticks, 127 user ticks
+Timer: 437 ticks
+Thread: 30 idle ticks, 266 kernel ticks, 144 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 146 reads, 301 writes
+hd0:1: 145 reads, 299 writes
 hd1:0: 103 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1208 characters output
+Console: 1225 characters output
 Keyboard: 0 keys pressed
 Exception: 6 page faults
 Powering off...

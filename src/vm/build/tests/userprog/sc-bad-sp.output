@@ -1,5 +1,5 @@
 Copying tests/userprog/sc-bad-sp to scratch partition...
-Writing command line to /tmp/V8knWhhCwg.dsk...
+Writing command line to /tmp/O4c9T0VUxc.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -24,8 +24,8 @@ Executing 'sc-bad-sp':
 (sc-bad-sp) begin
 sc-bad-sp: exit(-1)
 Execution of 'sc-bad-sp' complete.
-Timer: 303 ticks
-Thread: 30 idle ticks, 241 kernel ticks, 35 user ticks
+Timer: 305 ticks
+Thread: 30 idle ticks, 233 kernel ticks, 45 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 59 reads, 198 writes
 hd1:0: 96 reads, 2 writes

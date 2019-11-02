@@ -1,6 +1,6 @@
 Copying tests/vm/mmap-twice to scratch partition...
 Copying ../../tests/vm/sample.txt to scratch partition...
-Writing command line to /tmp/MeOu3SFiBz.dsk...
+Writing command line to /tmp/csMN1L16wO.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -29,15 +29,17 @@ Executing 'mmap-twice':
 (mmap-twice) open "sample.txt" #1
 (mmap-twice) mmap "sample.txt" #1 at 0x20000000
 (mmap-twice) compare mmap'd file 0 against data
-mmap-twice: exit(-1)
+(mmap-twice) compare mmap'd file 1 against data
+(mmap-twice) end
+mmap-twice: exit(0)
 Execution of 'mmap-twice' complete.
-Timer: 386 ticks
-Thread: 30 idle ticks, 272 kernel ticks, 87 user ticks
+Timer: 418 ticks
+Thread: 30 idle ticks, 267 kernel ticks, 124 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 102 reads, 212 writes
+hd0:1: 106 reads, 212 writes
 hd1:0: 102 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1245 characters output
+Console: 1310 characters output
 Keyboard: 0 keys pressed
-Exception: 6 page faults
+Exception: 7 page faults
 Powering off...

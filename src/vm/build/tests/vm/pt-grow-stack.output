@@ -1,5 +1,5 @@
 Copying tests/vm/pt-grow-stack to scratch partition...
-Writing command line to /tmp/tlzxRgKt5y.dsk...
+Writing command line to /tmp/03vwlt06EU.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -26,8 +26,8 @@ Executing 'pt-grow-stack':
 (pt-grow-stack) end
 pt-grow-stack: exit(0)
 Execution of 'pt-grow-stack' complete.
-Timer: 338 ticks
-Thread: 30 idle ticks, 249 kernel ticks, 62 user ticks
+Timer: 340 ticks
+Thread: 30 idle ticks, 240 kernel ticks, 73 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 61 reads, 216 writes
 hd1:0: 105 reads, 2 writes

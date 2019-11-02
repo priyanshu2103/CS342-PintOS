@@ -1,6 +1,6 @@
 Copying tests/vm/mmap-exit to scratch partition...
 Copying tests/vm/child-mm-wrt to scratch partition...
-Writing command line to /tmp/aWhbq98VdV.dsk...
+Writing command line to /tmp/72RGTUxOn2.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -28,17 +28,21 @@ Executing 'mmap-exit':
 (child-mm-wrt) create "sample.txt"
 (child-mm-wrt) open "sample.txt"
 (child-mm-wrt) mmap "sample.txt"
-child-mm-wrt: exit(-1)
-(mmap-exit) wait for child (should return 0): FAILED
-mmap-exit: exit(1)
+(child-mm-wrt) end
+child-mm-wrt: exit(0)
+(mmap-exit) open "sample.txt" for verification
+(mmap-exit) verified contents of "sample.txt"
+(mmap-exit) close "sample.txt"
+(mmap-exit) end
+mmap-exit: exit(0)
 Execution of 'mmap-exit' complete.
-Timer: 506 ticks
-Thread: 30 idle ticks, 347 kernel ticks, 132 user ticks
+Timer: 545 ticks
+Thread: 30 idle ticks, 330 kernel ticks, 188 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 162 reads, 408 writes
+hd0:1: 171 reads, 410 writes
 hd1:0: 197 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1227 characters output
+Console: 1332 characters output
 Keyboard: 0 keys pressed
 Exception: 11 page faults
 Powering off...

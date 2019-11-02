@@ -22,9 +22,10 @@ static void check_validity (const void*, const void *);
 static void check_sanity (const void*, const void *, size_t);
 static void check_string (const void *, const char *);
 
-static int check_valid_fd (int);
+static bool check_valid_fd (int);
 
 static void is_writable (const void *);
+static bool is_valid_page (void *);
 
 //static struct lock f_lock;
 
@@ -357,12 +358,67 @@ static void close (void *esp)
 
 static int mmap (void *esp)
 {
-  return 0;
+  check_sanity (esp, esp, sizeof(int));
+  int fd = *((int *)esp);
+  esp += sizeof (int);
+
+  if (!check_valid_fd(fd))
+    return -1;
+
+  check_sanity (esp, esp, sizeof(void *));
+  const void *address = *((void **) esp);
+  esp += sizeof (void *);
+
+  if (!is_valid_page (address))
+    return -1;
+
+  struct thread *t = thread_current();
+  struct file* old = t->files[fd];
+
+  if (old == NULL)
+    return -1;
+
+  struct file *f = file_reopen (old);
+  if (f == NULL)
+    return -1;
+
+  lock_acquire (&f_lock);
+  int size = file_length (f);
+  lock_release (&f_lock);
+
+  struct spt_entry *spte = create_spte_mmap (f, size, address);
+  if (spte == NULL)
+    return -1;
+
+  int i;
+  for (i = 0; i<MAX_FILES; i++)
+  {
+    if (t->mmap_files[i] == NULL){
+      t->mmap_files[i] = spte;
+      break;
+    }
+  }
+
+  if (i == MAX_FILES)
+    return -1;
+  else
+    return i;
 }
 
 static int munmap (void *esp)
 {
-  return 0;
+  check_sanity (esp, esp, sizeof(int));
+  int map_id = *((int *)esp);
+  esp += sizeof (int);
+
+  if (check_valid_fd(map_id)){
+
+    struct thread *t = thread_current();
+    struct spt_entry *spte = t->mmap_files[map_id];
+
+    if (spte != NULL)
+      free_spte_mmap (spte);
+  }
 }
 
 static int chdir (void *esp)
@@ -448,7 +504,7 @@ static void syscall_handler (struct intr_frame *f UNUSED)
 }
 
 // checks whether given file_num is valid or not (between 0 and MAX_FILES, here 128)
-static int check_valid_fd (int fd)
+static bool check_valid_fd (int fd)
 {
   return fd >= 0 && fd < MAX_FILES; 
 }
@@ -493,6 +549,20 @@ static void check_validity (const void *esp, const void *ptr)
       exit (NULL);
     }
   }
+}
+
+static bool
+is_valid_page (void *upage)
+{
+  /* non-zero */
+  if (upage == 0)
+    return false;
+
+  /* Page aligned */
+  if ((uintptr_t) upage % PGSIZE != 0)
+    return false;
+
+  return true;
 }
 
 static void

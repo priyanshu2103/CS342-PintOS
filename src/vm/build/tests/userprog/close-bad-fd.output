@@ -1,5 +1,5 @@
 Copying tests/userprog/close-bad-fd to scratch partition...
-Writing command line to /tmp/EKuSLLdLUB.dsk...
+Writing command line to /tmp/jvigSFCHUG.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -25,8 +25,8 @@ Executing 'close-bad-fd':
 (close-bad-fd) end
 close-bad-fd: exit(0)
 Execution of 'close-bad-fd' complete.
-Timer: 310 ticks
-Thread: 30 idle ticks, 243 kernel ticks, 40 user ticks
+Timer: 311 ticks
+Thread: 30 idle ticks, 233 kernel ticks, 51 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 59 reads, 198 writes
 hd1:0: 96 reads, 2 writes

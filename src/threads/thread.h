@@ -119,6 +119,7 @@ struct thread
                                            the current thread. */
 
     struct file *files[MAX_FILES];
+    struct spt_entry *mmap_files[MAX_FILES];
     struct hash supp_page_table;
     struct file *executable_file;
     struct semaphore sema_ready;

@@ -1,6 +1,6 @@
 Copying tests/vm/mmap-over-data to scratch partition...
 Copying ../../tests/vm/sample.txt to scratch partition...
-Writing command line to /tmp/hGe3nwIRxB.dsk...
+Writing command line to /tmp/KIL4GPdW2y.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -26,16 +26,16 @@ Executing 'mmap-over-data':
 (mmap-over-data) begin
 (mmap-over-data) open "sample.txt"
 (mmap-over-data) try to mmap over data segment
-(mmap-over-data) try to mmap over data segment: FAILED
-mmap-over-data: exit(1)
+(mmap-over-data) end
+mmap-over-data: exit(0)
 Execution of 'mmap-over-data' complete.
-Timer: 368 ticks
-Thread: 30 idle ticks, 273 kernel ticks, 68 user ticks
+Timer: 361 ticks
+Thread: 30 idle ticks, 262 kernel ticks, 72 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 90 reads, 208 writes
 hd1:0: 100 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1192 characters output
+Console: 1158 characters output
 Keyboard: 0 keys pressed
 Exception: 5 page faults
 Powering off...

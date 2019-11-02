@@ -7,6 +7,8 @@
 struct list frame_table;
 struct lock frame_table_lock;
 
+static void *frame_alloc (enum palloc_flags);
+ 
 void
 frame_table_init (void)
 {
@@ -38,14 +40,14 @@ add_to_frame_table (void *frame, struct spt_entry *spte) {
   fte->frame = frame;
   fte->spte = spte;
   fte->t = thread_current ();
-  lock_acquire (&frame_table_lock);
+  //lock_acquire (&frame_table_lock);
   list_push_back (&frame_table, &fte->elem);
   lock_release (&frame_table_lock);
 }
 
 //TODO:: Make static
 /* Returns kernel virtual address of a kpage taken from user_pool. */
-void *
+static void *
 frame_alloc (enum palloc_flags flags)
 {
   if (flags & PAL_USER == 0)
@@ -56,7 +58,7 @@ frame_alloc (enum palloc_flags flags)
     return frame;
   else
   {
-    //TODO:: add frame eviction logic
+    
     return NULL;
   }
 }

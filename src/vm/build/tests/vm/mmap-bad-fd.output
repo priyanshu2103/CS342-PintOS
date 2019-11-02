@@ -1,5 +1,5 @@
 Copying tests/vm/mmap-bad-fd to scratch partition...
-Writing command line to /tmp/u4A6lvTJux.dsk...
+Writing command line to /tmp/fvEDXUoiLb.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -23,16 +23,16 @@ Erasing ustar archive...
 Executing 'mmap-bad-fd':
 (mmap-bad-fd) begin
 (mmap-bad-fd) try to mmap invalid fd
-(mmap-bad-fd) try to mmap invalid fd: FAILED
-mmap-bad-fd: exit(1)
+(mmap-bad-fd) end
+mmap-bad-fd: exit(0)
 Execution of 'mmap-bad-fd' complete.
-Timer: 321 ticks
-Thread: 30 idle ticks, 243 kernel ticks, 51 user ticks
+Timer: 318 ticks
+Thread: 30 idle ticks, 233 kernel ticks, 58 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 59 reads, 198 writes
 hd1:0: 96 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1073 characters output
+Console: 1046 characters output
 Keyboard: 0 keys pressed
 Exception: 5 page faults
 Powering off...

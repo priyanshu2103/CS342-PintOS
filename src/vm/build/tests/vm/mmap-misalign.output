@@ -1,6 +1,6 @@
 Copying tests/vm/mmap-misalign to scratch partition...
 Copying ../../tests/vm/sample.txt to scratch partition...
-Writing command line to /tmp/aZOEw1oT5J.dsk...
+Writing command line to /tmp/qHXlsilbBT.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -26,16 +26,16 @@ Executing 'mmap-misalign':
 (mmap-misalign) begin
 (mmap-misalign) open "sample.txt"
 (mmap-misalign) try to mmap at misaligned address
-(mmap-misalign) try to mmap at misaligned address: FAILED
-mmap-misalign: exit(1)
+(mmap-misalign) end
+mmap-misalign: exit(0)
 Execution of 'mmap-misalign' complete.
-Timer: 367 ticks
-Thread: 30 idle ticks, 271 kernel ticks, 69 user ticks
+Timer: 363 ticks
+Thread: 30 idle ticks, 262 kernel ticks, 74 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 90 reads, 206 writes
 hd1:0: 99 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1190 characters output
+Console: 1152 characters output
 Keyboard: 0 keys pressed
 Exception: 5 page faults
 Powering off...

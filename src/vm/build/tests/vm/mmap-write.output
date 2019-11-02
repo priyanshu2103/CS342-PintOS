@@ -1,5 +1,5 @@
 Copying tests/vm/mmap-write to scratch partition...
-Writing command line to /tmp/n7nACWe0ws.dsk...
+Writing command line to /tmp/SWhO7kRBrF.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -25,15 +25,17 @@ Executing 'mmap-write':
 (mmap-write) create "sample.txt"
 (mmap-write) open "sample.txt"
 (mmap-write) mmap "sample.txt"
-mmap-write: exit(-1)
+(mmap-write) compare read data against written data
+(mmap-write) end
+mmap-write: exit(0)
 Execution of 'mmap-write' complete.
-Timer: 349 ticks
-Thread: 30 idle ticks, 244 kernel ticks, 78 user ticks
+Timer: 375 ticks
+Thread: 30 idle ticks, 238 kernel ticks, 110 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 95 reads, 210 writes
+hd0:1: 100 reads, 212 writes
 hd1:0: 99 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1081 characters output
+Console: 1151 characters output
 Keyboard: 0 keys pressed
 Exception: 6 page faults
 Powering off...

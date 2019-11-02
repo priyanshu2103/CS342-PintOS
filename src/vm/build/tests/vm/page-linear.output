@@ -1,5 +1,5 @@
 Copying tests/vm/page-linear to scratch partition...
-Writing command line to /tmp/ouBiVuIUQ9.dsk...
+Writing command line to /tmp/Q2m5slQHNU.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -25,8 +25,8 @@ Executing 'page-linear':
 (page-linear) initialize
 page-linear: exit(-1)
 Execution of 'page-linear' complete.
-Timer: 3050 ticks
-Thread: 30 idle ticks, 890 kernel ticks, 2133 user ticks
+Timer: 3094 ticks
+Thread: 30 idle ticks, 238 kernel ticks, 2829 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 60 reads, 210 writes
 hd1:0: 102 reads, 2 writes

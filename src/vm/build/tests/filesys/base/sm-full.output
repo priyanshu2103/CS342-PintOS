@@ -1,5 +1,5 @@
 Copying tests/filesys/base/sm-full to scratch partition...
-Writing command line to /tmp/pD3g5PaCNl.dsk...
+Writing command line to /tmp/SYrDAdEPgY.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -32,8 +32,8 @@ Executing 'sm-full':
 (sm-full) end
 sm-full: exit(0)
 Execution of 'sm-full' complete.
-Timer: 408 ticks
-Thread: 30 idle ticks, 245 kernel ticks, 136 user ticks
+Timer: 409 ticks
+Thread: 30 idle ticks, 233 kernel ticks, 149 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 103 reads, 234 writes
 hd1:0: 100 reads, 2 writes

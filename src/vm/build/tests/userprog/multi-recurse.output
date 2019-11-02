@@ -1,5 +1,5 @@
 Copying tests/userprog/multi-recurse to scratch partition...
-Writing command line to /tmp/Q5oowFMl2v.dsk...
+Writing command line to /tmp/85rIejtl7r.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -85,8 +85,8 @@ multi-recurse: exit(14)
 (multi-recurse) end 15
 multi-recurse: exit(15)
 Execution of 'multi-recurse 15' complete.
-Timer: 1382 ticks
-Thread: 30 idle ticks, 525 kernel ticks, 830 user ticks
+Timer: 1391 ticks
+Thread: 30 idle ticks, 389 kernel ticks, 976 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 527 reads, 220 writes
 hd1:0: 107 reads, 2 writes

@@ -1,6 +1,6 @@
 Copying tests/vm/mmap-read to scratch partition...
 Copying ../../tests/vm/sample.txt to scratch partition...
-Writing command line to /tmp/QR4Cga6svb.dsk...
+Writing command line to /tmp/N5jEvHaxnl.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -26,15 +26,16 @@ Executing 'mmap-read':
 (mmap-read) begin
 (mmap-read) open "sample.txt"
 (mmap-read) mmap "sample.txt"
-mmap-read: exit(-1)
+(mmap-read) end
+mmap-read: exit(0)
 Execution of 'mmap-read' complete.
-Timer: 352 ticks
-Thread: 30 idle ticks, 272 kernel ticks, 53 user ticks
+Timer: 367 ticks
+Thread: 30 idle ticks, 265 kernel ticks, 75 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 99 reads, 212 writes
+hd0:1: 101 reads, 212 writes
 hd1:0: 102 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1086 characters output
+Console: 1102 characters output
 Keyboard: 0 keys pressed
 Exception: 6 page faults
 Powering off...
