@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Writing command line to /tmp/POrM9Qktx9.dsk...
-=======
-Writing command line to /tmp/8FOm5zaIeh.dsk...
->>>>>>> parent of ec53a94... UP04 done, all test cases passed
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -14,7 +10,6 @@ Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
-<<<<<<< HEAD
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 Kernel PANIC at ../../filesys/filesys.c:23 in filesys_init(): hd0:1 (hdb) not present, file system initialization failed
 Call stack: 0xc002ff68Page fault at 0x17: not present error reading page in kernel context.
@@ -28,28 +23,6 @@ Timer: 105 ticks
 Thread: 30 idle ticks, 75 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 Console: 883 characters output
-=======
-Boot complete.
-Executing 'mlfqs-nice-10':
-(mlfqs-nice-10) begin
-(mlfqs-nice-10) Starting 10 threads...
-(mlfqs-nice-10) Starting threads took 28 ticks.
-(mlfqs-nice-10) Sleeping 40 seconds to let threads run, please wait...
-(mlfqs-nice-10) Thread 0 received 685 ticks.
-(mlfqs-nice-10) Thread 1 received 589 ticks.
-(mlfqs-nice-10) Thread 2 received 492 ticks.
-(mlfqs-nice-10) Thread 3 received 402 ticks.
-(mlfqs-nice-10) Thread 4 received 311 ticks.
-(mlfqs-nice-10) Thread 5 received 228 ticks.
-(mlfqs-nice-10) Thread 6 received 156 ticks.
-(mlfqs-nice-10) Thread 7 received 92 ticks.
-(mlfqs-nice-10) Thread 8 received 40 ticks.
-(mlfqs-nice-10) Thread 9 received 8 ticks.
-(mlfqs-nice-10) end
-Execution of 'mlfqs-nice-10' complete.
-Timer: 4145 ticks
-Thread: 988 idle ticks, 3160 kernel ticks, 0 user ticks
-Console: 995 characters output
->>>>>>> parent of ec53a94... UP04 done, all test cases passed
 Keyboard: 0 keys pressed
+Exception: 1 page faults
 Powering off...

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Writing command line to /tmp/59QmYn8D88.dsk...
-=======
-Writing command line to /tmp/qZCl56kec6.dsk...
->>>>>>> parent of ec53a94... UP04 done, all test cases passed
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -14,7 +10,6 @@ Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
-<<<<<<< HEAD
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 Kernel PANIC at ../../filesys/filesys.c:23 in filesys_init(): hd0:1 (hdb) not present, file system initialization failed
 Call stack: 0xc002ff68Page fault at 0x17: not present error reading page in kernel context.
@@ -28,25 +23,6 @@ Timer: 104 ticks
 Thread: 30 idle ticks, 74 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 Console: 875 characters output
-=======
-Boot complete.
-Executing 'alarm-single':
-(alarm-single) begin
-(alarm-single) Creating 5 threads to sleep 1 times each.
-(alarm-single) Thread 0 sleeps 10 ticks each time,
-(alarm-single) thread 1 sleeps 20 ticks each time, and so on.
-(alarm-single) If successful, product of iteration count and
-(alarm-single) sleep duration will appear in nondescending order.
-(alarm-single) thread 0: duration=10, iteration=1, product=10
-(alarm-single) thread 1: duration=20, iteration=1, product=20
-(alarm-single) thread 2: duration=30, iteration=1, product=30
-(alarm-single) thread 3: duration=40, iteration=1, product=40
-(alarm-single) thread 4: duration=50, iteration=1, product=50
-(alarm-single) end
-Execution of 'alarm-single' complete.
-Timer: 384 ticks
-Thread: 250 idle ticks, 137 kernel ticks, 0 user ticks
-Console: 984 characters output
->>>>>>> parent of ec53a94... UP04 done, all test cases passed
 Keyboard: 0 keys pressed
+Exception: 1 page faults
 Powering off...

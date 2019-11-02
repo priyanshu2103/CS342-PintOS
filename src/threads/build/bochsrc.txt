@@ -6,10 +6,6 @@ megs: 4
 log: bochsout.txt
 panic: action=fatal
 clock: sync=none, time0=0
-<<<<<<< HEAD
 ata0-master: type=disk, path=/tmp/lzJXcKV9Vf.dsk, mode=flat, cylinders=1, heads=16, spt=63, translation=none
-=======
-ata0-master: type=disk, path=/tmp/AP8o77eYEc.dsk, mode=flat, cylinders=1, heads=16, spt=63, translation=none
->>>>>>> parent of ec53a94... UP04 done, all test cases passed
 com1: enabled=1, mode=term, dev=/dev/stdout
 display_library: nogui

@@ -1,5 +1,5 @@
 Copying tests/userprog/no-vm/multi-oom to scratch partition...
-Writing command line to /tmp/5dy92Cns8P.dsk...
+Writing command line to /tmp/xC68ZflbAK.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -1085,10 +1085,10 @@ multi-oom: exit(61)
 (multi-oom) end
 multi-oom: exit(61)
 Execution of 'multi-oom' complete.
-Timer: 355897 ticks
-Thread: 30 idle ticks, 22657 kernel ticks, 333213 user ticks
+Timer: 354256 ticks
+Thread: 30 idle ticks, 22643 kernel ticks, 331587 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 303176 reads, 230 writes
+hd0:1: 301045 reads, 230 writes
 hd1:0: 112 reads, 2 writes
 Console: 22148 characters output
 Keyboard: 0 keys pressed

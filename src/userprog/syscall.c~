@@ -1,11 +1,17 @@
 #include "userprog/syscall.h"
 #include <stdio.h>
 #include <syscall-nr.h>
+#include <string.h>
+#include "threads/synch.h"
 #include "threads/interrupt.h"
 #include "threads/thread.h"
 #include "threads/vaddr.h"
+//#include "threads/init.h"
 #include "userprog/pagedir.h"
-#include <string.h>
+//#include <string.h>
+
+#include "vm/page.h"
+#include "filesys/filesys.h"
 
 #include "threads/synch.h"
 #include "userprog/process.h"
@@ -20,7 +26,7 @@ static void check_string (const char *);
 
 static int check_valid_fd (int);
 
-static struct lock f_lock;
+//static struct lock f_lock;
 
 // Functions related to files and filesys are pre-written in src/filesys/
 // eg. filesys_open, file_length etc.
@@ -76,7 +82,7 @@ int exit (void *esp)
 
   thread_exit ();
   NOT_REACHED ();
-  return status;
+  //return status;
 }
 
 
@@ -118,14 +124,13 @@ static int wait (void *esp)
      given pid is not a child of current thread. */
   
   if (child == NULL) 
-    exit (NULL);
+    return -1;
 
   sema_down (&child->sema_terminated);
   int status = child->return_status;
   list_remove (&child->parent_elem);
   thread_unblock (child);
   return status;
- return 0;
 }
 
 static int create (void *esp)
@@ -291,7 +296,7 @@ static int write (void *esp)
   return 0;
 }
 
-static int seek (void *esp)
+static void seek (void *esp)
 {
   check_sanity (esp, sizeof(int));
   int fd = *((int *)esp);
@@ -329,7 +334,7 @@ static int tell (void *esp)
   return -1;
 }
 
-static int close (void *esp)
+static void close (void *esp)
 {
   check_sanity (esp, sizeof(int));
   int fd = *((int *) esp);

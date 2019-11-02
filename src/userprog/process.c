@@ -19,6 +19,7 @@
 #include "threads/vaddr.h"
 
 #include "vm/frame.h"
+#include "vm/page.h"
 
 const int word_length = 4; 				/* Number of bytes per word */
 
@@ -143,6 +144,13 @@ process_exit (void)
   /* Destroy the current process's page directory and switch back
      to the kernel-only page directory. */
   pd = cur->pagedir;
+
+  if (cur->executable_file)
+  {
+    file_close (cur->executable_file);
+    cur->executable_file = NULL;
+  }
+
   if (pd != NULL) 
     {
       /* Correct ordering here is crucial.  We must set
@@ -274,6 +282,9 @@ load (const char *command_line, void (**eip) (void), void **esp)
       goto done; 
     }
 
+  file_deny_write (file);
+  t->executable_file = file;
+
   /* Read and verify executable header. */
   if (file_read (file, &ehdr, sizeof ehdr) != sizeof ehdr
       || memcmp (ehdr.e_ident, "\177ELF\1\1\1", 7)
@@ -359,12 +370,12 @@ load (const char *command_line, void (**eip) (void), void **esp)
 
  done:
   /* We arrive here whether the load is successful or not. */
-  file_close (file);
+  //file_close (file);
   return success;
 }
 /* load() helpers. */
 
-static bool install_page (void *upage, void *kpage, bool writable);
+//static bool install_page (void *upage, void *kpage, bool writable);
 
 /* Checks whether PHDR describes a valid, loadable segment in
    FILE and returns true if so, false otherwise. */
@@ -566,7 +577,7 @@ setup_stack (void **esp, char *file_name, char *args)
    with palloc_get_page().
    Returns true on success, false if UPAGE is already mapped or
    if memory allocation fails. */
-static bool
+bool
 install_page (void *upage, void *kpage, bool writable)
 {
   struct thread *t = thread_current ();

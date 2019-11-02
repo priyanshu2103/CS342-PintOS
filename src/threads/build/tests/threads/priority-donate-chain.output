@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Writing command line to /tmp/RTuYeJGk53.dsk...
-=======
-Writing command line to /tmp/bOKy7WTY0a.dsk...
->>>>>>> parent of ec53a94... UP04 done, all test cases passed
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -14,7 +10,6 @@ Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
-<<<<<<< HEAD
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 Kernel PANIC at ../../filesys/filesys.c:23 in filesys_init(): hd0:1 (hdb) not present, file system initialization failed
 Call stack: 0xc002ff68Page fault at 0x17: not present error reading page in kernel context.
@@ -28,52 +23,6 @@ Timer: 104 ticks
 Thread: 30 idle ticks, 74 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 Console: 884 characters output
-=======
-Boot complete.
-Executing 'priority-donate-chain':
-(priority-donate-chain) begin
-(priority-donate-chain) main got lock.
-(priority-donate-chain) main should have priority 3.  Actual priority: 3.
-(priority-donate-chain) main should have priority 6.  Actual priority: 6.
-(priority-donate-chain) main should have priority 9.  Actual priority: 9.
-(priority-donate-chain) main should have priority 12.  Actual priority: 12.
-(priority-donate-chain) main should have priority 15.  Actual priority: 15.
-(priority-donate-chain) main should have priority 18.  Actual priority: 18.
-(priority-donate-chain) main should have priority 21.  Actual priority: 21.
-(priority-donate-chain) thread 1 got lock
-(priority-donate-chain) thread 1 should have priority 21. Actual priority: 21
-(priority-donate-chain) thread 2 got lock
-(priority-donate-chain) thread 2 should have priority 21. Actual priority: 21
-(priority-donate-chain) thread 3 got lock
-(priority-donate-chain) thread 3 should have priority 21. Actual priority: 21
-(priority-donate-chain) thread 4 got lock
-(priority-donate-chain) thread 4 should have priority 21. Actual priority: 21
-(priority-donate-chain) thread 5 got lock
-(priority-donate-chain) thread 5 should have priority 21. Actual priority: 21
-(priority-donate-chain) thread 6 got lock
-(priority-donate-chain) thread 6 should have priority 21. Actual priority: 21
-(priority-donate-chain) thread 7 got lock
-(priority-donate-chain) thread 7 should have priority 21. Actual priority: 21
-(priority-donate-chain) thread 7 finishing with priority 21.
-(priority-donate-chain) interloper 7 finished.
-(priority-donate-chain) thread 6 finishing with priority 18.
-(priority-donate-chain) interloper 6 finished.
-(priority-donate-chain) thread 5 finishing with priority 15.
-(priority-donate-chain) interloper 5 finished.
-(priority-donate-chain) thread 4 finishing with priority 12.
-(priority-donate-chain) interloper 4 finished.
-(priority-donate-chain) thread 3 finishing with priority 9.
-(priority-donate-chain) interloper 3 finished.
-(priority-donate-chain) thread 2 finishing with priority 6.
-(priority-donate-chain) interloper 2 finished.
-(priority-donate-chain) thread 1 finishing with priority 3.
-(priority-donate-chain) interloper 1 finished.
-(priority-donate-chain) main finishing with priority 0.
-(priority-donate-chain) end
-Execution of 'priority-donate-chain' complete.
-Timer: 418 ticks
-Thread: 0 idle ticks, 421 kernel ticks, 0 user ticks
-Console: 2634 characters output
->>>>>>> parent of ec53a94... UP04 done, all test cases passed
 Keyboard: 0 keys pressed
+Exception: 1 page faults
 Powering off...

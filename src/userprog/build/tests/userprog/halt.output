@@ -1,5 +1,5 @@
 Copying tests/userprog/halt to scratch partition...
-Writing command line to /tmp/OlQHschAcm.dsk...
+Writing command line to /tmp/jtN6IAlKx0.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -21,8 +21,8 @@ Putting 'halt' into the file system...
 Erasing ustar archive...
 Executing 'halt':
 (halt) begin
-Timer: 256 ticks
-Thread: 30 idle ticks, 198 kernel ticks, 31 user ticks
+Timer: 254 ticks
+Thread: 30 idle ticks, 198 kernel ticks, 29 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 59 reads, 198 writes
 hd1:0: 96 reads, 2 writes
