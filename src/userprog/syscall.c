@@ -4,7 +4,6 @@
 #include "threads/interrupt.h"
 #include "threads/thread.h"
 #include "threads/vaddr.h"
-#include "threads/init.h"
 #include "userprog/pagedir.h"
 #include <string.h>
 
@@ -77,7 +76,7 @@ int exit (void *esp)
 
   thread_exit ();
   NOT_REACHED ();
-  //return status;
+  return status;
 }
 
 
@@ -119,13 +118,14 @@ static int wait (void *esp)
      given pid is not a child of current thread. */
   
   if (child == NULL) 
-    return -1;
+    exit (NULL);
 
   sema_down (&child->sema_terminated);
   int status = child->return_status;
   list_remove (&child->parent_elem);
   thread_unblock (child);
   return status;
+ return 0;
 }
 
 static int create (void *esp)
@@ -291,7 +291,7 @@ static int write (void *esp)
   return 0;
 }
 
-static void seek (void *esp)
+static int seek (void *esp)
 {
   check_sanity (esp, sizeof(int));
   int fd = *((int *)esp);
@@ -329,7 +329,7 @@ static int tell (void *esp)
   return -1;
 }
 
-static void close (void *esp)
+static int close (void *esp)
 {
   check_sanity (esp, sizeof(int));
   int fd = *((int *) esp);

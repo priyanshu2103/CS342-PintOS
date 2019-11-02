@@ -1,6 +1,6 @@
 Copying tests/userprog/rox-multichild to scratch partition...
 Copying tests/userprog/child-rox to scratch partition...
-Writing command line to /tmp/LwQxKizieP.dsk...
+Writing command line to /tmp/5t3oakFYyS.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -29,43 +29,17 @@ Executing 'rox-multichild':
 (rox-multichild) exec "child-rox 5"
 (child-rox) begin
 (child-rox) try to write "child-rox"
-(child-rox) exec "child-rox 4"
-(child-rox) begin
-(child-rox) try to write "child-rox"
-(child-rox) exec "child-rox 3"
-(child-rox) begin
-(child-rox) try to write "child-rox"
-(child-rox) exec "child-rox 2"
-(child-rox) begin
-(child-rox) try to write "child-rox"
-(child-rox) exec "child-rox 1"
-(child-rox) begin
-(child-rox) try to write "child-rox"
-(child-rox) try to write "child-rox"
-(child-rox) end
-child-rox: exit(12)
-(child-rox) try to write "child-rox"
-(child-rox) end
-child-rox: exit(12)
-(child-rox) try to write "child-rox"
-(child-rox) end
-child-rox: exit(12)
-(child-rox) try to write "child-rox"
-(child-rox) end
-child-rox: exit(12)
-(child-rox) try to write "child-rox"
-(child-rox) end
-child-rox: exit(12)
-(rox-multichild) write "child-rox"
-(rox-multichild) end
-rox-multichild: exit(0)
+(child-rox) try to write "child-rox": FAILED
+child-rox: exit(1)
+(rox-multichild) wait for child: FAILED
+rox-multichild: exit(1)
 Execution of 'rox-multichild' complete.
-Timer: 863 ticks
-Thread: 30 idle ticks, 422 kernel ticks, 414 user ticks
+Timer: 497 ticks
+Thread: 30 idle ticks, 341 kernel ticks, 129 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 289 reads, 420 writes
+hd0:1: 130 reads, 420 writes
 hd1:0: 205 reads, 2 writes
-Console: 1907 characters output
+Console: 1246 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Writing command line to /tmp/2JnGNtMZmT.dsk...
+=======
+Writing command line to /tmp/LWRUrIddnw.dsk...
+>>>>>>> parent of ec53a94... UP04 done, all test cases passed
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -10,6 +14,7 @@ Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
+<<<<<<< HEAD
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 Kernel PANIC at ../../filesys/filesys.c:23 in filesys_init(): hd0:1 (hdb) not present, file system initialization failed
 Call stack: 0xc002ff68Page fault at 0x17: not present error reading page in kernel context.
@@ -23,6 +28,35 @@ Timer: 104 ticks
 Thread: 30 idle ticks, 74 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 Console: 876 characters output
+=======
+Boot complete.
+Executing 'priority-sema':
+(priority-sema) begin
+(priority-sema) Thread priority 30 woke up.
+(priority-sema) Back in main thread.
+(priority-sema) Thread priority 29 woke up.
+(priority-sema) Back in main thread.
+(priority-sema) Thread priority 28 woke up.
+(priority-sema) Back in main thread.
+(priority-sema) Thread priority 27 woke up.
+(priority-sema) Back in main thread.
+(priority-sema) Thread priority 26 woke up.
+(priority-sema) Back in main thread.
+(priority-sema) Thread priority 25 woke up.
+(priority-sema) Back in main thread.
+(priority-sema) Thread priority 24 woke up.
+(priority-sema) Back in main thread.
+(priority-sema) Thread priority 23 woke up.
+(priority-sema) Back in main thread.
+(priority-sema) Thread priority 22 woke up.
+(priority-sema) Back in main thread.
+(priority-sema) Thread priority 21 woke up.
+(priority-sema) Back in main thread.
+(priority-sema) end
+Execution of 'priority-sema' complete.
+Timer: 187 ticks
+Thread: 0 idle ticks, 190 kernel ticks, 0 user ticks
+Console: 1190 characters output
+>>>>>>> parent of ec53a94... UP04 done, all test cases passed
 Keyboard: 0 keys pressed
-Exception: 1 page faults
 Powering off...

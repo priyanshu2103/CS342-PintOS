@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Writing command line to /tmp/2vEGLE6evH.dsk...
+=======
+Writing command line to /tmp/9zP0YjB5dR.dsk...
+>>>>>>> parent of ec53a94... UP04 done, all test cases passed
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -10,6 +14,7 @@ Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
+<<<<<<< HEAD
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 Kernel PANIC at ../../filesys/filesys.c:23 in filesys_init(): hd0:1 (hdb) not present, file system initialization failed
 Call stack: 0xc002ff68Page fault at 0x17: not present error reading page in kernel context.
@@ -23,6 +28,22 @@ Timer: 104 ticks
 Thread: 30 idle ticks, 74 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 Console: 883 characters output
+=======
+Boot complete.
+Executing 'priority-donate-sema':
+(priority-donate-sema) begin
+(priority-donate-sema) Thread L acquired lock.
+(priority-donate-sema) Thread L downed semaphore.
+(priority-donate-sema) Thread H acquired lock.
+(priority-donate-sema) Thread H finished.
+(priority-donate-sema) Thread M finished.
+(priority-donate-sema) Thread L finished.
+(priority-donate-sema) Main thread finished.
+(priority-donate-sema) end
+Execution of 'priority-donate-sema' complete.
+Timer: 96 ticks
+Thread: 0 idle ticks, 98 kernel ticks, 0 user ticks
+Console: 728 characters output
+>>>>>>> parent of ec53a94... UP04 done, all test cases passed
 Keyboard: 0 keys pressed
-Exception: 1 page faults
 Powering off...

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Writing command line to /tmp/KmjYHChWP4.dsk...
+=======
+Writing command line to /tmp/uPMl531doF.dsk...
+>>>>>>> parent of ec53a94... UP04 done, all test cases passed
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -10,6 +14,7 @@ Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
+<<<<<<< HEAD
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 Kernel PANIC at ../../filesys/filesys.c:23 in filesys_init(): hd0:1 (hdb) not present, file system initialization failed
 Call stack: 0xc002ff68Page fault at 0x17: not present error reading page in kernel context.
@@ -23,6 +28,45 @@ Timer: 104 ticks
 Thread: 30 idle ticks, 74 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 Console: 879 characters output
+=======
+Boot complete.
+Executing 'priority-condvar':
+(priority-condvar) begin
+(priority-condvar) Thread priority 23 starting.
+(priority-condvar) Thread priority 22 starting.
+(priority-condvar) Thread priority 21 starting.
+(priority-condvar) Thread priority 30 starting.
+(priority-condvar) Thread priority 29 starting.
+(priority-condvar) Thread priority 28 starting.
+(priority-condvar) Thread priority 27 starting.
+(priority-condvar) Thread priority 26 starting.
+(priority-condvar) Thread priority 25 starting.
+(priority-condvar) Thread priority 24 starting.
+(priority-condvar) Signaling...
+(priority-condvar) Thread priority 30 woke up.
+(priority-condvar) Signaling...
+(priority-condvar) Thread priority 29 woke up.
+(priority-condvar) Signaling...
+(priority-condvar) Thread priority 28 woke up.
+(priority-condvar) Signaling...
+(priority-condvar) Thread priority 27 woke up.
+(priority-condvar) Signaling...
+(priority-condvar) Thread priority 26 woke up.
+(priority-condvar) Signaling...
+(priority-condvar) Thread priority 25 woke up.
+(priority-condvar) Signaling...
+(priority-condvar) Thread priority 24 woke up.
+(priority-condvar) Signaling...
+(priority-condvar) Thread priority 23 woke up.
+(priority-condvar) Signaling...
+(priority-condvar) Thread priority 22 woke up.
+(priority-condvar) Signaling...
+(priority-condvar) Thread priority 21 woke up.
+(priority-condvar) end
+Execution of 'priority-condvar' complete.
+Timer: 257 ticks
+Thread: 0 idle ticks, 260 kernel ticks, 0 user ticks
+Console: 1665 characters output
+>>>>>>> parent of ec53a94... UP04 done, all test cases passed
 Keyboard: 0 keys pressed
-Exception: 1 page faults
 Powering off...

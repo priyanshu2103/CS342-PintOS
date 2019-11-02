@@ -118,7 +118,6 @@ struct thread
                                            the current thread. */
 
     struct file *files[MAX_FILES];
-    struct file *executable_file;
     struct semaphore sema_ready;
     struct semaphore sema_terminated;
     struct semaphore sema_ack;

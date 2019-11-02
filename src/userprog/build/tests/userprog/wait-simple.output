@@ -1,6 +1,6 @@
 Copying tests/userprog/wait-simple to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-Writing command line to /tmp/7L2tlyWhEs.dsk...
+Writing command line to /tmp/zqu3HfAuV9.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -29,8 +29,8 @@ child-simple: exit(81)
 (wait-simple) end
 wait-simple: exit(0)
 Execution of 'wait-simple' complete.
-Timer: 438 ticks
-Thread: 30 idle ticks, 331 kernel ticks, 80 user ticks
+Timer: 436 ticks
+Thread: 30 idle ticks, 330 kernel ticks, 79 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 122 reads, 388 writes
 hd1:0: 190 reads, 2 writes

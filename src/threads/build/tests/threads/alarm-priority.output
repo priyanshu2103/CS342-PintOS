@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Writing command line to /tmp/ugPXeBf4Al.dsk...
+=======
+Writing command line to /tmp/q8ZLeVOe8U.dsk...
+>>>>>>> parent of ec53a94... UP04 done, all test cases passed
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -10,6 +14,7 @@ Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
+<<<<<<< HEAD
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 Kernel PANIC at ../../filesys/filesys.c:23 in filesys_init(): hd0:1 (hdb) not present, file system initialization failed
 Call stack: 0xc002ff68Page fault at 0x17: not present error reading page in kernel context.
@@ -23,6 +28,25 @@ Timer: 104 ticks
 Thread: 30 idle ticks, 74 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 Console: 877 characters output
+=======
+Boot complete.
+Executing 'alarm-priority':
+(alarm-priority) begin
+(alarm-priority) Thread priority 30 woke up.
+(alarm-priority) Thread priority 29 woke up.
+(alarm-priority) Thread priority 28 woke up.
+(alarm-priority) Thread priority 27 woke up.
+(alarm-priority) Thread priority 26 woke up.
+(alarm-priority) Thread priority 25 woke up.
+(alarm-priority) Thread priority 24 woke up.
+(alarm-priority) Thread priority 23 woke up.
+(alarm-priority) Thread priority 22 woke up.
+(alarm-priority) Thread priority 21 woke up.
+(alarm-priority) end
+Execution of 'alarm-priority' complete.
+Timer: 616 ticks
+Thread: 465 idle ticks, 154 kernel ticks, 0 user ticks
+Console: 837 characters output
+>>>>>>> parent of ec53a94... UP04 done, all test cases passed
 Keyboard: 0 keys pressed
-Exception: 1 page faults
 Powering off...

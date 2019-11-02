@@ -1,5 +1,5 @@
 Copying tests/userprog/rox-simple to scratch partition...
-Writing command line to /tmp/2IcTUPV3cZ.dsk...
+Writing command line to /tmp/DZeuWVqHZA.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -24,15 +24,15 @@ Executing 'rox-simple':
 (rox-simple) open "rox-simple"
 (rox-simple) read "rox-simple"
 (rox-simple) try to write "rox-simple"
-(rox-simple) end
-rox-simple: exit(0)
+(rox-simple) try to write "rox-simple": FAILED
+rox-simple: exit(1)
 Execution of 'rox-simple' complete.
-Timer: 316 ticks
-Thread: 30 idle ticks, 230 kernel ticks, 59 user ticks
+Timer: 322 ticks
+Thread: 30 idle ticks, 230 kernel ticks, 65 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 63 reads, 200 writes
+hd0:1: 65 reads, 201 writes
 hd1:0: 97 reads, 2 writes
-Console: 995 characters output
+Console: 1025 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

@@ -1,6 +1,6 @@
 Copying tests/filesys/base/syn-write to scratch partition...
 Copying tests/filesys/base/child-syn-wrt to scratch partition...
-Writing command line to /tmp/GfWdC7eVOY.dsk...
+Writing command line to /tmp/Q5Wf6QBtz0.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -59,10 +59,10 @@ child-syn-wrt: exit(9)
 (syn-write) end
 syn-write: exit(0)
 Execution of 'syn-write' complete.
-Timer: 1401 ticks
-Thread: 30 idle ticks, 545 kernel ticks, 829 user ticks
+Timer: 1423 ticks
+Thread: 30 idle ticks, 553 kernel ticks, 843 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 507 reads, 454 writes
+hd0:1: 516 reads, 454 writes
 hd1:0: 211 reads, 2 writes
 Console: 2338 characters output
 Keyboard: 0 keys pressed

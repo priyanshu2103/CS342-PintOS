@@ -18,6 +18,7 @@
 /mlfqs-block.c/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /mlfqs-block.ck/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /mlfqs-fair-2.ck/1.1.1.1/Tue Aug 20 18:47:03 2019//
+/mlfqs-fair-20.ck/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /mlfqs-fair.c/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /mlfqs-load-1.c/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /mlfqs-load-1.ck/1.1.1.1/Tue Aug 20 18:47:03 2019//
@@ -56,5 +57,4 @@
 /priority-sema.ck/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /tests.c/1.1.1.1/Tue Aug 20 18:47:03 2019//
 /tests.h/1.1.1.1/Tue Aug 20 18:47:03 2019//
-/mlfqs-fair-20.ck/1.2/Tue Oct 22 13:33:06 2019//
 D

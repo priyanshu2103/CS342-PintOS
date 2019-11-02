@@ -1,6 +1,6 @@
 Copying tests/userprog/write-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-Writing command line to /tmp/T4LfiLpu1P.dsk...
+Writing command line to /tmp/On746G8bPO.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -28,8 +28,8 @@ Executing 'write-normal':
 (write-normal) end
 write-normal: exit(0)
 Execution of 'write-normal' complete.
-Timer: 359 ticks
-Thread: 30 idle ticks, 258 kernel ticks, 74 user ticks
+Timer: 357 ticks
+Thread: 30 idle ticks, 258 kernel ticks, 72 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 123 reads, 212 writes
 hd1:0: 99 reads, 2 writes
