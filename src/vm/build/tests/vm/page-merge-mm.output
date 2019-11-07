@@ -1,6 +1,6 @@
 Copying tests/vm/page-merge-mm to scratch partition...
 Copying tests/vm/child-qsort-mm to scratch partition...
-Writing command line to /tmp/xDmU8jdUDp.dsk...
+Writing command line to /tmp/lpWfSC7aJ7.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -33,23 +33,22 @@ Executing 'page-merge-mm':
 (page-merge-mm) sort chunk 5
 (page-merge-mm) sort chunk 6
 (page-merge-mm) sort chunk 7
-(page-merge-mm) wait for child 0
-child-qsort-mm: exit(-1)
-child-qsort-mm: exit(-1)
-child-qsort-mm: exit(-1)
-child-qsort-mm: exit(-1)
-child-qsort-mm: exit(-1)
-child-qsort-mm: exit(-1)
-(page-merge-mm) wait for child 0: FAILED
-page-merge-mm: exit(1)
-Execution of 'page-merge-mm' complete.
-Timer: 9022 ticks
-Thread: 30 idle ticks, 402 kernel ticks, 8602 user ticks
+Kernel PANIC at ../../threads/palloc.c:130 in palloc_free_multiple(): assertion `pg_ofs (pages) == 0' failed.
+Call stack: 0xc0158c80Page fault at 0x82: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc01061ff
+ cr2=0000child-qsort-mm: exit(-1)
+0082 error=00000000
+ eax=00000082 ebx=00000082 ecx=c0158bac edx=000003d4
+ esi=c010ea4a edi=c010ffbb esp=c011055b ebp=c0158c40
+ cs=0008 ds=0010 es=0010 ss=8c80
+Kernel PANIC recursion at ../../userprog/exception.c:104 in kill().
+Timer: 6361 ticks
+Thread: 30 idle ticks, 337 kernel ticks, 5994 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 1757 reads, 5088 writes
+hd0:1: 1329 reads, 4552 writes
 hd1:0: 208 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1536 characters output
+Console: 1773 characters output
 Keyboard: 0 keys pressed
-Exception: 432 page faults
+Exception: 379 page faults
 Powering off...

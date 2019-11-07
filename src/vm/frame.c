@@ -51,8 +51,3 @@ static void * allocate_frame (enum palloc_flags flags)
   else
     return NULL;
 }
-
-void free_frame (void *frame)
-{
-  palloc_free_page (frame);
-}

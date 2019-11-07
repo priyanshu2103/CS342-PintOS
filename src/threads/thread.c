@@ -821,7 +821,7 @@ init_thread (struct thread *t, const char *name, int priority)
     t->parent = NULL;
 	
    if (t != initial_thread)
-    supp_page_table_init (&t->supp_page_table);
+    initialize_supp_page_table (&t->supp_page_table);
 
   list_init (&t->children);
 

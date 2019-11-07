@@ -14,7 +14,7 @@
 #include "vm/page.h"
 #include "filesys/filesys.h"
 
-/* Lock for file system calls. */
+
 
 static void syscall_handler (struct intr_frame *);
 static void check_validity (const void*, const void *);
@@ -22,12 +22,8 @@ static void check_validity (const void*, const void *);
 static void check_sanity (const void*, const void *, size_t);
 static void check_string (const void *, const char *);
 
-static bool check_valid_fd (int);
-
-static void is_writable (const void *);
 static bool check_page_validity (void *);
 
-//static struct lock f_lock;
 
 // Functions related to files and filesys are pre-written in src/filesys/
 // eg. filesys_open, file_length etc.
@@ -86,7 +82,7 @@ int exit (void *esp)
 
   thread_exit ();
   NOT_REACHED ();
-  //return status;
+
 }
 
 
@@ -211,7 +207,7 @@ static int filesize (void *esp)
 
   struct thread * th = thread_current ();
 
-  if (check_valid_fd (fd) && th->files[fd] != NULL)
+  if (fd >= 0 && fd < MAX_FILES && th->files[fd] != NULL)
   {  
     lock_acquire (&f_lock);
     int size = file_length (th->files[fd]);
@@ -250,9 +246,12 @@ static int read (void *esp)
     lock_release (&f_lock);
     return i;
   }
-  else if (check_valid_fd (fd) && fd >=2 && th->files[fd] != NULL)
+  else if (fd < MAX_FILES && fd >=2 && th->files[fd] != NULL)
   {
-    is_writable (buffer);
+    
+    struct spt_entry *spte = uvaddr_to_spt_entry (buffer);
+    if (spte->type == FILE && !spte->writable)
+    exit (NULL);
     lock_acquire (&f_lock);
     int read = file_read (th->files[fd], buffer, size);
     lock_release (&f_lock);
@@ -291,7 +290,7 @@ static int write (void *esp)
     lock_release (&f_lock);
     return i;
   }
-  else if (check_valid_fd (fd) && fd >=2 && th->files[fd] != NULL)
+  else if (fd >= 0 && fd < MAX_FILES && fd >=2 && th->files[fd] != NULL)
   {
     lock_acquire (&f_lock);
     int temp = file_write (th->files[fd], buffer, size);
@@ -313,7 +312,7 @@ static void seek (void *esp)
 
   struct thread *th = thread_current ();
 
-  if (check_valid_fd (fd) && th->files[fd] != NULL)
+  if (fd >= 0 && fd < MAX_FILES && th->files[fd] != NULL)
   {
     lock_acquire (&f_lock);
     file_seek (th->files[fd], pos);
@@ -329,7 +328,7 @@ static int tell (void *esp)
 
   struct thread *th = thread_current ();
 
-  if (check_valid_fd (fd) && th->files[fd] != NULL)
+  if (fd >= 0 && fd < MAX_FILES && th->files[fd] != NULL)
   {
     lock_acquire (&f_lock);
     int pos = file_tell (th->files[fd]);
@@ -347,7 +346,7 @@ static void close (void *esp)
  
   struct thread *th = thread_current ();
 
-  if (check_valid_fd (fd) && th->files[fd]!=NULL)
+  if (fd >= 0 && fd < MAX_FILES && th->files[fd]!=NULL)
   {
     lock_acquire (&f_lock);
     file_close (th->files[fd]);
@@ -362,7 +361,7 @@ static int mmap (void *esp)
   int fd = *((int *)esp);
   esp += sizeof (int);
 
-  if (!check_valid_fd(fd))
+  if(fd < 0 || fd >= MAX_FILES)
     return -1;
   if (fd==0 || fd==1)
     return -1;
@@ -411,7 +410,7 @@ static int munmap (void *esp)
   int map_id = *((int *)esp);
   esp += sizeof (int);
 
-  if (check_valid_fd(map_id))
+  if (map_id >= 0 && map_id < MAX_FILES)
   {
     struct thread *th = thread_current();
     struct spt_entry *spte = th->mmap_files[map_id];
@@ -502,11 +501,7 @@ static void syscall_handler (struct intr_frame *f UNUSED)
   }
 }
 
-// checks whether given file_num is valid or not (between 0 and MAX_FILES, here 128)
-static bool check_valid_fd (int fd)
-{
-  return fd >= 0 && fd < MAX_FILES; 
-}
+
 
 // checks whether the given string (char pointer) is valid or not
 static void check_string (const void *esp, const char *s)
@@ -514,7 +509,8 @@ static void check_string (const void *esp, const char *s)
   check_sanity (esp, s, sizeof(char));
   while (*s != '\0')
   {
-    check_sanity (esp, s++, sizeof(char));
+    check_sanity (esp, s, sizeof(char));
+    s++;
   }
 }
 
@@ -531,9 +527,7 @@ static void check_validity (const void *esp, const void *ptr)
 {
   uint32_t *pd = thread_current ()->pagedir;
   if (ptr == NULL || !is_user_vaddr (ptr))
-  {
     exit (NULL);
-  }
   if(pagedir_get_page (pd, ptr) == NULL)
   {
     struct spt_entry *spte = uvaddr_to_spt_entry (ptr);
@@ -543,9 +537,7 @@ static void check_validity (const void *esp, const void *ptr)
         exit (NULL);
     }
     else if (!(ptr >= esp - STACK_ACCESS_LIMIT && add_stack_pages (ptr)))
-    {
       exit (NULL);
-    }
   }
 }
 
@@ -553,20 +545,12 @@ static void check_validity (const void *esp, const void *ptr)
 static bool
 check_page_validity (void *upage)
 {
-  if (upage == 0)
-    return false;
-
   if ((uintptr_t) upage % PGSIZE != 0)
+    return false;  
+
+  if (upage == 0)
     return false;
 
   return true;
 }
 
-static void
-is_writable (const void *ptr)
-{
-  struct spt_entry *spte = uvaddr_to_spt_entry (ptr);
-  if (spte->type == FILE && !spte->writable)
-    exit (NULL);
-
-}

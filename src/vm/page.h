@@ -16,18 +16,16 @@ struct spt_entry
   {
     enum spte_type type;
     void *upage;
-    void *frame;  /* kpage, if not NULL implies installed and loaded (or being loaded). */
+    void *frame;
     struct hash_elem elem;
-
-     /* CODE */
     bool present_in_swap;
 
-    /* FILE & MMAP*/
     struct file *file;
-    off_t ofs;
-    bool writable;
     uint32_t page_read_bytes;
     uint32_t page_zero_bytes;
+    off_t ofs;
+    bool writable;
+ 
   };
 
 void supp_page_table_init (struct hash *);
@@ -40,7 +38,8 @@ struct spt_entry* create_spte_mmap (struct file *, int, void *);
 
 void remove_spt_table (struct hash *);
 void free_spte_mmap (struct spt_entry *);
+static void spt_elem_free (struct hash_elem *, void *);
+static void spt_free (struct spt_entry *);
 
-bool write_back (struct spt_entry *);
 
 #endif

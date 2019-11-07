@@ -1,6 +1,6 @@
 Copying tests/userprog/wait-killed to scratch partition...
 Copying tests/userprog/child-bad to scratch partition...
-Writing command line to /tmp/ynImfoNHMe.dsk...
+Writing command line to /tmp/SDDMaPUX0P.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -30,7 +30,7 @@ child-bad: exit(-1)
 (wait-killed) end
 wait-killed: exit(0)
 Execution of 'wait-killed' complete.
-Timer: 459 ticks
+Timer: 460 ticks
 Thread: 30 idle ticks, 324 kernel ticks, 109 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 116 reads, 390 writes

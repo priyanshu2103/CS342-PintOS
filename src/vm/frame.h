@@ -9,15 +9,12 @@
 struct frame_table_entry
 {
   void *frame;
-  struct spt_entry *spte;
   struct thread *t;
+  struct spt_entry *spte;
   struct list_elem elem;
 };
 
 static void add_to_frame_table (void *, struct spt_entry *);
-
-//void *frame_alloc (enum palloc_flags);
-void free_frame (void *);
 
 void frame_table_init (void);
 void *allocate_frame_to_page (enum palloc_flags, struct spt_entry *);

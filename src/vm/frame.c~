@@ -31,11 +31,11 @@ void * allocate_frame_to_page (enum palloc_flags flags, struct spt_entry *spte)
 }
 
 static void add_to_frame_table (void *frame, struct spt_entry *spte) {
-  struct frame_table_entry *fte = (struct frame_table_entry *) malloc (sizeof (struct frame_table_entry));
-  fte->frame = frame;
-  fte->spte = spte;
-  fte->t = thread_current ();
-  list_push_back (&frame_table, &fte->elem);
+  struct frame_table_entry *ft_entry = (struct frame_table_entry *) malloc (sizeof (struct frame_table_entry));
+  ft_entry->frame = frame;
+  ft_entry->spte = spte;
+  ft_entry->t = thread_current ();
+  list_push_back (&frame_table, &ft_entry->elem);
 }
 
 
@@ -52,7 +52,3 @@ static void * allocate_frame (enum palloc_flags flags)
     return NULL;
 }
 
-void free_frame (void *frame)
-{
-  palloc_free_page (frame);
-}

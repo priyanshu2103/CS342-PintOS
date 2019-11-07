@@ -109,19 +109,20 @@ struct thread
     /* Owned by thread.c. */
     unsigned magic;                     /* Detects stack overflow. */
 
-    struct list_elem s_elem;            /* sleepers list elements are stored here */
-    struct list locks_acquired;         /* List of locks acquired by a thread */
+    struct file *files[MAX_FILES];
+    struct spt_entry *mmap_files[MAX_FILES];
+    struct hash supp_page_table;
+    struct file *executable_file;
+
     bool no_yield;
 
     struct list_elem parent_elem;       /* list_elem for parent's children list */
     struct thread *parent;              /* Pointer to parent of the list. */
     struct list children;               /* List of children of 
                                            the current thread. */
-
-    struct file *files[MAX_FILES];
-    struct spt_entry *mmap_files[MAX_FILES];
-    struct hash supp_page_table;
-    struct file *executable_file;
+    struct list_elem s_elem;            /* sleepers list elements are stored here */
+    struct list locks_acquired;         /* List of locks acquired by a thread */
+    
     struct semaphore sema_ready;
     struct semaphore sema_terminated;
     struct semaphore sema_ack;
@@ -146,25 +147,16 @@ tid_t thread_create (const char *name, int priority, thread_func *, void *);
 void thread_block (void);
 void thread_unblock (struct thread *);
 
+int thread_get_effective_priority (struct thread *);
+int thread_get_priority (void);
+void thread_set_priority (int);
+
 struct thread *thread_current (void);
 tid_t thread_tid (void);
 const char *thread_name (void);
 
 void thread_exit (void) NO_RETURN;
 void thread_yield (void);
-
-/* Performs some operation on thread t, given auxiliary data AUX. */
-typedef void thread_action_func (struct thread *t, void *aux);
-void thread_foreach (thread_action_func *, void *);
-
-int thread_get_effective_priority (struct thread *);
-int thread_get_priority (void);
-void thread_set_priority (int);
-
-int thread_get_nice (void);
-void thread_set_nice (int);
-int thread_get_recent_cpu (void);
-int thread_get_load_avg (void);
 
 void thread_priority_temporarily_up(void);
 void thread_priority_restore(void);
@@ -177,4 +169,17 @@ void thread_update_priority (struct thread *);
 void thread_update_recent_cpu (struct thread *);
 void thread_update_load_avg (void);
 struct thread *get_child_thread_from_id (int);
+
+/* Performs some operation on thread t, given auxiliary data AUX. */
+typedef void thread_action_func (struct thread *t, void *aux);
+void thread_foreach (thread_action_func *, void *);
+
+
+
+int thread_get_nice (void);
+void thread_set_nice (int);
+int thread_get_recent_cpu (void);
+int thread_get_load_avg (void);
+
+
 #endif /* threads/thread.h */

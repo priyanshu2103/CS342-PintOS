@@ -10,10 +10,10 @@
 #include "userprog/process.h"
 
 /* Number of page faults processed. */
+static void page_fault (struct intr_frame *);
 static long long page_fault_cnt;
 
 static void kill (struct intr_frame *);
-static void page_fault (struct intr_frame *);
 
 /* Registers handlers for interrupts that can be caused by user
    programs.
@@ -127,8 +127,8 @@ static void
 page_fault (struct intr_frame *f) 
 {
   bool not_present;  /* True: not-present page, false: writing r/o page. */
-  bool write;        /* True: access was write, false: access was read. */
   bool user;         /* True: access by user, false: access by kernel. */
+  bool write;        /* True: access was write, false: access was read. */
   void *fault_addr;  /* Fault address. */
 
   /* Obtain faulting address, the virtual address that was
@@ -144,22 +144,30 @@ page_fault (struct intr_frame *f)
      be assured of reading CR2 before it changed). */
   intr_enable ();
 
-  /* Count page faults. */
-  page_fault_cnt++;
 
   /* Determine cause. */
   not_present = (f->error_code & PF_P) == 0;
-  write = (f->error_code & PF_W) != 0;
   user = (f->error_code & PF_U) != 0;
+  write = (f->error_code & PF_W) != 0;
+
+  /* Count page faults. */
+  page_fault_cnt++;
   
   bool success = false;
 
   if (user)
   {
+
     if (!is_user_vaddr (fault_addr) || fault_addr == NULL)
       exit (NULL);
 
-    if (not_present)
+    if (not_present==0)
+    {
+      struct spt_entry *spte = uvaddr_to_spt_entry (fault_addr);
+      if (write && !spte->writable)
+        exit (NULL);
+    }
+    else
     {
       struct spt_entry *spte = uvaddr_to_spt_entry (fault_addr);
       if (spte != NULL && install_load_page (spte))
@@ -170,15 +178,9 @@ page_fault (struct intr_frame *f)
       if (!success)
         exit (NULL);
     }
-    else
-    {
-      struct spt_entry *spte = uvaddr_to_spt_entry (fault_addr);
-      if (write && !spte->writable)
-        exit (NULL);
-    }
   }
 
-  if (!success)
+  if (success==false)
   {
     /* To implement virtual memory, delete the rest of the function
        body, and replace it with code that brings in the page to

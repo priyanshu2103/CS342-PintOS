@@ -12,8 +12,7 @@ static struct spt_entry* create_spte ();
 static bool install_load_file (struct spt_entry *);
 static bool install_load_mmap (struct spt_entry *);
 static bool install_load_swap (struct spt_entry *);
-static void spt_elem_free (struct hash_elem *, void *);
-static void spt_free (struct spt_entry *);
+bool write_back (struct spt_entry *);
 
 /*
   Naming convention for pages and frames:
@@ -29,9 +28,6 @@ static void spt_free (struct spt_entry *);
   others are mmap files
 */
 
-//struct hash supp_page_table;
-//struct lock spt_lock;
-
 unsigned hash_spte (const struct hash_elem *element, void *aux UNUSED)
 {
   struct spt_entry *spte = hash_entry (element, struct spt_entry, elem);
@@ -46,38 +42,44 @@ bool hash_spte_comp (const struct hash_elem *a, const struct hash_elem *b,void *
   return (int) spte_a->upage < (int) spte_b->upage;
 }
 
-void supp_page_table_init (struct hash *supp_page_table)
+void initialize_supp_page_table (struct hash *supp_page_table)
 {
   hash_init (supp_page_table, hash_spte, hash_spte_comp, NULL);
 }
 
+struct spt_entry * find_in_spt(struct spt_entry spte)
+{
+  struct hash_elem *e = hash_find (&thread_current()->supp_page_table, &spte.elem);
+  if(!e)
+    return NULL;
+  
+  return hash_entry (e, struct spt_entry, elem);
+}
+
 struct spt_entry * uvaddr_to_spt_entry (void *uvaddr)
 {
-  void *upage = pg_round_down (uvaddr);
   struct spt_entry spte;
+  void *upage = pg_round_down (uvaddr);
   spte.upage = upage;
 
-  struct hash_elem *e = hash_find (&thread_current()->supp_page_table, &spte.elem);
-  if (e)
-    return hash_entry (e, struct spt_entry, elem);
-  else
-    return NULL;
+  return find_in_spt(spte);
+  
 }
 
 static struct spt_entry * create_spte ()
 {
   struct spt_entry *spte = (struct spt_entry *) malloc (sizeof (struct spt_entry));
-  spte->frame = NULL;
   spte->upage = NULL;
   spte->present_in_swap = false;
+  spte->frame = NULL;
   return spte;
 }
 
 struct spt_entry * create_spte_code (void *upage)
 {
   struct spt_entry *spte = create_spte ();
-  spte->type = CODE;
   spte->upage = upage;
+  spte->type = CODE;
   hash_insert (&((thread_current())->supp_page_table), &spte->elem);
   return spte;
 }
@@ -92,7 +94,11 @@ struct spt_entry * create_spte_mmap (struct file *f, int read_bytes, void *upage
 
   while (read_bytes > 0)
   {
-    page_read_bytes = read_bytes < PGSIZE ? read_bytes : PGSIZE;
+    if(read_bytes < PGSIZE)
+	page_read_bytes = read_bytes;
+    else 
+	page_read_bytes = PGSIZE;
+    //page_read_bytes = read_bytes < PGSIZE ? read_bytes : PGSIZE;
     page_zero_bytes = PGSIZE - page_read_bytes;
 
     struct spt_entry *spte = uvaddr_to_spt_entry (upage);
@@ -103,13 +109,13 @@ struct spt_entry * create_spte_mmap (struct file *f, int read_bytes, void *upage
     }
 
     spte = create_spte ();
-    spte->type = MMAP;
-    spte->upage = upage;
     spte->file = f;
     spte->ofs = ofs;
-    spte->page_read_bytes = page_read_bytes;
-    spte->page_zero_bytes = page_zero_bytes;
     spte->writable = true;
+    spte->page_read_bytes = page_read_bytes;
+    spte->type = MMAP;
+    spte->upage = upage;
+    spte->page_zero_bytes = page_zero_bytes;
 
     ofs += page_read_bytes;
     read_bytes -= page_read_bytes;
@@ -208,10 +214,10 @@ static bool install_load_swap (struct spt_entry *spte)
   if (install_page (spte->upage, frame, true))
   {
     spte->frame = frame;
-    if (!spte->present_in_swap)
-      return true;
-    else
+    if (spte->present_in_swap)
       return false;
+    else
+      return true;
   }
   else
     free_frame (frame);
@@ -266,7 +272,7 @@ static void spt_free (struct spt_entry *spte)
   {
     if (spte->frame != NULL)
     {
-      if(spte->type == MMAP || (spte->type == FILE && spte->writable))
+      if((spte->type == FILE && spte->writable) || spte->type == MMAP)
         write_back (spte);
 
       void *pd = thread_current()->pagedir;
