@@ -1,5 +1,5 @@
 Copying tests/vm/mmap-bad-fd to scratch partition...
-Writing command line to /tmp/fvEDXUoiLb.dsk...
+Writing command line to /tmp/4nd4TzIBTg.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -27,7 +27,7 @@ Executing 'mmap-bad-fd':
 mmap-bad-fd: exit(0)
 Execution of 'mmap-bad-fd' complete.
 Timer: 318 ticks
-Thread: 30 idle ticks, 233 kernel ticks, 58 user ticks
+Thread: 30 idle ticks, 234 kernel ticks, 57 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 59 reads, 198 writes
 hd1:0: 96 reads, 2 writes

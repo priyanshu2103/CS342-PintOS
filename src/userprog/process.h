@@ -3,9 +3,9 @@
 
 #include "threads/thread.h"
 
-#define STACK_HEURISTIC 32
-#define MAX_STACK_SIZE (1<<23)
-/* 2^23 bits === 256 KB. */
+#define STACK_ACCESS_LIMIT 32
+#define MAX_STACK_SIZE (1<<26)
+/* 2^26 bits === 8MB. */
 
 /* Lock for file system calls. */
 struct lock f_lock;

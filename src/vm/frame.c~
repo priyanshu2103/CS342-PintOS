@@ -7,48 +7,40 @@
 struct list frame_table;
 struct lock frame_table_lock;
 
-static void *frame_alloc (enum palloc_flags);
+static void *allocate_frame (enum palloc_flags);
  
-void
-frame_table_init (void)
+void frame_table_init (void)
 {
   list_init (&frame_table);
   lock_init (&frame_table_lock);
 }
 
-void *
-get_frame_for_page (enum palloc_flags flags, struct spt_entry *spte)
+void * allocate_frame_to_page (enum palloc_flags flags, struct spt_entry *spte)
 {
   if (flags & PAL_USER == 0)
     return NULL;
 
-  void *frame = frame_alloc (flags);
+  void *frame = allocate_frame (flags);
 
-  if (frame != NULL && spte != NULL){
+  if (frame != NULL && spte != NULL)
+  {
     add_to_frame_table (frame, spte);
     return frame;
   }
   else return NULL;
 }
 
-static void
-add_to_frame_table (void *frame, struct spt_entry *spte) {
-  struct frame_table_entry *fte =
-    (struct frame_table_entry *) malloc (sizeof (struct frame_table_entry));
-
-  lock_acquire (&frame_table_lock);
+static void add_to_frame_table (void *frame, struct spt_entry *spte) {
+  struct frame_table_entry *fte = (struct frame_table_entry *) malloc (sizeof (struct frame_table_entry));
   fte->frame = frame;
   fte->spte = spte;
   fte->t = thread_current ();
-  //lock_acquire (&frame_table_lock);
   list_push_back (&frame_table, &fte->elem);
-  lock_release (&frame_table_lock);
 }
 
-//TODO:: Make static
+
 /* Returns kernel virtual address of a kpage taken from user_pool. */
-static void *
-frame_alloc (enum palloc_flags flags)
+static void * allocate_frame (enum palloc_flags flags)
 {
   if (flags & PAL_USER == 0)
     return NULL;
@@ -57,14 +49,10 @@ frame_alloc (enum palloc_flags flags)
   if (frame != NULL)
     return frame;
   else
-  {
-    
     return NULL;
-  }
 }
 
-void
-free_frame (void *frame)
+void free_frame (void *frame)
 {
   palloc_free_page (frame);
 }

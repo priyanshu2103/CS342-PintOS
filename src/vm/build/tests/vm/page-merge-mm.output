@@ -1,6 +1,6 @@
 Copying tests/vm/page-merge-mm to scratch partition...
 Copying tests/vm/child-qsort-mm to scratch partition...
-Writing command line to /tmp/15dBQNV1FA.dsk...
+Writing command line to /tmp/xDmU8jdUDp.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -39,16 +39,17 @@ child-qsort-mm: exit(-1)
 child-qsort-mm: exit(-1)
 child-qsort-mm: exit(-1)
 child-qsort-mm: exit(-1)
+child-qsort-mm: exit(-1)
 (page-merge-mm) wait for child 0: FAILED
 page-merge-mm: exit(1)
 Execution of 'page-merge-mm' complete.
-Timer: 9710 ticks
-Thread: 30 idle ticks, 388 kernel ticks, 9308 user ticks
+Timer: 9022 ticks
+Thread: 30 idle ticks, 402 kernel ticks, 8602 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 1801 reads, 4904 writes
+hd0:1: 1757 reads, 5088 writes
 hd1:0: 208 reads, 2 writes
 hd1:1: 0 reads, 0 writes
-Console: 1511 characters output
+Console: 1536 characters output
 Keyboard: 0 keys pressed
-Exception: 438 page faults
+Exception: 432 page faults
 Powering off...

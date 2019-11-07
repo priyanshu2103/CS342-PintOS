@@ -1,5 +1,5 @@
 Copying tests/vm/mmap-shuffle to scratch partition...
-Writing command line to /tmp/y2fsfVcuTu.dsk...
+Writing command line to /tmp/OwsxzIg7Wm.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -39,8 +39,8 @@ Executing 'mmap-shuffle':
 (mmap-shuffle) end
 mmap-shuffle: exit(0)
 Execution of 'mmap-shuffle' complete.
-Timer: 24469 ticks
-Thread: 30 idle ticks, 243 kernel ticks, 24200 user ticks
+Timer: 24467 ticks
+Thread: 30 idle ticks, 242 kernel ticks, 24199 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 343 reads, 734 writes
 hd1:0: 106 reads, 2 writes

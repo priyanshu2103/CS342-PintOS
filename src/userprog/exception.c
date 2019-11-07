@@ -152,9 +152,9 @@ page_fault (struct intr_frame *f)
   write = (f->error_code & PF_W) != 0;
   user = (f->error_code & PF_U) != 0;
   
-  bool loaded = false;
+  bool success = false;
 
-  if ( user)
+  if (user)
   {
     if (!is_user_vaddr (fault_addr) || fault_addr == NULL)
       exit (NULL);
@@ -162,14 +162,12 @@ page_fault (struct intr_frame *f)
     if (not_present)
     {
       struct spt_entry *spte = uvaddr_to_spt_entry (fault_addr);
-
       if (spte != NULL && install_load_page (spte))
-        loaded = true;
-      else if (fault_addr >= f->esp - STACK_HEURISTIC &&
-               grow_stack (fault_addr))
-        loaded = true;
+        success = true;
+      else if (fault_addr >= f->esp - STACK_ACCESS_LIMIT && add_stack_pages (fault_addr))
+        success = true;
 
-      if (!loaded)
+      if (!success)
         exit (NULL);
     }
     else
@@ -180,7 +178,8 @@ page_fault (struct intr_frame *f)
     }
   }
 
-  if (!loaded){
+  if (!success)
+  {
     /* To implement virtual memory, delete the rest of the function
        body, and replace it with code that brings in the page to
        which fault_addr refers. */
@@ -190,6 +189,6 @@ page_fault (struct intr_frame *f)
             write ? "writing" : "reading",
             user ? "user" : "kernel");
     kill (f);
-}
+  }
 }
 

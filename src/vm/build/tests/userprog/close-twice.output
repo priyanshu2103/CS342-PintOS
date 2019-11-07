@@ -1,6 +1,6 @@
 Copying tests/userprog/close-twice to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-Writing command line to /tmp/6KVZhPKco6.dsk...
+Writing command line to /tmp/ymNjZwToSR.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -31,7 +31,7 @@ Executing 'close-twice':
 close-twice: exit(0)
 Execution of 'close-twice' complete.
 Timer: 365 ticks
-Thread: 30 idle ticks, 260 kernel ticks, 78 user ticks
+Thread: 30 idle ticks, 261 kernel ticks, 77 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 90 reads, 204 writes
 hd1:0: 98 reads, 2 writes

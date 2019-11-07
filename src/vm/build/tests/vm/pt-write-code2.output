@@ -1,6 +1,6 @@
 Copying tests/vm/pt-write-code2 to scratch partition...
 Copying ../../tests/vm/sample.txt to scratch partition...
-Writing command line to /tmp/BPJH4OhfJE.dsk...
+Writing command line to /tmp/bQQw5qlFGE.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -27,8 +27,8 @@ Executing 'pt-write-code2':
 (pt-write-code2) open "sample.txt"
 pt-write-code2: exit(-1)
 Execution of 'pt-write-code2' complete.
-Timer: 349 ticks
-Thread: 30 idle ticks, 263 kernel ticks, 59 user ticks
+Timer: 348 ticks
+Thread: 30 idle ticks, 262 kernel ticks, 59 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 90 reads, 206 writes
 hd1:0: 99 reads, 2 writes

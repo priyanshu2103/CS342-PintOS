@@ -1,5 +1,5 @@
 Copying tests/filesys/base/lg-full to scratch partition...
-Writing command line to /tmp/QVNdAzs4KU.dsk...
+Writing command line to /tmp/I7R436U1CJ.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -32,8 +32,8 @@ Executing 'lg-full':
 (lg-full) end
 lg-full: exit(0)
 Execution of 'lg-full' complete.
-Timer: 779 ticks
-Thread: 30 idle ticks, 234 kernel ticks, 518 user ticks
+Timer: 778 ticks
+Thread: 30 idle ticks, 234 kernel ticks, 517 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 239 reads, 506 writes
 hd1:0: 100 reads, 2 writes

@@ -1,6 +1,6 @@
 Copying tests/vm/mmap-unmap to scratch partition...
 Copying ../../tests/vm/sample.txt to scratch partition...
-Writing command line to /tmp/ORGZnELPXS.dsk...
+Writing command line to /tmp/zuaWIVNA9f.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -29,7 +29,7 @@ Executing 'mmap-unmap':
 mmap-unmap: exit(-1)
 Execution of 'mmap-unmap' complete.
 Timer: 352 ticks
-Thread: 30 idle ticks, 262 kernel ticks, 63 user ticks
+Thread: 30 idle ticks, 263 kernel ticks, 62 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 98 reads, 212 writes
 hd1:0: 102 reads, 2 writes

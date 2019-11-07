@@ -1,5 +1,5 @@
 Copying tests/filesys/base/lg-seq-block to scratch partition...
-Writing command line to /tmp/wBGDjt8JL1.dsk...
+Writing command line to /tmp/8GE731fR0v.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -32,8 +32,8 @@ Executing 'lg-seq-block':
 (lg-seq-block) end
 lg-seq-block: exit(0)
 Execution of 'lg-seq-block' complete.
-Timer: 1003 ticks
-Thread: 30 idle ticks, 237 kernel ticks, 739 user ticks
+Timer: 1002 ticks
+Thread: 30 idle ticks, 237 kernel ticks, 738 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 532 reads, 653 writes
 hd1:0: 100 reads, 2 writes

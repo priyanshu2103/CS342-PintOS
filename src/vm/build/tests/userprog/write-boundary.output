@@ -1,6 +1,6 @@
 Copying tests/userprog/write-boundary to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-Writing command line to /tmp/N7B1TzGURR.dsk...
+Writing command line to /tmp/n3k8DA4EPD.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -29,7 +29,7 @@ Executing 'write-boundary':
 write-boundary: exit(0)
 Execution of 'write-boundary' complete.
 Timer: 365 ticks
-Thread: 30 idle ticks, 263 kernel ticks, 75 user ticks
+Thread: 30 idle ticks, 264 kernel ticks, 74 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 99 reads, 213 writes
 hd1:0: 102 reads, 2 writes

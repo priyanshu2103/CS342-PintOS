@@ -20,6 +20,6 @@ static void add_to_frame_table (void *, struct spt_entry *);
 void free_frame (void *);
 
 void frame_table_init (void);
-void *get_frame_for_page (enum palloc_flags, struct spt_entry *);
+void *allocate_frame_to_page (enum palloc_flags, struct spt_entry *);
 
 #endif

@@ -1,6 +1,6 @@
 Copying tests/vm/mmap-close to scratch partition...
 Copying ../../tests/vm/sample.txt to scratch partition...
-Writing command line to /tmp/XVwpYxckTp.dsk...
+Writing command line to /tmp/PIJVMEuk0o.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -29,8 +29,8 @@ Executing 'mmap-close':
 (mmap-close) end
 mmap-close: exit(0)
 Execution of 'mmap-close' complete.
-Timer: 366 ticks
-Thread: 30 idle ticks, 265 kernel ticks, 74 user ticks
+Timer: 365 ticks
+Thread: 30 idle ticks, 264 kernel ticks, 74 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 101 reads, 212 writes
 hd1:0: 102 reads, 2 writes

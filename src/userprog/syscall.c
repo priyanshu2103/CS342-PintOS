@@ -25,7 +25,7 @@ static void check_string (const void *, const char *);
 static bool check_valid_fd (int);
 
 static void is_writable (const void *);
-static bool is_valid_page (void *);
+static bool check_page_validity (void *);
 
 //static struct lock f_lock;
 
@@ -64,7 +64,7 @@ int exit (void *esp)
     }
   }
 
-  destroy_spt (&th->supp_page_table);
+  remove_spt_table (&th->supp_page_table);
   char *name = th->name;
   char *temp;
   name = strtok_r (name, " ", &temp);
@@ -364,37 +364,37 @@ static int mmap (void *esp)
 
   if (!check_valid_fd(fd))
     return -1;
+  if (fd==0 || fd==1)
+    return -1;
 
   check_sanity (esp, esp, sizeof(void *));
   const void *address = *((void **) esp);
   esp += sizeof (void *);
 
-  if (!is_valid_page (address))
+  if (!check_page_validity (address))
     return -1;
 
-  struct thread *t = thread_current();
-  struct file* old = t->files[fd];
+  struct thread *th = thread_current();
+  struct file* temp = th->files[fd];
 
-  if (old == NULL)
+  if (temp == NULL)
     return -1;
 
-  struct file *f = file_reopen (old);
-  if (f == NULL)
+  struct file *fp = file_reopen (temp);
+  if (fp == NULL)
     return -1;
 
-  lock_acquire (&f_lock);
-  int size = file_length (f);
-  lock_release (&f_lock);
+  int size = file_length (fp);
 
-  struct spt_entry *spte = create_spte_mmap (f, size, address);
+  struct spt_entry *spte = create_spte_mmap (fp, size, address);
   if (spte == NULL)
     return -1;
 
   int i;
   for (i = 0; i<MAX_FILES; i++)
   {
-    if (t->mmap_files[i] == NULL){
-      t->mmap_files[i] = spte;
+    if (th->mmap_files[i] == NULL){
+      th->mmap_files[i] = spte;
       break;
     }
   }
@@ -411,10 +411,10 @@ static int munmap (void *esp)
   int map_id = *((int *)esp);
   esp += sizeof (int);
 
-  if (check_valid_fd(map_id)){
-
-    struct thread *t = thread_current();
-    struct spt_entry *spte = t->mmap_files[map_id];
+  if (check_valid_fd(map_id))
+  {
+    struct thread *th = thread_current();
+    struct spt_entry *spte = th->mmap_files[map_id];
 
     if (spte != NULL)
       free_spte_mmap (spte);
@@ -498,7 +498,6 @@ static void syscall_handler (struct intr_frame *f UNUSED)
   else
   {
     printf ("\nError, invalid syscall number.");
-    //thread_exit ();
     exit (NULL);
   }
 }
@@ -543,22 +542,20 @@ static void check_validity (const void *esp, const void *ptr)
       if (!install_load_page (spte))
         exit (NULL);
     }
-    else if (!(ptr >= esp - STACK_HEURISTIC &&
-              grow_stack (ptr)))
+    else if (!(ptr >= esp - STACK_ACCESS_LIMIT && add_stack_pages (ptr)))
     {
       exit (NULL);
     }
   }
 }
 
+//upage must not be 0 and it should be page aligned
 static bool
-is_valid_page (void *upage)
+check_page_validity (void *upage)
 {
-  /* non-zero */
   if (upage == 0)
     return false;
 
-  /* Page aligned */
   if ((uintptr_t) upage % PGSIZE != 0)
     return false;
 

@@ -492,72 +492,74 @@ setup_stack (void **esp, char *file_name, char *args)
 {
 	uint8_t *kpage;
 	bool success = false;
+	success = add_stack_pages (((uint8_t *) PHYS_BASE) - PGSIZE);
+	if (success)
+	{
+		*esp = PHYS_BASE;
 
-	success = grow_stack (((uint8_t *) PHYS_BASE) - PGSIZE);
-        if (success){
-        *esp = PHYS_BASE;
-         /* Tokenize the string accross spaces (DELIMITER) */
-       char *token, *save_ptr;
-       int argc = 1;
-       char *argv[LOADER_ARGS_LEN / 2 + 1];
-       argv[0] = file_name;
+		char *temp;
+		char *t;
+		int argc = 1;
+		char * str[(LOADER_ARGS_LEN/2) + 1];
+		str[0] = file_name;
 
-       for (token = strtok_r (args, " ", &save_ptr); token != NULL;
-         token = strtok_r (NULL, " ", &save_ptr))
-       {
-        argv[argc] = token;
-        argc++;
-       }
-       argv[argc] = NULL;
+		for (temp = strtok_r (args, " ", &t); temp != NULL; temp = strtok_r (NULL, " ", &t))
+		{
+			str[argc] = temp;	   //Push args in array
+			argc++;
+		}
+		str[argc] = NULL;
 
-       /* Push the args to the stack */
-    int i, bytes_written = 0;
-    char *addr[LOADER_ARGS_LEN / 2 + 1];
-    size_t s;
 
-    for (i = argc-1; i>=0; i--)
-    {
-      s = (strlen(argv[i]) + 1) * (sizeof (char));
-      *esp -= s;
-      memcpy (*esp, argv[i], s);
-      bytes_written += s;
-      addr[i] = (char *) *esp;
+		int bytes = 0;
+		char *addr[LOADER_ARGS_LEN / 2 + 1];
 
-       }
-    addr[argc] = NULL;
+		size_t len;
 
-    /* Align the stack pointer location to nearest word_length multiple */
-    uint8_t nulls[3] = {0,0,0};
-    s = bytes_written % word_length ;
-    *esp -= s;
-    memcpy (*esp, nulls, s);
+		int i;
+		for (i = argc-1; i>=0; i--)	   // Loop to allign stack pointer according to length multiple
+		{
+			len = (strlen(str[i]) + 1) * (sizeof (char));
+		        *esp = *esp - len; 
+		        memcpy (*esp, str[i], len);
+		        bytes += len;
+		        addr[i] = (char *) *esp;
+		}
+		addr[argc] = NULL;
 
-    /* Push addresses of argv array. */
-    for (i = argc; i>=0; i--)
-    {
-      s = (sizeof (char *));
-      *esp -= s;
-      memcpy (*esp, addr + i, s);
-    }
+		uint8_t allign[3] = {0,0,0};       // 3 as maximum 3 bytes can be left over as remainder on dividing by 4
+		len = bytes % word_length;
+		*esp = *esp - len;
 
-    /* Push argv start address. */
-    char *argv_starting = *esp; 
-    s = sizeof (argv_starting);
-    *esp -= s;
-    memcpy(*esp, &argv_starting, s);
+		memcpy (*esp, allign, len);        // filling as many bytes(0,1,2 or 3) to align word
 
-    /* Push argc. */
-    s = sizeof (int);
-    *esp -= s;
-    memcpy (*esp, &argc, s);
 
-    /* Push return address (UNUSED). */
-    argc = 0;
-    s = sizeof (void (*) ());
-    *esp -= s;
-    memcpy (*esp, &argc, s);
-  }
-     return success;
+		len = (sizeof (char *));
+		for (i = argc; i>=0; i--)	   //Push adress in stack
+		{				
+			*esp = *esp - len;
+			memcpy (*esp, addr + i, len);
+		}
+
+		char *begin = *esp; 			
+		len = sizeof (begin);          	   // putting argv[0] address (argv) 
+		*esp = *esp - len;	           // this will be the address where argv[0] is stored which is the previous *esp 
+		memcpy(*esp, &begin, len);
+
+		len = sizeof (int);			
+		*esp = *esp - len;		   //argc
+		memcpy (*esp, &argc, len);         // putting argc address
+
+		argc = 0;
+		len = sizeof (void (*) ());	   //end adress
+		*esp -= len;
+		memcpy (*esp, &argc, len);	   // fake return address
+	}
+	else 
+	{
+		palloc_free_page (kpage);
+	}
+	return success;
 	
 }
 

@@ -1,5 +1,5 @@
 Copying tests/userprog/create-long to scratch partition...
-Writing command line to /tmp/FiNpCNgUNG.dsk...
+Writing command line to /tmp/xGsd6XUWhU.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -27,7 +27,7 @@ Executing 'create-long':
 create-long: exit(0)
 Execution of 'create-long' complete.
 Timer: 331 ticks
-Thread: 30 idle ticks, 233 kernel ticks, 71 user ticks
+Thread: 30 idle ticks, 234 kernel ticks, 70 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 63 reads, 202 writes
 hd1:0: 96 reads, 2 writes
